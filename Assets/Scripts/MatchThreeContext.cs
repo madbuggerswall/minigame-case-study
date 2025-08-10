@@ -1,8 +1,7 @@
-using UnityEngine;
 using Utilities.Contexts;
 using Utilities.Signals;
 
-public class MatchThreeContext : SubContext {
+public class MatchThreeContext : SubContext<MatchThreeContext> {
 	protected override void ResolveContext() {
 		Resolve<MatchThreeInputManager>();
 	}

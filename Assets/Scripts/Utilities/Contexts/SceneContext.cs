@@ -5,23 +5,12 @@ using UnityEngine;
 namespace Utilities.Contexts {
 	[DefaultExecutionOrder(-32)]
 	public abstract class Context : MonoBehaviour {
+		private readonly Dictionary<Type, IInitializable> contextItems = new();
+
 		protected abstract void ResolveContext();
 		protected abstract void OnInitialized();
-		protected internal abstract void Resolve<T>() where T : IInitializable, new();
-	}
 
-	public abstract class SceneContext : Context {
-		private readonly Dictionary<Type, IInitializable> contextItems = new();
-		private static SceneContext instance;
-
-		private void Awake() {
-			AssertSingleton();
-			ResolveContext();
-			InitializeContext();
-			OnInitialized();
-		}
-
-		internal void InitializeContext() {
+		protected void InitializeContext() {
 			//.NET Standard 2.1 preserves dictionary insertion order which is vital
 			foreach ((Type _, IInitializable initializable) in contextItems)
 				initializable.Initialize();
@@ -31,10 +20,10 @@ namespace Utilities.Contexts {
 			if (contextItems.TryGetValue(typeof(T), out IInitializable contextItem))
 				return contextItem as T;
 
-			throw new Exception($"Context item {typeof(T)} cannot be found on current context");
+			throw new Exception($"Context item {typeof(T)} cannot be found in current context");
 		}
 
-		protected internal override sealed void Resolve<T>() {
+		protected void Resolve<T>() where T : IInitializable, new() {
 			if (typeof(MonoBehaviour).IsAssignableFrom(typeof(T))) {
 				ResolveMonoBehaviour<T>();
 			} else {
@@ -65,6 +54,17 @@ namespace Utilities.Contexts {
 			// This can be an exception as dependent systems would be broken already
 			Debug.LogWarning($"Dependency {typeof(T)} is already added to context");
 		}
+	}
+
+	public abstract class SceneContext : Context {
+		private static SceneContext instance;
+
+		private void Awake() {
+			AssertSingleton();
+			ResolveContext();
+			InitializeContext();
+			OnInitialized();
+		}
 
 		// Singleton Operations
 		private void AssertSingleton() {
@@ -77,19 +77,21 @@ namespace Utilities.Contexts {
 		public static SceneContext GetInstance() => instance;
 	}
 
-	public abstract class SubContext : Context {
-		private SceneContext sceneContext;
+	public abstract class SubContext<T> : Context where T : SubContext<T> {
+		private static T instance;
 
 		private void Awake() {
-			this.sceneContext = SceneContext.GetInstance();
-
+			AssertSingleton();
 			ResolveContext();
-			sceneContext.InitializeContext();
+			InitializeContext();
 			OnInitialized();
 		}
 
-		protected internal override sealed void Resolve<T>() {
-			sceneContext.Resolve<T>();
+		private void AssertSingleton() {
+			if (instance is not null)
+				Destroy(instance);
+
+			instance = this as T;
 		}
 	}
 }

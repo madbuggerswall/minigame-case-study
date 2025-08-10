@@ -1,4 +1,3 @@
-using UnityEngine;
 using Utilities.Contexts;
 using Utilities.Input;
 using Utilities.Pooling;
