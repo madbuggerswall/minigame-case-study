@@ -1,9 +1,6 @@
 using UnityEngine;
-using Utilities.Grids.NeighborHelpers;
 
 namespace Utilities.Grids {
-	public enum GridPlane { XY, XZ, YZ }
-
 	public abstract class SquareGrid<T> : Grid<T> where T : SquareCell {
 		public struct CellParams {
 			public CellFactory<T> CellFactory { get; set; }
@@ -15,19 +12,15 @@ namespace Utilities.Grids {
 			public GridPlane GridPlane { get; set; }
 		}
 
-		protected readonly SquareGridNeighborHelper<T> neighborHelper;
-
 		protected SquareGrid(GridParams gridParams, CellParams cellParams) {
 			this.cellDiameter = cellParams.CellDiameter;
 			this.gridSize = gridParams.GridSize;
 
-			this.gridSizeInLength = GetFittingGridSize(gridSize);
+			this.gridSizeInLength = GetFittingGridSize(gridSize, cellDiameter);
 
 			Vector3[] cellPositions = GenerateCellPositions(gridSize, gridParams.GridPlane);
 			this.centerPoint = CalculateGridCenterPoint(cellPositions);
 			this.cells = GenerateCells(cellParams.CellFactory, cellPositions);
-
-			this.neighborHelper = new SquareGridNeighborHelper<T>(this, false);
 		}
 
 		private Vector3[] GenerateCellPositions(Vector2Int gridSizeInCells, GridPlane gridPlane) {
@@ -47,16 +40,7 @@ namespace Utilities.Grids {
 			return cellPositions;
 		}
 
-		private Vector3 GetCellPosition(float posX, float posY, GridPlane gridPlane) {
-			return gridPlane switch {
-				GridPlane.XY => new Vector3(posX, posY),
-				GridPlane.XZ => new Vector3(posX, 0, posY),
-				GridPlane.YZ => new Vector3(0, posX, posY),
-				_ => new Vector3(posX, posY)
-			};
-		}
-
-		private Vector3 CalculateGridCenterPoint(Vector3[] cellPositions) {
+		private static Vector3 CalculateGridCenterPoint(Vector3[] cellPositions) {
 			Vector3 positionSum = Vector3.zero;
 			for (int i = 0; i < cellPositions.Length; i++)
 				positionSum += cellPositions[i];
@@ -64,12 +48,8 @@ namespace Utilities.Grids {
 			return (positionSum / cellPositions.Length);
 		}
 
-		private Vector2 GetFittingGridSize(Vector2Int gridSizeInCells) {
+		private static Vector2 GetFittingGridSize(Vector2Int gridSizeInCells, float cellDiameter) {
 			return new Vector2(gridSizeInCells.x * cellDiameter, gridSizeInCells.y * cellDiameter);
-		}
-
-		public T[] GetNeighbors(T cell) {
-			return neighborHelper.GetCellNeighbors(cell);
 		}
 	}
 }

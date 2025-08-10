@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Utilities.Grids {
-	// Not so much an extension class, more a container for unused methods.
+	// Not so much of an extension class, rather a container for unused methods.
 	public static class CircleGridExtensions {
 		private static Vector2Int GetFittingGridSizeInCells(Vector2 gridSize, float cellDiameter) {
 			int widthInCells = Mathf.CeilToInt(gridSize.x / cellDiameter);

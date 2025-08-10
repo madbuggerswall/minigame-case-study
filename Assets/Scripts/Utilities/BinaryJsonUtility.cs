@@ -2,8 +2,8 @@ using System.IO;
 using UnityEngine;
 
 namespace Utilities {
-	// TODO Rename this class (JSON)
-	public static class SaveManager {
+	// TODO Rename this class (BinaryJson+Writer/Utils)
+	public static class BinaryJsonUtility {
 		public static void Save<T>(T serializable, string filePath) {
 			string json = JsonUtility.ToJson(serializable, false);
 			Debug.Log(json);
@@ -17,7 +17,7 @@ namespace Utilities {
 			string objectAsJSON;
 
 			using (FileStream file = File.Open(filePath, FileMode.Open)) {
-				using (BinaryReader binaryReader = new BinaryReader(file)) {
+				using (BinaryReader binaryReader = new(file)) {
 					objectAsJSON = binaryReader.ReadString();
 				}
 			}
@@ -25,16 +25,23 @@ namespace Utilities {
 			return JsonUtility.FromJson<T>(objectAsJSON);
 		}
 
-		public static void Overwrite<T>(T objectToOverwrite, string filePath) {
-			string objectAsJSON;
+		public static void Overwrite<T>(T overwrittenObject, string filePath) {
+			string objectAsJson;
 
+			objectAsJson = ReadBinaryJsonFile<T>(filePath);
+
+			JsonUtility.FromJsonOverwrite(objectAsJson, overwrittenObject);
+		}
+
+		private static string ReadBinaryJsonFile<T>(string filePath) {
+			string objectAsJson;
 			using (FileStream file = File.Open(filePath, FileMode.Open)) {
-				using (BinaryReader binaryReader = new BinaryReader(file)) {
-					objectAsJSON = binaryReader.ReadString();
+				using (BinaryReader binaryReader = new(file)) {
+					objectAsJson = binaryReader.ReadString();
 				}
 			}
 
-			JsonUtility.FromJsonOverwrite(objectAsJSON, objectToOverwrite);
+			return objectAsJson;
 		}
 
 		public static bool Exists(string filePath) {

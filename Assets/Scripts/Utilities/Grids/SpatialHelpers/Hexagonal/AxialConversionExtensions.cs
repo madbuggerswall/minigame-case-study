@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Utilities.Grids.SpatialHelpers {
+namespace Utilities.Grids.SpatialHelpers.Hexagonal {
 	public static class AxialConversionExtensions {
 		// Axial
 		public static Vector2Int ToVector2Int(this AxialCoord axialCoord) {

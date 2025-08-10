@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Utilities.Grids.SpatialHelpers {
+namespace Utilities.Grids.SpatialHelpers.Hexagonal {
 	public struct DoubleWidthCoord {
 		public int column;
 		public int row;

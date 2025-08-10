@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Utilities.Grids.SpatialHelpers {
+namespace Utilities.Grids.SpatialHelpers.Hexagonal {
 	public enum AxialDirection { East, NorthEast, NorthWest, West, SouthWest, SouthEast }
 
 	public struct CubeCoord {

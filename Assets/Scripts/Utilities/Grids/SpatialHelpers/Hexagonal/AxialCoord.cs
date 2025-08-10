@@ -1,7 +1,7 @@
 using UnityEngine;
 using static UnityEngine.Mathf;
 
-namespace Utilities.Grids.SpatialHelpers {
+namespace Utilities.Grids.SpatialHelpers.Hexagonal {
 	public struct AxialCoord {
 		public int q;
 		public int r;

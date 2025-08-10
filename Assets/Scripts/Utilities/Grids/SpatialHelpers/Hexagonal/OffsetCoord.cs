@@ -1,4 +1,4 @@
-namespace Utilities.Grids.SpatialHelpers {
+namespace Utilities.Grids.SpatialHelpers.Hexagonal {
 	public struct OffsetOddRCoord {
 		public int column;
 		public int row;

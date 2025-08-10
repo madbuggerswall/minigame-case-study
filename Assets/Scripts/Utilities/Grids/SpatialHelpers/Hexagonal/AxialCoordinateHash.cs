@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utilities.Grids.SpatialHelpers {
+namespace Utilities.Grids.SpatialHelpers.Hexagonal {
 	// NOTE Also do this for SquareCells
 	// IDEA Rename to AxialCellMapper<T> or AxialGridHelper<T>
 	// https://www.redblobgames.com/grids/hexagons/
@@ -40,21 +40,9 @@ namespace Utilities.Grids.SpatialHelpers {
 			return invertedAxialMap;
 		}
 
-		private void AxialStudy() {
-			float cellRadius = cellDiameter / 2;
-
-			// Hexagon (pointy-top)
-			float size = 2f / Mathf.Sqrt(3f) * cellRadius;
-			float width = 2f * cellRadius;
-			float height = 2f * size;
-
-			float horizontalSpacing = width;
-			float verticalSpacing = 3f / 4f * height;
-		}
-
-		public bool TryGetCell(Vector3 worldPosition, out T fieldCell) {
+		public bool TryGetCell(Vector3 worldPosition, out T circleCell) {
 			AxialCoord centerAxial = AxialCoord.WorldToAxial(worldPosition, cellDiameter);
-			return cellsByAxialCoord.TryGetValue(centerAxial, out fieldCell);
+			return cellsByAxialCoord.TryGetValue(centerAxial, out circleCell);
 		}
 
 		public AxialCoord GetAxialCoordinates(T cell) {
