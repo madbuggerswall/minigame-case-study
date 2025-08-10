@@ -14,34 +14,20 @@ namespace Utilities {
 		}
 
 		public static T Load<T>(string filePath) {
-			string objectAsJSON;
-
-			using (FileStream file = File.Open(filePath, FileMode.Open)) {
-				using (BinaryReader binaryReader = new(file)) {
-					objectAsJSON = binaryReader.ReadString();
-				}
-			}
-
-			return JsonUtility.FromJson<T>(objectAsJSON);
+			string objectAsJson = ReadBinaryJsonFile<T>(filePath);
+			return JsonUtility.FromJson<T>(objectAsJson);
 		}
 
 		public static void Overwrite<T>(T overwrittenObject, string filePath) {
-			string objectAsJson;
-
-			objectAsJson = ReadBinaryJsonFile<T>(filePath);
-
+			string objectAsJson = ReadBinaryJsonFile<T>(filePath);
 			JsonUtility.FromJsonOverwrite(objectAsJson, overwrittenObject);
 		}
 
 		private static string ReadBinaryJsonFile<T>(string filePath) {
-			string objectAsJson;
-			using (FileStream file = File.Open(filePath, FileMode.Open)) {
-				using (BinaryReader binaryReader = new(file)) {
-					objectAsJson = binaryReader.ReadString();
-				}
-			}
+			using FileStream file = File.Open(filePath, FileMode.Open);
+			using BinaryReader binaryReader = new(file);
 
-			return objectAsJson;
+			return binaryReader.ReadString();
 		}
 
 		public static bool Exists(string filePath) {
