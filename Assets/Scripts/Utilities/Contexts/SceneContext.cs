@@ -4,10 +4,15 @@ using UnityEngine;
 
 namespace Utilities.Contexts {
 	[DefaultExecutionOrder(-32)]
-	public abstract class SceneContext : MonoBehaviour {
-		private static SceneContext instance;
+	public abstract class Context : MonoBehaviour {
+		protected abstract void ResolveContext();
+		protected abstract void OnInitialized();
+		protected internal abstract void Resolve<T>() where T : IInitializable, new();
+	}
 
+	public abstract class SceneContext : Context {
 		private readonly Dictionary<Type, IInitializable> contextItems = new();
+		private static SceneContext instance;
 
 		private void Awake() {
 			AssertSingleton();
@@ -16,10 +21,7 @@ namespace Utilities.Contexts {
 			OnInitialized();
 		}
 
-		protected abstract void ResolveContext();
-		protected abstract void OnInitialized();
-
-		private void InitializeContext() {
+		internal void InitializeContext() {
 			//.NET Standard 2.1 preserves dictionary insertion order which is vital
 			foreach ((Type _, IInitializable initializable) in contextItems)
 				initializable.Initialize();
@@ -32,15 +34,15 @@ namespace Utilities.Contexts {
 			throw new Exception($"Context item {typeof(T)} cannot be found on current context");
 		}
 
-		protected void Resolve<T>() where T : IInitializable, new() {
+		protected internal override sealed void Resolve<T>() {
 			if (typeof(MonoBehaviour).IsAssignableFrom(typeof(T))) {
-				ResolveMono<T>();
+				ResolveMonoBehaviour<T>();
 			} else {
-				ResolvePlain<T>();
+				ResolvePlainObject<T>();
 			}
 		}
 
-		private void ResolveMono<T>() where T : IInitializable {
+		private void ResolveMonoBehaviour<T>() where T : IInitializable {
 			T dependency = GetComponentInChildren<T>(true);
 
 			if (dependency is null)
@@ -54,7 +56,7 @@ namespace Utilities.Contexts {
 			Debug.LogWarning($"Dependency {typeof(T)} is already added to context");
 		}
 
-		private void ResolvePlain<T>() where T : IInitializable, new() {
+		private void ResolvePlainObject<T>() where T : IInitializable, new() {
 			T dependency = new T();
 			// Try adding dependency to context dictionary
 			if (contextItems.TryAdd(typeof(T), dependency))
@@ -74,4 +76,39 @@ namespace Utilities.Contexts {
 
 		public static SceneContext GetInstance() => instance;
 	}
+
+	public abstract class SubContext : Context {
+		private SceneContext sceneContext;
+
+		private void Awake() {
+			this.sceneContext = SceneContext.GetInstance();
+
+			ResolveContext();
+			sceneContext.InitializeContext();
+			OnInitialized();
+		}
+
+		protected internal override sealed void Resolve<T>() {
+			sceneContext.Resolve<T>();
+		}
+	}
 }
+
+/*
+   1.	Constants & Static Readonly Fields
+   2.	Static Variables
+   3.	Enums
+   4.	Serialized Fields
+   5.	Public Fields
+   6.	Private Fields
+   7.	Properties (instance first, then static if possible)
+   8.	Events
+   9.	Unity Lifecycle Methods (Awake, Start, etc.)
+   10.	Overridden Methods (ToString, Equals, etc.)
+   11.	Public Static Methods
+   12.	Public Instance Methods
+   13.	Private Static Methods
+   14.	Private Instance Methods
+   15.	Coroutines
+   16.	Inner Classes / Structs
+ */
