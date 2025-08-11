@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Utilities.Contexts {
-	[DefaultExecutionOrder(-32)]
 	public abstract class Context : MonoBehaviour {
 		private readonly Dictionary<Type, IInitializable> contextItems = new();
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Utilities.Contexts {
@@ -11,6 +12,12 @@ namespace Utilities.Contexts {
 			ResolveContext();
 			InitializeContext();
 			OnInitialized();
+		}
+
+		// TODO Might be a protected virtual
+		private void OnDestroy() {
+			if (instance == this)
+				instance = null;
 		}
 
 		private void AssertSingleton() {
