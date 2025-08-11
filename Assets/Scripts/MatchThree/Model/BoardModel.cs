@@ -3,16 +3,26 @@ using Utilities.Grids;
 
 namespace MatchThree.Model {
 	public class BoardModel {
-		private CellModel[,] cellModels;
+		private readonly CellModel[,] cellModels;
+		private readonly int boardWidth;
+		private readonly int boardHeight;
 
 		public BoardModel(Vector2Int gridSize) {
-			cellModels = new CellModel[gridSize.x, gridSize.y];
+			this.boardWidth = gridSize.x;
+			this.boardHeight = gridSize.y;
+			this.cellModels = new CellModel[gridSize.x, gridSize.y];
 
-			for (int i = 0; i < cellModels.GetLength(0); i++)
-				for (int j = 0; j < cellModels.GetLength(1); j++)
+			InitializeCellModels();
+		}
+
+		private void InitializeCellModels() {
+			for (int i = 0; i < boardWidth; i++)
+				for (int j = 0; j < boardHeight; j++)
 					cellModels[i, j] = new CellModel();
 		}
 
 		public CellModel[,] GetCellModels() => cellModels;
+		public int GetBoardWidth() => boardWidth;
+		public int GetBoardHeight() => boardHeight;
 	}
 }

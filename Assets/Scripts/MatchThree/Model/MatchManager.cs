@@ -13,21 +13,24 @@ namespace MatchThree.Model {
 		};
 
 		private BoardModel boardModel;
-		private CellModel[,] cellModels;
-		private int boardWidth;
-		private int boardHeight;
+		private readonly CellModel[,] cellModels;
+		private readonly int boardWidth;
+		private readonly int boardHeight;
 
-		private bool[,] visitedIndices;
-		private readonly Queue<Vector2Int> indicesToVisit = new();
+		private readonly bool[,] visitedIndices;
+		private readonly Queue<Vector2Int> indicesToVisit;
 
-		private readonly List<MatchModel> matchModels = new();
+		private readonly List<MatchModel> matchModels;
 
-		public void Initialize(BoardModel boardModel) {
+		public MatchManager(BoardModel boardModel) {
 			this.boardModel = boardModel;
 			this.cellModels = boardModel.GetCellModels();
-			this.boardWidth = cellModels.GetLength(0);
-			this.boardHeight = cellModels.GetLength(1);
+			this.boardWidth = boardModel.GetBoardWidth();
+			this.boardHeight = boardModel.GetBoardHeight();
+
 			this.visitedIndices = new bool[boardWidth, boardHeight];
+			this.indicesToVisit = new Queue<Vector2Int>();
+			this.matchModels = new List<MatchModel>();
 		}
 
 		public List<MatchModel> FindMatches() {
@@ -37,7 +40,7 @@ namespace MatchThree.Model {
 			for (int y = 0; y < boardHeight; y++) {
 				for (int x = 0; x < boardWidth; x++) {
 					Vector2Int currentCellIndex = new Vector2Int(x, y);
-					if (!IsCellModelValid(currentCellIndex))
+					if (!CanVisitCell(currentCellIndex))
 						continue;
 
 					indicesToVisit.Clear();
@@ -64,10 +67,9 @@ namespace MatchThree.Model {
 				for (int i = 0; i < NeighborDirections.Length; i++) {
 					Vector2Int neighborCellIndex = currentCellIndex + NeighborDirections[i];
 
-					bool neighborCellInside = IsCellInsideBoard(neighborCellIndex);
-					bool neighborCellValid = IsCellModelValid(neighborCellIndex);
-					bool colorsMatch = DropColorsMatch(currentCellIndex, neighborCellIndex);
-					if (!neighborCellInside || !neighborCellValid || !colorsMatch)
+					if (!IsCellInsideBoard(neighborCellIndex)
+					 || !CanVisitCell(neighborCellIndex)
+					 || !DropColorsMatch(currentCellIndex, neighborCellIndex))
 						continue;
 
 					visitedIndices[neighborCellIndex.x, neighborCellIndex.y] = true;
@@ -78,7 +80,7 @@ namespace MatchThree.Model {
 			return matchModel;
 		}
 
-		private bool IsCellModelValid(Vector2Int cellIndex) {
+		private bool CanVisitCell(Vector2Int cellIndex) {
 			return !(visitedIndices[cellIndex.x, cellIndex.y] || cellModels[cellIndex.x, cellIndex.y].IsEmpty());
 		}
 
