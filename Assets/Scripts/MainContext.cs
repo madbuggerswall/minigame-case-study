@@ -11,7 +11,7 @@ public class MainContext : SceneContext {
 		Resolve<SignalBus>();
 		Resolve<TweenManager>();
 		Resolve<ObjectPool>();
-		// Resolve<CameraController>();
+		Resolve<CameraController>();
 		Resolve<InputManager>();
 	}
 

@@ -57,6 +57,9 @@ namespace Utilities.Input.Mobile {
 			} else if (touch.inProgress) {
 				TouchDragPosition = touch.screenPosition;
 				PointerPosition = touch.screenPosition;
+
+				TouchDragEvent.Invoke(new TouchData(touch, TouchDragPosition));
+				DragEvent.Invoke(new PointerData(PointerPosition));
 			} else if (touch.ended) {
 				TouchReleasePosition = touch.screenPosition;
 				TouchReleaseEvent.Invoke(new TouchData(touch, TouchReleasePosition));

@@ -1,6 +1,3 @@
-using UnityEngine;
-using Utilities.Grids;
-
 namespace MatchThree.Model {
 	public class CellModel  {
 		private DropModel dropModel;
