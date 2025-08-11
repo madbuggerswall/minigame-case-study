@@ -29,48 +29,40 @@ public class MatchManager {
 
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
-				CellModel cellModel = cellModels[x, y];
+				CellModel currentCellModel = cellModels[x, y];
 				if (visitedIndices[x, y])
 					continue;
 
-				if (cellModel.IsEmpty())
+				if (currentCellModel.IsEmpty())
 					continue;
+				
+				Queue<Vector2Int> cellsToVisit = new();
+				cellsToVisit.Enqueue(new Vector2Int(x, y));
 
-				DropModel dropModel = cellModel.GetDropModel();
-				MatchModel currentMatchModel = new MatchModel();
-
-				// NOTE Rename this to visitQueue or something like that
-				Queue<Vector2Int> queue = new();
-				queue.Enqueue(new Vector2Int(x, y));
-
+				MatchModel currentMatchModel = new();
 				visitedIndices[x, y] = true;
 
-				while (queue.Count > 0) {
-					Vector2Int cellIndex = queue.Dequeue();
+				while (cellsToVisit.Count > 0) {
+					Vector2Int cellIndex = cellsToVisit.Dequeue();
 					currentMatchModel.AddCellIndex(cellIndex);
 
 					for (int i = 0; i < NeighborDirections.Length; i++) {
-						Vector2Int neighborDirection = NeighborDirections[i];
-						int neighborRow = cellIndex.x + neighborDirection.x;
-						int neighborColumn = cellIndex.y + neighborDirection.y;
-						Vector2Int neighborCellIndex = new(neighborRow, neighborColumn);
-
+						Vector2Int neighborCellIndex = cellIndex + NeighborDirections[i];
 						if (!IsCellInsideBoard(neighborCellIndex, boardWidth, boardHeight))
 							continue;
 
-						if (visitedIndices[neighborRow, neighborColumn])
+						if (visitedIndices[neighborCellIndex.x, neighborCellIndex.y])
 							continue;
 
-						CellModel neighborCellModel = cellModels[neighborRow, neighborColumn];
+						CellModel neighborCellModel = cellModels[neighborCellIndex.x, neighborCellIndex.y];
 						if (neighborCellModel.IsEmpty())
 							continue;
-						
-						DropModel neighborDropModel = neighborCellModel.GetDropModel();
-						if (dropModel.GetDropColor() != neighborDropModel.GetDropColor())
+
+						if (!DropColorsMatch(currentCellModel.GetDropModel(), neighborCellModel.GetDropModel()))
 							continue;
 
-						visitedIndices[neighborRow, neighborColumn] = true;
-						queue.Enqueue(new Vector2Int(neighborRow, neighborColumn));
+						visitedIndices[neighborCellIndex.x, neighborCellIndex.y] = true;
+						cellsToVisit.Enqueue(neighborCellIndex);
 					}
 				}
 
@@ -85,5 +77,9 @@ public class MatchManager {
 
 	private bool IsCellInsideBoard(Vector2Int cellIndex, int boardWidth, int boardHeight) {
 		return cellIndex.x >= 0 && cellIndex.x < boardWidth && cellIndex.y >= 0 && cellIndex.y < boardHeight;
+	}
+
+	private bool DropColorsMatch(DropModel current, DropModel neighbor) {
+		return current.GetDropColor() == neighbor.GetDropColor();
 	}
 }
