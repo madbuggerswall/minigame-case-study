@@ -1,104 +1,106 @@
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using MatchThree.Model;
 using UnityEngine;
 
-public class MatchManager {
-	// For a match to occur, it should be greater than 3 blocks in all directions or 2x2
+// For a match to occur, it should be greater than 3 blocks in all directions or 2x2
+// NOTE Rename it to MatchFinder or MatchHelper
+namespace MatchThree.Model {
+	public class MatchManager {
+		private static readonly Vector2Int[] NeighborDirections = new[] {
+			new Vector2Int(1, 0),  // Right
+			new Vector2Int(0, 1),  // Up
+			new Vector2Int(-1, 0), // Left
+			new Vector2Int(0, -1)  // Down
+		};
 
-	private static readonly Vector2Int[] NeighborDirections = new[] {
-		new Vector2Int(1, 0),  // Right
-		new Vector2Int(0, 1),  // Up
-		new Vector2Int(-1, 0), // Left
-		new Vector2Int(0, -1)  // Down
-	};
+		private BoardModel boardModel;
+		private CellModel[,] cellModels;
+		private int boardWidth;
+		private int boardHeight;
 
-	// Dependencies
-	private BoardModel boardModel;
+		private bool[,] visitedIndices;
+		private readonly Queue<Vector2Int> indicesToVisit = new();
 
-	public void Initialize(BoardModel boardModel) {
-		this.boardModel = boardModel;
-	}
+		private readonly List<MatchModel> matchModels = new();
 
-	public List<MatchModel> FindMatches() {
-		CellModel[,] cellModels = boardModel.GetCellModels();
-		int boardWidth = cellModels.GetLength(0);
-		int boardHeight = cellModels.GetLength(1);
+		public void Initialize(BoardModel boardModel) {
+			this.boardModel = boardModel;
+			this.cellModels = boardModel.GetCellModels();
+			this.boardWidth = cellModels.GetLength(0);
+			this.boardHeight = cellModels.GetLength(1);
+			this.visitedIndices = new bool[boardWidth, boardHeight];
+		}
 
-		bool[,] visitedIndices = new bool[boardWidth, boardHeight];
-		List<MatchModel> matchModels = new List<MatchModel>();
+		public List<MatchModel> FindMatches() {
+			ResetVisitedIndices();
+			matchModels.Clear();
 
-		for (int y = 0; y < boardHeight; y++) {
-			for (int x = 0; x < boardWidth; x++) {
-				CellModel currentCellModel = cellModels[x, y];
-				Vector2Int currentCellIndex = new Vector2Int(x, y);
-				if (visitedIndices[x, y])
-					continue;
+			for (int y = 0; y < boardHeight; y++) {
+				for (int x = 0; x < boardWidth; x++) {
+					Vector2Int currentCellIndex = new Vector2Int(x, y);
+					if (!IsCellModelValid(currentCellIndex))
+						continue;
 
-				if (currentCellModel.IsEmpty())
-					continue;
+					indicesToVisit.Clear();
+					indicesToVisit.Enqueue(currentCellIndex);
+					visitedIndices[x, y] = true;
 
-				Queue<Vector2Int> cellsToVisit = new();
-				cellsToVisit.Enqueue(currentCellIndex);
-				visitedIndices[x, y] = true;
-
-				MatchModel currentMatchModel = FindMatch(cellsToVisit, visitedIndices, currentCellModel);
-				currentMatchModel.EvaluateAxes();
-				if (currentMatchModel.IsValid())
-					matchModels.Add(currentMatchModel);
+					MatchModel currentMatchModel = FindMatch();
+					currentMatchModel.EvaluateAxes();
+					if (currentMatchModel.IsValid())
+						matchModels.Add(currentMatchModel);
+				}
 			}
+
+			return matchModels;
 		}
 
-		return matchModels;
-	}
+		private MatchModel FindMatch() {
+			MatchModel matchModel = new();
 
-	private MatchModel FindMatch(Queue<Vector2Int> cellsToVisit, bool[,] visitedIndices, CellModel currentCellModel) {
-		CellModel[,] cellModels = boardModel.GetCellModels();
-		int boardWidth = cellModels.GetLength(0);
-		int boardHeight = cellModels.GetLength(1);
-		MatchModel matchModel = new();
+			while (indicesToVisit.Count > 0) {
+				Vector2Int currentCellIndex = indicesToVisit.Dequeue();
+				matchModel.AddCellIndex(currentCellIndex);
 
-		while (cellsToVisit.Count > 0) {
-			Vector2Int currentCellIndex = cellsToVisit.Dequeue();
-			matchModel.AddCellIndex(currentCellIndex);
+				for (int i = 0; i < NeighborDirections.Length; i++) {
+					Vector2Int neighborCellIndex = currentCellIndex + NeighborDirections[i];
 
-			TraverseCellNeighbors(cellsToVisit, visitedIndices,  currentCellIndex);
+					bool neighborCellInside = IsCellInsideBoard(neighborCellIndex);
+					bool neighborCellValid = IsCellModelValid(neighborCellIndex);
+					bool colorsMatch = DropColorsMatch(currentCellIndex, neighborCellIndex);
+					if (!neighborCellInside || !neighborCellValid || !colorsMatch)
+						continue;
+
+					visitedIndices[neighborCellIndex.x, neighborCellIndex.y] = true;
+					indicesToVisit.Enqueue(neighborCellIndex);
+				}
+			}
+
+			return matchModel;
 		}
 
-		return matchModel;
-	}
-
-	private void TraverseCellNeighbors(Queue<Vector2Int> cellsToVisit, bool[,] visitedIndices, Vector2Int cellIndex) {
-		CellModel[,] cellModels = boardModel.GetCellModels();
-		int boardWidth = cellModels.GetLength(0);
-		int boardHeight = cellModels.GetLength(1);
-
-		for (int i = 0; i < NeighborDirections.Length; i++) {
-			Vector2Int neighborCellIndex = cellIndex + NeighborDirections[i];
-			if (!IsCellInsideBoard(neighborCellIndex, boardWidth, boardHeight))
-				continue;
-
-			if (visitedIndices[neighborCellIndex.x, neighborCellIndex.y])
-				continue;
-
-			CellModel neighborCellModel = cellModels[neighborCellIndex.x, neighborCellIndex.y];
-			if (neighborCellModel.IsEmpty())
-				continue;
-
-			CellModel currentCellModel = cellModels[cellIndex.x, cellIndex.y];
-			if (!DropColorsMatch(currentCellModel.GetDropModel(), neighborCellModel.GetDropModel()))
-				continue;
-
-			visitedIndices[neighborCellIndex.x, neighborCellIndex.y] = true;
-			cellsToVisit.Enqueue(neighborCellIndex);
+		private bool IsCellModelValid(Vector2Int cellIndex) {
+			return !(visitedIndices[cellIndex.x, cellIndex.y] || cellModels[cellIndex.x, cellIndex.y].IsEmpty());
 		}
-	}
 
-	private bool IsCellInsideBoard(Vector2Int cellIndex, int boardWidth, int boardHeight) {
-		return cellIndex.x >= 0 && cellIndex.x < boardWidth && cellIndex.y >= 0 && cellIndex.y < boardHeight;
-	}
+		private bool IsCellInsideBoard(Vector2Int cellIndex) {
+			return cellIndex.x >= 0 && cellIndex.x < boardWidth && cellIndex.y >= 0 && cellIndex.y < boardHeight;
+		}
 
-	private bool DropColorsMatch(DropModel current, DropModel neighbor) {
-		return current.GetDropColor() == neighbor.GetDropColor();
+		private bool DropColorsMatch(Vector2Int cellIndex, Vector2Int neighborCellIndex) {
+			CellModel currentCell = cellModels[cellIndex.x, cellIndex.y];
+			CellModel neighborCell = cellModels[neighborCellIndex.x, neighborCellIndex.y];
+			if (currentCell.IsEmpty() || neighborCell.IsEmpty())
+				return false;
+
+			DropColor currentDropColor = currentCell.GetDropModel().GetDropColor();
+			DropColor neighborDropColor = neighborCell.GetDropModel().GetDropColor();
+			return currentDropColor == neighborDropColor;
+		}
+
+		private void ResetVisitedIndices() {
+			for (int y = 0; y < boardHeight; y++)
+				for (int x = 0; x < boardWidth; x++)
+					visitedIndices[x, y] = false;
+		}
 	}
 }
