@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using MatchThree.Model;
 using UnityEngine;
 
@@ -30,42 +31,18 @@ public class MatchManager {
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
 				CellModel currentCellModel = cellModels[x, y];
+				Vector2Int currentCellIndex = new Vector2Int(x, y);
 				if (visitedIndices[x, y])
 					continue;
 
 				if (currentCellModel.IsEmpty())
 					continue;
-				
-				Queue<Vector2Int> cellsToVisit = new();
-				cellsToVisit.Enqueue(new Vector2Int(x, y));
 
-				MatchModel currentMatchModel = new();
+				Queue<Vector2Int> cellsToVisit = new();
+				cellsToVisit.Enqueue(currentCellIndex);
 				visitedIndices[x, y] = true;
 
-				while (cellsToVisit.Count > 0) {
-					Vector2Int cellIndex = cellsToVisit.Dequeue();
-					currentMatchModel.AddCellIndex(cellIndex);
-
-					for (int i = 0; i < NeighborDirections.Length; i++) {
-						Vector2Int neighborCellIndex = cellIndex + NeighborDirections[i];
-						if (!IsCellInsideBoard(neighborCellIndex, boardWidth, boardHeight))
-							continue;
-
-						if (visitedIndices[neighborCellIndex.x, neighborCellIndex.y])
-							continue;
-
-						CellModel neighborCellModel = cellModels[neighborCellIndex.x, neighborCellIndex.y];
-						if (neighborCellModel.IsEmpty())
-							continue;
-
-						if (!DropColorsMatch(currentCellModel.GetDropModel(), neighborCellModel.GetDropModel()))
-							continue;
-
-						visitedIndices[neighborCellIndex.x, neighborCellIndex.y] = true;
-						cellsToVisit.Enqueue(neighborCellIndex);
-					}
-				}
-
+				MatchModel currentMatchModel = FindMatch(cellsToVisit, visitedIndices, currentCellModel);
 				currentMatchModel.EvaluateAxes();
 				if (currentMatchModel.IsValid())
 					matchModels.Add(currentMatchModel);
@@ -73,6 +50,48 @@ public class MatchManager {
 		}
 
 		return matchModels;
+	}
+
+	private MatchModel FindMatch(Queue<Vector2Int> cellsToVisit, bool[,] visitedIndices, CellModel currentCellModel) {
+		CellModel[,] cellModels = boardModel.GetCellModels();
+		int boardWidth = cellModels.GetLength(0);
+		int boardHeight = cellModels.GetLength(1);
+		MatchModel matchModel = new();
+
+		while (cellsToVisit.Count > 0) {
+			Vector2Int currentCellIndex = cellsToVisit.Dequeue();
+			matchModel.AddCellIndex(currentCellIndex);
+
+			TraverseCellNeighbors(cellsToVisit, visitedIndices,  currentCellIndex);
+		}
+
+		return matchModel;
+	}
+
+	private void TraverseCellNeighbors(Queue<Vector2Int> cellsToVisit, bool[,] visitedIndices, Vector2Int cellIndex) {
+		CellModel[,] cellModels = boardModel.GetCellModels();
+		int boardWidth = cellModels.GetLength(0);
+		int boardHeight = cellModels.GetLength(1);
+
+		for (int i = 0; i < NeighborDirections.Length; i++) {
+			Vector2Int neighborCellIndex = cellIndex + NeighborDirections[i];
+			if (!IsCellInsideBoard(neighborCellIndex, boardWidth, boardHeight))
+				continue;
+
+			if (visitedIndices[neighborCellIndex.x, neighborCellIndex.y])
+				continue;
+
+			CellModel neighborCellModel = cellModels[neighborCellIndex.x, neighborCellIndex.y];
+			if (neighborCellModel.IsEmpty())
+				continue;
+
+			CellModel currentCellModel = cellModels[cellIndex.x, cellIndex.y];
+			if (!DropColorsMatch(currentCellModel.GetDropModel(), neighborCellModel.GetDropModel()))
+				continue;
+
+			visitedIndices[neighborCellIndex.x, neighborCellIndex.y] = true;
+			cellsToVisit.Enqueue(neighborCellIndex);
+		}
 	}
 
 	private bool IsCellInsideBoard(Vector2Int cellIndex, int boardWidth, int boardHeight) {
