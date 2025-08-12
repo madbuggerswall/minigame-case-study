@@ -1,5 +1,3 @@
-using MatchThree.Model;
-
 namespace MatchThree.PuzzleElements {
 	public class ColorDrop : PuzzleElement {
 		public ColorDrop(ColorDropDefinition definition) : base(definition) { }

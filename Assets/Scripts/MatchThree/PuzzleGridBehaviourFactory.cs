@@ -1,10 +1,8 @@
-using MatchThree;
-using MatchThree.Model;
 using UnityEngine;
 using Utilities.Contexts;
 using Utilities.Pooling;
 
-namespace Core.PuzzleGrids {
+namespace MatchThree {
 	public class PuzzleGridBehaviourFactory : MonoBehaviour, IInitializable {
 		[SerializeField] private PuzzleGridBehaviour puzzleGridBehaviourPrefab;
 		[SerializeField] private Transform puzzleGridRoot;

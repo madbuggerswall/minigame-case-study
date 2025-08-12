@@ -1,4 +1,3 @@
-using MatchThree.Model;
 using UnityEngine;
 using Utilities.Contexts;
 using Utilities.Pooling;

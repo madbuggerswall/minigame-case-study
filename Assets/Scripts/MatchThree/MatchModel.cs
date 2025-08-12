@@ -3,7 +3,7 @@ using UnityEngine;
 using Utilities.Collections.Generic;
 
 // TODO Match validation ignores 2x2 matches
-namespace MatchThree.Model {
+namespace MatchThree {
 	public class MatchModel {
 		private const int MinMatchLength = 3;
 

@@ -1,4 +1,3 @@
-using MatchThree.Model;
 using UnityEngine;
 
 namespace MatchThree.PuzzleElements {

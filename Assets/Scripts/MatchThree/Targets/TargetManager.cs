@@ -1,4 +1,3 @@
-using MatchThree.Model;
 using MatchThree.PuzzleElements;
 using MatchThree.UI;
 using Utilities.Contexts;

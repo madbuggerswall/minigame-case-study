@@ -4,7 +4,7 @@ using Utilities.Input;
 using Utilities.Input.Common;
 
 // This should be a vanilla class
-namespace MatchThree.View {
+namespace MatchThree {
 	public class MatchThreeInputManager : MonoBehaviour, IInitializable {
 		private InputManager inputManager;
 

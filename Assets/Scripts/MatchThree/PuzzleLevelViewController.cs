@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Core.PuzzleGrids;
-using MatchThree.Model;
 using MatchThree.PuzzleElements;
 using MatchThree.ViewHelpers;
 using UnityEngine;

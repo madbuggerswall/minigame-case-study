@@ -1,4 +1,3 @@
-using MatchThree.Model;
 using MatchThree.PuzzleElements;
 using MatchThree.Targets;
 using UnityEngine;
@@ -20,7 +19,7 @@ namespace MatchThree {
 
 		public void Initialize() {
 			colorDropDefinitionManager = PuzzleContext.GetInstance().Get<ColorDropDefinitionManager>();
-			// cameraController = SceneContext.GetInstance().Get<CameraController>();
+			cameraController = SceneContext.GetInstance().Get<CameraController>();
 
 			// Puzzle Grid
 			InitializeGrid();
@@ -29,13 +28,13 @@ namespace MatchThree {
 			InitializeMaxMoveCount();
 
 			// Camera Controller
-			// cameraController.PlayCameraPositionTween(puzzleGrid.GetCenterPoint());
-			// cameraController.PlayOrthoSizeTween(puzzleGrid.GetGridSizeInLength());
+			cameraController.PlayCameraPositionTween(puzzleGrid.GetCenterPoint());
+			cameraController.PlayOrthoSizeTween(puzzleGrid.GetGridSizeInLength());
 		}
 
 
 		private void InitializeGrid() {
-			const float cellDiameter = 1f;
+			const float cellDiameter = 1.2f;
 
 			Vector2Int gridSize = levelDefinition.GetGridSize();
 			PuzzleCellFactory cellFactory = new PuzzleCellFactory();

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using MatchThree.MechanicsHelpers;
-using MatchThree.Model;
 using MatchThree.PuzzleElements;
 using MatchThree.Targets;
 using MatchThree.Turns;
 using MatchThree.UI;
+using UnityEngine;
 using Utilities.Contexts;
+using Utilities.Signals;
 
 namespace MatchThree {
 	public class PuzzleLevelManager : IInitializable {
@@ -38,18 +39,39 @@ namespace MatchThree {
 			fallHelper = new FallHelper(this);
 			fillHelper = new FillHelper(this);
 
+			SignalBus signalBus = SceneContext.GetInstance().Get<SignalBus>();
+			signalBus.SubscribeTo<PuzzleContextInitializedSignal>(OnPuzzleContextInitialized);
+
 			// TODO This will be local events handled via Actions
-			
 			// SignalBus.GetInstance().ClearListeners<ElementExplodedSignal>();
 			// SignalBus.GetInstance().ClearListeners<ContextInitializedSignal>();
 			// SignalBus.GetInstance().SubscribeTo<ElementExplodedSignal>(OnElementExploded);
 			// SignalBus.GetInstance().SubscribeTo<ContextInitializedSignal>(OnContextInitialized);
 		}
 
+		private void OnPuzzleContextInitialized(PuzzleContextInitializedSignal signal) {
+			// Test
+			MatchManager matchManager = new MatchManager(puzzleGrid);
+			List<MatchModel> matchModels = matchManager.FindMatches();
+			PuzzleCell[,] cells = puzzleGrid.GetCells();
+
+			for (int i = 0; i < matchModels.Count; i++) {
+				MatchModel matchModel = matchModels[i];
+				IReadOnlyList<Vector2Int> cellIndices = matchModel.GetCellIndices().AsReadOnly();
+				for (int j = 0; j < cellIndices.Count; j++) {
+					Vector2Int cellIndex = cellIndices[j];
+					PuzzleCell cell = cells[cellIndex.x, cellIndex.y];
+					ColorDrop colorDrop = cell.GetColorDrop();
+
+					viewController.GetPuzzleElementBehaviour(colorDrop).transform.localScale = Vector3.one * .5f;
+				}
+			}
+		}
+
 		// TODO OnElementsMatch
 		// TODO OnContextInitialized -> check for initial matches
-		
-		
+
+
 		// private void OnElementExploded(ElementExplodedSignal signal) {
 		// 	PuzzleElement puzzleElement = signal.PuzzleElement;
 		// 	viewController.DespawnElementBehaviour(puzzleElement);

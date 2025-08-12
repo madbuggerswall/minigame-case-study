@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using MatchThree.Model;
 using MatchThree.PuzzleElements;
 using UnityEngine;
 using Utilities.Tweens.Easing;

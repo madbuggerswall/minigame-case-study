@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using MatchThree.PuzzleElements;
 using UnityEngine;
 
 // For a match to occur, it should be greater than 3 blocks in all directions or 2x2
 // NOTE Rename it to MatchFinder or MatchHelper
-namespace MatchThree.Model {
+namespace MatchThree {
 	public class MatchManager {
 		private static readonly Vector2Int[] NeighborDirections = new[] {
 			new Vector2Int(1, 0),  // Right
@@ -12,23 +13,20 @@ namespace MatchThree.Model {
 			new Vector2Int(0, -1)  // Down
 		};
 
-		private BoardModel boardModel;
-		private readonly CellModel[,] cellModels;
-		private readonly int boardWidth;
-		private readonly int boardHeight;
+		private readonly PuzzleGrid puzzleGrid;
+		private readonly PuzzleCell[,] cells;
 
 		private readonly bool[,] visitedIndices;
 		private readonly Queue<Vector2Int> indicesToVisit;
 
 		private readonly List<MatchModel> matchModels;
 
-		public MatchManager(BoardModel boardModel) {
-			this.boardModel = boardModel;
-			this.cellModels = boardModel.GetCellModels();
-			this.boardWidth = boardModel.GetWidth();
-			this.boardHeight = boardModel.GetHeight();
+		public MatchManager(PuzzleGrid puzzleGrid) {
+			this.puzzleGrid = puzzleGrid;
+			this.cells = puzzleGrid.GetCells();
 
-			this.visitedIndices = new bool[boardWidth, boardHeight];
+			Vector2Int gridSize = puzzleGrid.GetGridSize();
+			this.visitedIndices = new bool[gridSize.x, gridSize.y];
 			this.indicesToVisit = new Queue<Vector2Int>();
 			this.matchModels = new List<MatchModel>();
 		}
@@ -36,9 +34,9 @@ namespace MatchThree.Model {
 		public List<MatchModel> FindMatches() {
 			ResetVisitedIndices();
 			matchModels.Clear();
-
-			for (int y = 0; y < boardHeight; y++) {
-				for (int x = 0; x < boardWidth; x++) {
+			Vector2Int gridSize = puzzleGrid.GetGridSize();
+			for (int y = 0; y < gridSize.y; y++) {
+				for (int x = 0; x < gridSize.x; x++) {
 					Vector2Int currentCellIndex = new Vector2Int(x, y);
 					if (!CanVisitCell(currentCellIndex))
 						continue;
@@ -81,27 +79,29 @@ namespace MatchThree.Model {
 		}
 
 		private bool CanVisitCell(Vector2Int cellIndex) {
-			return !(visitedIndices[cellIndex.x, cellIndex.y] || cellModels[cellIndex.x, cellIndex.y].IsEmpty());
+			return !(visitedIndices[cellIndex.x, cellIndex.y] || cells[cellIndex.x, cellIndex.y].IsEmpty());
 		}
 
 		private bool IsCellInsideBoard(Vector2Int cellIndex) {
-			return cellIndex.x >= 0 && cellIndex.x < boardWidth && cellIndex.y >= 0 && cellIndex.y < boardHeight;
+			Vector2Int gridSize = puzzleGrid.GetGridSize();
+			return cellIndex.x >= 0 && cellIndex.x < gridSize.x && cellIndex.y >= 0 && cellIndex.y < gridSize.y;
 		}
 
 		private bool DropColorsMatch(Vector2Int cellIndex, Vector2Int neighborCellIndex) {
-			CellModel currentCell = cellModels[cellIndex.x, cellIndex.y];
-			CellModel neighborCell = cellModels[neighborCellIndex.x, neighborCellIndex.y];
+			PuzzleCell currentCell = cells[cellIndex.x, cellIndex.y];
+			PuzzleCell neighborCell = cells[neighborCellIndex.x, neighborCellIndex.y];
 			if (currentCell.IsEmpty() || neighborCell.IsEmpty())
 				return false;
 
-			DropColor currentDropColor = currentCell.GetDropModel().GetDropColor();
-			DropColor neighborDropColor = neighborCell.GetDropModel().GetDropColor();
-			return currentDropColor == neighborDropColor;
+			PuzzleElementDefinition currentDropDefinition = currentCell.GetColorDrop().GetDefinition();
+			PuzzleElementDefinition neighborDropDefinition = neighborCell.GetColorDrop().GetDefinition();
+			return currentDropDefinition == neighborDropDefinition;
 		}
 
 		private void ResetVisitedIndices() {
-			for (int y = 0; y < boardHeight; y++)
-				for (int x = 0; x < boardWidth; x++)
+			Vector2Int gridSize = puzzleGrid.GetGridSize();
+			for (int y = 0; y < gridSize.y; y++)
+				for (int x = 0; x < gridSize.x; x++)
 					visitedIndices[x, y] = false;
 		}
 	}
