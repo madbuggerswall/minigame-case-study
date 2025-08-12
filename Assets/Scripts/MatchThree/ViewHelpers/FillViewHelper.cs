@@ -36,8 +36,8 @@ namespace MatchThree.ViewHelpers {
 				startPosition.y += puzzleGrid.GetCellDiameter() * filledElementByColumn[cellIndex.y];
 
 				PuzzleElementBehaviour elementBehaviour = viewController.SpawnElementBehaviour(filledElement, cell);
-
 				elementBehaviour.transform.position = startPosition;
+
 				PlayFillTween(elementBehaviour.transform, cell.GetWorldPosition());
 			}
 		}

@@ -4,7 +4,7 @@ using Utilities.Collections.Generic;
 
 // TODO Match validation ignores 2x2 matches
 namespace MatchThree {
-	public class MatchModel {
+	public class Match {
 		private const int MinMatchLength = 3;
 
 		private readonly UniqueList<Vector2Int> cellIndices = new();
@@ -14,7 +14,7 @@ namespace MatchThree {
 		private int longestColumnIndex;
 		private int longestRowIndex;
 
-		public MatchModel() { }
+		public Match() { }
 
 		public void AddCellIndex(Vector2Int cellIndex) {
 			// cellIndices.Add(cellIndex);

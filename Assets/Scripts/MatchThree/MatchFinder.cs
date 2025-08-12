@@ -19,7 +19,7 @@ namespace MatchThree {
 		private readonly bool[,] visitedIndices;
 		private readonly Queue<Vector2Int> indicesToVisit;
 
-		private readonly List<MatchModel> matchModels;
+		private readonly List<Match> matchModels;
 
 		public MatchFinder(PuzzleGrid puzzleGrid) {
 			this.puzzleGrid = puzzleGrid;
@@ -28,10 +28,10 @@ namespace MatchThree {
 			Vector2Int gridSize = puzzleGrid.GetGridSize();
 			this.visitedIndices = new bool[gridSize.x, gridSize.y];
 			this.indicesToVisit = new Queue<Vector2Int>();
-			this.matchModels = new List<MatchModel>();
+			this.matchModels = new List<Match>();
 		}
 
-		public List<MatchModel> FindMatches() {
+		public List<Match> FindMatches() {
 			ResetVisitedIndices();
 			matchModels.Clear();
 			Vector2Int gridSize = puzzleGrid.GetGridSize();
@@ -46,22 +46,22 @@ namespace MatchThree {
 					indicesToVisit.Enqueue(currentCellIndex);
 					visitedIndices[x, y] = true;
 
-					MatchModel currentMatchModel = FindMatch();
-					currentMatchModel.EvaluateAxes();
-					if (currentMatchModel.IsValid())
-						matchModels.Add(currentMatchModel);
+					Match currentMatch = FindMatch();
+					currentMatch.EvaluateAxes();
+					if (currentMatch.IsValid())
+						matchModels.Add(currentMatch);
 				}
 			}
 
 			return matchModels;
 		}
 
-		private MatchModel FindMatch() {
-			MatchModel matchModel = new();
+		private Match FindMatch() {
+			Match match = new();
 
 			while (indicesToVisit.Count > 0) {
 				Vector2Int currentCellIndex = indicesToVisit.Dequeue();
-				matchModel.AddCellIndex(currentCellIndex);
+				match.AddCellIndex(currentCellIndex);
 
 				for (int i = 0; i < NeighborDirections.Length; i++) {
 					Vector2Int neighborCellIndex = currentCellIndex + NeighborDirections[i];
@@ -76,7 +76,7 @@ namespace MatchThree {
 				}
 			}
 
-			return matchModel;
+			return match;
 		}
 
 		private bool CanVisitCell(Vector2Int cellIndex) {

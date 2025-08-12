@@ -17,11 +17,11 @@ namespace MatchThree.Targets {
 			this.elementTargets = levelInitializer.GetElementTargets();
 		}
 
-		public void CheckForTargets(MatchModel matchModel) {
-			CheckForElementTargets(matchModel);
+		public void CheckForTargets(Match match) {
+			CheckForElementTargets(match);
 		}
 
-		public void CheckForElementTargets(MatchModel matchModel) {
+		public void CheckForElementTargets(Match match) {
 			// TODO
 			// PuzzleElementDefinition linkDefinition = link.GetElementDefinition();
 			//

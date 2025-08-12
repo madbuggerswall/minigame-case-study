@@ -4,25 +4,22 @@ namespace MatchThree {
 	public class ViewReadyNotifier {
 		private bool isFallTweensComplete = true;
 		private bool isFillTweensComplete = true;
-		private bool isShuffleTweensComplete = true;
+		private bool isSwapTweensComplete = true;
 
 		public UnityEvent OnViewReady { get; } = new UnityEvent();
-		public UnityEvent OnReadyForShuffle { get; } = new UnityEvent();
 
 		public void OnFallTweensComplete() {
 			isFallTweensComplete = true;
-			TryNotifyReadyForShuffle();
 			TryNotifyViewReady();
 		}
 
 		public void OnFillTweensComplete() {
 			isFillTweensComplete = true;
-			TryNotifyReadyForShuffle();
 			TryNotifyViewReady();
 		}
 
-		public void OnShuffleTweensComplete() {
-			isShuffleTweensComplete = true;
+		public void OnSwapTweensComplete() {
+			isSwapTweensComplete = true;
 			TryNotifyViewReady();
 		}
 
@@ -30,18 +27,11 @@ namespace MatchThree {
 
 		public void WaitForFillTweens() => isFillTweensComplete = false;
 
-		public void WaitShuffleForTweens() => isShuffleTweensComplete = false;
-
-		private void TryNotifyReadyForShuffle() {
-			if (!isFillTweensComplete || !isFallTweensComplete || isShuffleTweensComplete)
-				return;
-
-			OnReadyForShuffle.Invoke();
-			OnReadyForShuffle.RemoveAllListeners();
-		}
+		public void WaitForSwapTweens() => isSwapTweensComplete = false;
+		
 
 		private void TryNotifyViewReady() {
-			if (!isFillTweensComplete || !isFallTweensComplete || !isShuffleTweensComplete)
+			if (!isFillTweensComplete || !isFallTweensComplete || !isSwapTweensComplete)
 				return;
 
 			OnViewReady.Invoke();

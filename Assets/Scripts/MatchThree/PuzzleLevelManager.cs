@@ -52,41 +52,46 @@ namespace MatchThree {
 		}
 
 		private void OnPuzzleContextInitialized(PuzzleContextInitializedSignal signal) {
-			CheckInitialMatches();
+			CheckForMatches();
 		}
 
-		private void CheckInitialMatches() {
-			List<MatchModel> matchModels = matchFinder.FindMatches();
-			PuzzleCell[,] cells = puzzleGrid.GetCells();
+		private void CheckForMatches() {
+			List<Match> matches = matchFinder.FindMatches();
+			if (matches.Count == 0)
+				return;
 
-			List<PuzzleCell> blastedCells = new();
+			List<Vector2Int> matchedCellIndices = new();
+			for (int i = 0; i < matches.Count; i++)
+				matchedCellIndices.AddRange(matches[i].GetCellIndices().AsReadOnly());
 
-			for (int i = 0; i < matchModels.Count; i++) {
-				MatchModel matchModel = matchModels[i];
-				IReadOnlyList<Vector2Int> cellIndices = matchModel.GetCellIndices().AsReadOnly();
-				for (int j = 0; j < cellIndices.Count; j++) {
-					Vector2Int cellIndex = cellIndices[j];
-					PuzzleCell cell = cells[cellIndex.x, cellIndex.y];
-					blastedCells.Add(cell);
-				}
-			}
+			OnMatchesFound(matchedCellIndices);
+		}
 
-			for (int i = 0; i < blastedCells.Count; i++) {
-				PuzzleCell blastedCell = blastedCells[i];
-				PuzzleElement blastedElement = blastedCell.GetPuzzleElement();
-				
-				blastedCell.SetPuzzleElement(null);
-				viewController.DespawnElementBehaviour(blastedElement);
-			}
+		private void OnMatchesFound(List<Vector2Int> matchedCellIndices) {
+			BlastMatchedCells(matchedCellIndices);
 
 			fallHelper.ApplyFall();
 			fillHelper.ApplyFill();
 
 			viewController.FallViewHelper.MoveFallenElements(fallHelper.GetFallenElements());
-			// viewController.ViewReadyNotifier.WaitForFallTweens();
+			viewController.ViewReadyNotifier.WaitForFallTweens();
 
 			viewController.FillViewHelper.MoveFilledElements(fillHelper.GetFilledElements());
-			// viewController.ViewReadyNotifier.WaitForFillTweens();
+			viewController.ViewReadyNotifier.WaitForFillTweens();
+
+			viewController.ViewReadyNotifier.OnViewReady.AddListener(CheckForMatches);
+		}
+
+		private void BlastMatchedCells(List<Vector2Int> matchedCellIndices) {
+			PuzzleCell[,] cells = puzzleGrid.GetCells();
+			for (int i = 0; i < matchedCellIndices.Count; i++) {
+				Vector2Int matchedCellIndex = matchedCellIndices[i];
+				PuzzleCell blastedCell = cells[matchedCellIndex.x, matchedCellIndex.y];
+				PuzzleElement matchedElement = blastedCell.GetPuzzleElement();
+
+				blastedCell.SetPuzzleElement(null);
+				viewController.DespawnElementBehaviour(matchedElement);
+			}
 		}
 
 		// TODO OnElementsMatch
