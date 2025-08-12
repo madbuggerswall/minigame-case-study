@@ -1,17 +1,15 @@
-using Core.Contexts;
-using Core.PuzzleLevels.Targets;
-using Core.PuzzleLevels.Turns;
+using MatchThree.Targets;
+using MatchThree.Turns;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities.Contexts;
 
-namespace Core.UI {
+namespace MatchThree.UI {
 	public class PuzzleLevelUIController : MonoBehaviour, IInitializable {
 		[SerializeField] private LevelEndPanel levelSuccessPanel;
 		[SerializeField] private LevelEndPanel levelFailPanel;
 		[SerializeField] private ElementTargetsPanel elementTargetsPanel;
-		[SerializeField] private ScoreTargetPanel scoreTargetPanel;
 		[SerializeField] private RemainingTurnsPanel remainingTurnsPanel;
 		[SerializeField] private Button restartButton;
 
@@ -24,7 +22,6 @@ namespace Core.UI {
 			turnManager = SceneContext.GetInstance().Get<TurnManager>();
 
 			elementTargetsPanel.Initialize(targetManager.GetElementTargets());
-			scoreTargetPanel.UpdateRemainingScore(targetManager.GetScoreTarget());
 			remainingTurnsPanel.UpdateRemainingTurns(turnManager.GetRemainingTurnCount());
 
 			restartButton.onClick.AddListener(OnRestartButtonClick);
@@ -40,10 +37,6 @@ namespace Core.UI {
 
 		public void UpdateElementTargetView(PuzzleElementTarget target) {
 			elementTargetsPanel.UpdateTargetView(target);
-		}
-
-		public void UpdateScoreTargetView(ScoreTarget target) {
-			scoreTargetPanel.UpdateRemainingScore(target);
 		}
 
 		public void UpdateRemainingTurnsPanel(int remainingMoves) {

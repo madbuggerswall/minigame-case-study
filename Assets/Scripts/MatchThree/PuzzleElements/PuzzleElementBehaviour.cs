@@ -1,8 +1,7 @@
-using Core.DataTransfer.Definitions.PuzzleElements;
-using Core.PuzzleGrids;
+using MatchThree.Model;
 using UnityEngine;
 
-namespace Core.PuzzleElements.Behaviours {
+namespace MatchThree.PuzzleElements {
 	public abstract class PuzzleElementBehaviour : MonoBehaviour {
 		public abstract void Initialize(PuzzleElementDefinition definition, PuzzleCell puzzleCell);
 

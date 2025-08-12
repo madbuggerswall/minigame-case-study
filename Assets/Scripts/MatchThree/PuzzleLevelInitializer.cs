@@ -1,74 +1,67 @@
-using Core.CameraUtilities;
-using Core.Contexts;
-using Core.DataTransfer.Definitions.PuzzleElements;
-using Core.DataTransfer.Definitions.PuzzleLevels;
-using Core.PuzzleElements;
-using Core.PuzzleGrids;
-using Core.PuzzleLevels.Targets;
+using MatchThree.Model;
+using MatchThree.PuzzleElements;
+using MatchThree.Targets;
 using UnityEngine;
 using Utilities.Contexts;
+using Utilities.Grids;
 
-namespace Core.PuzzleLevels {
+namespace MatchThree {
 	public class PuzzleLevelInitializer : MonoBehaviour, IInitializable {
 		[SerializeField] private PuzzleLevelDefinition levelDefinition;
 
 		// Dependencies
-		private ChipDefinitionManager chipDefinitionManager;
+		private ColorDropDefinitionManager colorDropDefinitionManager;
 		private CameraController cameraController;
 
 		// Fields
 		private PuzzleGrid puzzleGrid;
 		private PuzzleElementTarget[] elementTargets;
-		private ScoreTarget scoreTarget;
 		private int maxMoveCount;
 
 		public void Initialize() {
-			chipDefinitionManager = SceneContext.GetInstance().Get<ChipDefinitionManager>();
+			colorDropDefinitionManager = SceneContext.GetInstance().Get<ColorDropDefinitionManager>();
 			cameraController = SceneContext.GetInstance().Get<CameraController>();
 
 			// Puzzle Grid
 			InitializeGrid();
 			InitializeElements();
-			InitializePlacedElements();
 			InitializeElementTargets();
-			InitializeScoreTarget();
 			InitializeMaxMoveCount();
 
 			// Camera Controller
-			cameraController.CenterCameraToGrid(puzzleGrid);
-			cameraController.AdjustOrthographicSizeToFit(puzzleGrid);
+			cameraController.PlayCameraPositionTween(puzzleGrid.GetCenterPoint());
+			cameraController.PlayOrthoSizeTween(puzzleGrid.GetGridSizeInLength());
 		}
 
 
 		private void InitializeGrid() {
-			const float cellDiameter = 1.2f;
+			const float cellDiameter = 1f;
 
 			Vector2Int gridSize = levelDefinition.GetGridSize();
-			puzzleGrid = new PuzzleGrid(gridSize, cellDiameter);
+			PuzzleCellFactory cellFactory = new PuzzleCellFactory();
+
+			PuzzleGrid.GridParams gridParams = new() {
+				GridSize = gridSize,
+				GridPlane = GridPlane.XY
+			};
+
+			PuzzleGrid.CellParams cellParams = new() {
+				CellFactory = cellFactory,
+				CellDiameter = cellDiameter
+			};
+
+			puzzleGrid = new PuzzleGrid(gridParams, cellParams);
 		}
 
 		private void InitializeElements() {
-			PuzzleCell[] puzzleCells = puzzleGrid.GetCells();
+			PuzzleCell[,] puzzleCells = puzzleGrid.GetCells();
 
-			for (int index = 0; index < puzzleCells.Length; index++) {
-				PuzzleCell puzzleCell = puzzleCells[index];
-				PuzzleElement colorChip = CreateRandomColorChip();
-				puzzleCell.SetPuzzleElement(colorChip);
-			}
-		}
-
-		private void InitializePlacedElements() {
-			ElementPlacementDTO[] elementPlacements = levelDefinition.GetElementPlacements();
-			PuzzleCell[] puzzleCells = puzzleGrid.GetCells();
-
-			for (int i = 0; i < elementPlacements.Length; i++) {
-				int cellIndex = elementPlacements[i].GetPositionIndex();
-				PuzzleElementDefinition definition = elementPlacements[i].GetPuzzleElementDefinition();
-				PuzzleElement puzzleElement = definition.CreateElement();
-
-				PuzzleCell puzzleCell = puzzleCells[cellIndex];
-				puzzleCell.SetPuzzleElement(puzzleElement);
-			}
+			for (int y = 0; y < puzzleCells.GetLength(0); y++)
+				for (int x = 0; x < puzzleCells.GetLength(1); x++) {
+					PuzzleCell puzzleCell = puzzleCells[x, y];
+					ColorDrop colorDrop = CreateRandomColorChip();
+					puzzleCell.SetColorDrop(colorDrop);
+				}
 		}
 
 		private void InitializeElementTargets() {
@@ -79,24 +72,19 @@ namespace Core.PuzzleLevels {
 				elementTargets[i] = new PuzzleElementTarget(elementTargetDTOs[i]);
 		}
 
-		private void InitializeScoreTarget() {
-			scoreTarget = new ScoreTarget(levelDefinition.GetScoreTarget());
-		}
-
 		private void InitializeMaxMoveCount() {
 			maxMoveCount = levelDefinition.GetMaxMoveCount();
 		}
 
-		private PuzzleElement CreateRandomColorChip() {
-			ColorChipDefinition colorChipDefinition = chipDefinitionManager.GetRandomColorChipDefinition();
-			ColorChip colorChip = new ColorChip(colorChipDefinition);
+		private ColorDrop CreateRandomColorChip() {
+			ColorDropDefinition colorDropDefinition = colorDropDefinitionManager.GetRandomColorChipDefinition();
+			ColorDrop colorDrop = new ColorDrop(colorDropDefinition);
 
-			return colorChip;
+			return colorDrop;
 		}
 
 		public PuzzleGrid GetPuzzleGrid() => puzzleGrid;
 		public PuzzleElementTarget[] GetElementTargets() => elementTargets;
-		public ScoreTarget GetScoreTarget() => scoreTarget;
 		public int GetMaxMoveCount() => maxMoveCount;
 	}
 }

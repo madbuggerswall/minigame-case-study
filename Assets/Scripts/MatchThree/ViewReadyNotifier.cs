@@ -1,6 +1,6 @@
 using UnityEngine.Events;
 
-namespace Core.PuzzleLevels.LevelView {
+namespace MatchThree {
 	public class ViewReadyNotifier {
 		private bool isFallTweensComplete = true;
 		private bool isFillTweensComplete = true;

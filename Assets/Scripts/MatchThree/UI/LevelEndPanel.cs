@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Core.UI {
+namespace MatchThree.UI {
 	public class LevelEndPanel : MonoBehaviour {
 		[SerializeField] private Button restartButton;
 

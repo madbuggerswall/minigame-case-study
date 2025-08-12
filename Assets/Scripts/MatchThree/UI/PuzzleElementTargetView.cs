@@ -1,9 +1,9 @@
-using Core.PuzzleLevels.Targets;
+using MatchThree.Targets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core.UI {
+namespace MatchThree.UI {
 	public class PuzzleElementTargetView : MonoBehaviour {
 		[SerializeField] private Image elementImage;
 		[SerializeField] private TextMeshProUGUI remainingTargetText;

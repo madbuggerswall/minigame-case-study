@@ -1,11 +1,9 @@
-using Core.Contexts;
-using Core.DataTransfer.Definitions.PuzzleElements;
-using Core.PuzzleGrids;
-using Frolics.Pooling;
+using MatchThree.Model;
 using UnityEngine;
 using Utilities.Contexts;
+using Utilities.Pooling;
 
-namespace Core.PuzzleElements.Behaviours {
+namespace MatchThree.PuzzleElements {
 	public class PuzzleElementBehaviourFactory : MonoBehaviour, IInitializable {
 		[SerializeField] private Transform elementsParent;
 
@@ -16,12 +14,12 @@ namespace Core.PuzzleElements.Behaviours {
 			this.objectPool = SceneContext.GetInstance().Get<ObjectPool>();
 		}
 
-		public PuzzleElementBehaviour Create(PuzzleElement puzzleElement, PuzzleCell puzzleCell) {
-			PuzzleElementDefinition elementDefinition = puzzleElement.GetDefinition();
+		public PuzzleElementBehaviour Create(ColorDrop colorDrop, PuzzleCell puzzleCell) {
+			PuzzleElementDefinition elementDefinition = colorDrop.GetDefinition();
 			PuzzleElementBehaviour elementBehaviour = objectPool.Spawn(elementDefinition.GetPrefab(), elementsParent);
 			elementBehaviour.Initialize(elementDefinition, puzzleCell);
 
-			puzzleCell.SetPuzzleElement(puzzleElement);
+			puzzleCell.SetColorDrop(colorDrop);
 			return elementBehaviour;
 		}
 	}

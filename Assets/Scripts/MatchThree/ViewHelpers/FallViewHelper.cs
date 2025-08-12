@@ -1,15 +1,15 @@
 using System.Collections.Generic;
-using Core.PuzzleElements;
-using Core.PuzzleElements.Behaviours;
-using Core.PuzzleGrids;
-using Frolics.Tween;
+using MatchThree.Model;
+using MatchThree.PuzzleElements;
 using UnityEngine;
+using Utilities.Tweens.Easing;
+using Utilities.Tweens.TransformTweens;
 
-namespace Core.PuzzleLevels.LevelView.ViewHelpers {
+namespace MatchThree.ViewHelpers {
 	public class FallViewHelper {
 		private const float FallDuration = 0.6f;
 
-		private readonly Dictionary<Transform, TransformTween> fallTweens = new();
+		private readonly Dictionary<Transform, PositionTween> fallTweens = new();
 		private readonly PuzzleLevelViewController viewController;
 		private readonly PuzzleGrid puzzleGrid;
 
@@ -31,18 +31,17 @@ namespace Core.PuzzleLevels.LevelView.ViewHelpers {
 		}
 
 		private void PlayFallTween(Transform elementTransform, Vector3 targetPosition) {
-			if (fallTweens.TryGetValue(elementTransform, out TransformTween transformTween)) {
-				transformTween.Stop();
+			if (fallTweens.TryGetValue(elementTransform, out PositionTween positionTween)) {
+				positionTween.Stop();
 				fallTweens.Remove(elementTransform);
 			}
 
-			transformTween = new TransformTween(elementTransform, FallDuration);
-			transformTween.SetEase(Ease.Type.InCubic);
-			transformTween.SetPosition(targetPosition);
-			transformTween.SetOnComplete(() => OnFallTweenComplete(elementTransform));
-			transformTween.Play();
+			positionTween = elementTransform.PlayPosition(targetPosition, FallDuration);
+			positionTween.SetEase(Ease.Type.InCubic);
+			positionTween.SetOnComplete(() => OnFallTweenComplete(elementTransform));
+			positionTween.Play();
 
-			fallTweens.Add(elementTransform, transformTween);
+			fallTweens.Add(elementTransform, positionTween);
 		}
 
 		private void OnFallTweenComplete(Transform elementTransform) {

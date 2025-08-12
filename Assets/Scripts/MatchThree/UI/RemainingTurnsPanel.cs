@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Core.UI {
+namespace MatchThree.UI {
 	public class RemainingTurnsPanel : MonoBehaviour {
 		[SerializeField] private TextMeshProUGUI remainingMovesText;
 

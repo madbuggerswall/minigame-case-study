@@ -1,10 +1,10 @@
-using Core.PuzzleElements.Behaviours;
-using Core.PuzzleLevels;
-using Core.PuzzleLevels.LevelView;
-using Core.PuzzleLevels.Targets;
-using Core.PuzzleLevels.Turns;
-using Core.UI;
+using Core.PuzzleGrids;
+using MatchThree;
 using MatchThree.Presenter;
+using MatchThree.PuzzleElements;
+using MatchThree.Targets;
+using MatchThree.Turns;
+using MatchThree.UI;
 using MatchThree.View;
 using UnityEngine;
 using Utilities.Contexts;

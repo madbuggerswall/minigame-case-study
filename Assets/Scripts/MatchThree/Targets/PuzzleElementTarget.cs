@@ -1,7 +1,6 @@
-using Core.DataTransfer.Definitions.PuzzleElements;
-using Core.DataTransfer.Definitions.PuzzleLevels;
+using MatchThree.PuzzleElements;
 
-namespace Core.PuzzleLevels.Targets {
+namespace MatchThree.Targets {
 	public class PuzzleElementTarget : Target {
 		private readonly PuzzleElementDefinition elementDefinition;
 		private readonly int targetAmount;

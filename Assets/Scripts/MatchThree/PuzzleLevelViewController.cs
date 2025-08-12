@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using Core.Contexts;
-using Core.PuzzleElements;
-using Core.PuzzleElements.Behaviours;
 using Core.PuzzleGrids;
-using Core.PuzzleLevels.LevelView.ViewHelpers;
-using Frolics.Pooling;
+using MatchThree.Model;
+using MatchThree.PuzzleElements;
+using MatchThree.ViewHelpers;
 using UnityEngine;
+using Utilities.Contexts;
+using Utilities.Pooling;
 
-namespace Core.PuzzleLevels.LevelView {
+namespace MatchThree {
 	public class PuzzleLevelViewController : IInitializable {
 		private readonly Dictionary<PuzzleElement, PuzzleElementBehaviour> elementBehaviours = new();
 		private readonly Dictionary<PuzzleGrid, PuzzleGridBehaviour> gridBehaviours = new();
@@ -22,8 +22,6 @@ namespace Core.PuzzleLevels.LevelView {
 
 		public FallViewHelper FallViewHelper { get; private set; }
 		public FillViewHelper FillViewHelper { get; private set; }
-		public ScaledViewHelper ScaledViewHelper { get; private set; }
-		public ShuffleViewHelper ShuffleViewHelper { get; private set; }
 
 		public ViewReadyNotifier ViewReadyNotifier { get; private set; }
 
@@ -39,10 +37,8 @@ namespace Core.PuzzleLevels.LevelView {
 			SpawnCellBehaviours(puzzleGrid);
 			SpawnElementBehaviours(puzzleGrid);
 
-			ScaledViewHelper = new ScaledViewHelper(this);
 			FallViewHelper = new FallViewHelper(this, puzzleGrid);
 			FillViewHelper = new FillViewHelper(this, puzzleGrid);
-			ShuffleViewHelper = new ShuffleViewHelper(this, puzzleGrid);
 
 			ViewReadyNotifier = new ViewReadyNotifier();
 		}
@@ -58,36 +54,40 @@ namespace Core.PuzzleLevels.LevelView {
 				return;
 
 			Transform cellsParent = gridBehaviour.GetCellsParent();
-			PuzzleCell[] puzzleCells = puzzleGrid.GetCells();
+			PuzzleCell[,] puzzleCells = puzzleGrid.GetCells();
 
-			for (int i = 0; i < puzzleCells.Length; i++) {
-				PuzzleCell cell = puzzleCells[i];
-				PuzzleCellBehaviour cellBehaviour = cellBehaviourFactory.Create(cell, cellsParent);
-				cellBehaviours.Add(cell, cellBehaviour);
+			for (int y = 0; y < puzzleCells.GetLength(1); y++) {
+				for (int x = 0; x < puzzleCells.GetLength(0); x++) {
+					PuzzleCell cell = puzzleCells[x, y];
+					PuzzleCellBehaviour cellBehaviour = cellBehaviourFactory.Create(cell, cellsParent);
+					cellBehaviours.Add(cell, cellBehaviour);
+				}
 			}
 		}
 
 		private void SpawnElementBehaviours(PuzzleGrid puzzleGrid) {
-			PuzzleCell[] puzzleCells = puzzleGrid.GetCells();
+			PuzzleCell[,] puzzleCells = puzzleGrid.GetCells();
+			for (int y = 0; y < puzzleCells.GetLength(1); y++) {
+				for (int x = 0; x < puzzleCells.GetLength(0); x++) {
+					PuzzleCell cell = puzzleCells[x, y];
+					if (cell.IsEmpty())
+						continue;
 
-			for (int i = 0; i < puzzleCells.Length; i++) {
-				PuzzleCell cell = puzzleCells[i];
-				if (!cell.TryGetPuzzleElement(out PuzzleElement element))
-					return;
-
-				PuzzleElementBehaviour elementBehaviour = elementBehaviourFactory.Create(element, cell);
-				elementBehaviour.SetSortingOrder(i);
-				elementBehaviours.Add(element, elementBehaviour);
+					ColorDrop colorDrop = cell.GetColorDrop();
+					PuzzleElementBehaviour elementBehaviour = elementBehaviourFactory.Create(colorDrop, cell);
+					elementBehaviour.SetSortingOrder(y);
+					elementBehaviours.Add(colorDrop, elementBehaviour);
+				}
 			}
 		}
 
-		public PuzzleElementBehaviour SpawnElementBehaviour(PuzzleElement puzzleElement, PuzzleCell puzzleCell) {
+		public PuzzleElementBehaviour SpawnElementBehaviour(ColorDrop colorDrop, PuzzleCell puzzleCell) {
 			PuzzleGrid puzzleGrid = levelManager.GetPuzzleGrid();
-			int cellIndex = puzzleGrid.GetCellIndex(puzzleCell);
+			// TODO int cellIndex = puzzleGrid.GetCellIndex(puzzleCell);
 
-			PuzzleElementBehaviour elementBehaviour = elementBehaviourFactory.Create(puzzleElement, puzzleCell);
-			elementBehaviour.SetSortingOrder(cellIndex);
-			elementBehaviours.Add(puzzleElement, elementBehaviour);
+			PuzzleElementBehaviour elementBehaviour = elementBehaviourFactory.Create(colorDrop, puzzleCell);
+			// TODO elementBehaviour.SetSortingOrder(cellIndex);
+			elementBehaviours.Add(colorDrop, elementBehaviour);
 
 			return elementBehaviour;
 		}

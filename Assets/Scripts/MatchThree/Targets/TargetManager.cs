@@ -1,11 +1,9 @@
-using Core.Contexts;
-using Core.DataTransfer.Definitions.PuzzleElements;
-using Core.PuzzleLevels.Links;
-using Core.UI;
 using MatchThree.Model;
+using MatchThree.PuzzleElements;
+using MatchThree.UI;
 using Utilities.Contexts;
 
-namespace Core.PuzzleLevels.Targets {
+namespace MatchThree.Targets {
 	public class TargetManager : IInitializable {
 		private PuzzleElementTarget[] elementTargets;
 
@@ -25,16 +23,17 @@ namespace Core.PuzzleLevels.Targets {
 		}
 
 		public void CheckForElementTargets(MatchModel matchModel) {
-			PuzzleElementDefinition linkDefinition = link.GetElementDefinition();
-
-			for (int i = 0; i < elementTargets.Length; i++) {
-				PuzzleElementTarget target = elementTargets[i];
-				if (target.GetElementDefinition() != linkDefinition)
-					continue;
-
-				target.IncreaseCurrentAmount(link.GetElements().Count);
-				uiController.UpdateElementTargetView(target);
-			}
+			// TODO
+			// PuzzleElementDefinition linkDefinition = link.GetElementDefinition();
+			//
+			// for (int i = 0; i < elementTargets.Length; i++) {
+			// 	PuzzleElementTarget target = elementTargets[i];
+			// 	if (target.GetElementDefinition() != linkDefinition)
+			// 		continue;
+			//
+			// 	target.IncreaseCurrentAmount(link.GetElements().Count);
+			// 	uiController.UpdateElementTargetView(target);
+			// }
 		}
 
 		public bool IsAllTargetsCompleted() {
@@ -42,7 +41,7 @@ namespace Core.PuzzleLevels.Targets {
 				if (!elementTargets[i].IsTargetCompleted())
 					return false;
 
-			return scoreTarget.IsTargetCompleted();
+			return true;
 		}
 
 		public PuzzleElementTarget[] GetElementTargets() => elementTargets;

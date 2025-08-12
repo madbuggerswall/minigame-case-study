@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Core.PuzzleLevels.Targets;
+using MatchThree.Targets;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core.UI {
+namespace MatchThree.UI {
 	public class ElementTargetsPanel : MonoBehaviour {
 		[SerializeField] private PuzzleElementTargetView targetViewPrefab;
 		[SerializeField] private HorizontalLayoutGroup layoutGroup;

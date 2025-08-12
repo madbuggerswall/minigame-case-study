@@ -1,9 +1,11 @@
+using UnityEngine;
 using Utilities.Contexts;
 using Utilities.Input;
 using Utilities.Input.Common;
 
+// This should be a vanilla class
 namespace MatchThree.View {
-	public class MatchThreeInputManager : IInitializable {
+	public class MatchThreeInputManager : MonoBehaviour, IInitializable {
 		private InputManager inputManager;
 
 		public void Initialize() {

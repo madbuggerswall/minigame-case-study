@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace Utilities.Grids {
 	public class CircleGrid<T> : Grid<T> where T : CircleCell {
+		private T[] cells;
+
 		// NOTE Rename to HexGrid<CircleCell> HexGrid<HexCell>
 		// NOTE Initialize via AxialCoordinates (Doubled or Offset)
 		protected CircleGrid(CellFactory<T> cellFactory, Vector2Int gridSize, float cellDiameter) {
@@ -22,6 +24,8 @@ namespace Utilities.Grids {
 
 			return cells;
 		}
+
+		public T[] GetCells() => cells;
 
 		// Static
 		private static Vector2[] GenerateCellPositions(Vector2Int gridSizeInCells, float cellDiameter) {

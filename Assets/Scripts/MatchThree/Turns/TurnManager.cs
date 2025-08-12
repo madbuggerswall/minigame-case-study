@@ -1,8 +1,7 @@
-using Core.Contexts;
-using Core.UI;
+using MatchThree.UI;
 using Utilities.Contexts;
 
-namespace Core.PuzzleLevels.Turns {
+namespace MatchThree.Turns {
 	public class TurnManager : IInitializable {
 		private int maxTurnCount;
 		private int currentTurnCount;
