@@ -11,7 +11,7 @@ namespace MatchThree.UI {
 		[SerializeField] private LevelEndPanel levelSuccessPanel;
 		[SerializeField] private LevelEndPanel levelFailPanel;
 		[SerializeField] private ElementTargetsPanel elementTargetsPanel;
-		[SerializeField] private RemainingTurnsPanel remainingTurnsPanel;
+		[SerializeField] private ScorePanel scorePanel;
 		[SerializeField] private Button restartButton;
 
 		// Dependencies
@@ -23,7 +23,7 @@ namespace MatchThree.UI {
 			turnManager = PuzzleContext.GetInstance().Get<TurnManager>();
 
 			elementTargetsPanel.Initialize(targetManager.GetElementTargets());
-			remainingTurnsPanel.UpdateRemainingTurns(turnManager.GetRemainingTurnCount());
+			scorePanel.UpdateScore(turnManager.GetRemainingTurnCount());
 
 			restartButton.onClick.AddListener(OnRestartButtonClick);
 		}
@@ -41,7 +41,7 @@ namespace MatchThree.UI {
 		}
 
 		public void UpdateRemainingTurnsPanel(int remainingMoves) {
-			remainingTurnsPanel.UpdateRemainingTurns(remainingMoves);
+			scorePanel.UpdateScore(remainingMoves);
 		}
 
 		private void OnRestartButtonClick() {

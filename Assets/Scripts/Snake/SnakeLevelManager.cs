@@ -1,16 +1,9 @@
 using UnityEngine;
+using Utilities.Contexts;
 
-public class SnakeLevelManager : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public class SnakeLevelManager : MonoBehaviour, IInitializable {
+	private Snake snake;
+	public void Initialize() {
+		throw new System.NotImplementedException();
+	}
 }
