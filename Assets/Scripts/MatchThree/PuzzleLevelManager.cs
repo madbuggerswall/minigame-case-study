@@ -26,12 +26,12 @@ namespace MatchThree {
 		private PuzzleGrid puzzleGrid;
 
 		public void Initialize() {
-			levelInitializer = MatchThreeContext.GetInstance().Get<PuzzleLevelInitializer>();
-			colorDropDefinitionManager = MatchThreeContext.GetInstance().Get<ColorDropDefinitionManager>();
-			viewController = MatchThreeContext.GetInstance().Get<PuzzleLevelViewController>();
-			uiController = MatchThreeContext.GetInstance().Get<PuzzleLevelUIController>();
-			turnManager = MatchThreeContext.GetInstance().Get<TurnManager>();
-			targetManager = MatchThreeContext.GetInstance().Get<TargetManager>();
+			levelInitializer = PuzzleContext.GetInstance().Get<PuzzleLevelInitializer>();
+			colorDropDefinitionManager = PuzzleContext.GetInstance().Get<ColorDropDefinitionManager>();
+			viewController = PuzzleContext.GetInstance().Get<PuzzleLevelViewController>();
+			uiController = PuzzleContext.GetInstance().Get<PuzzleLevelUIController>();
+			turnManager = PuzzleContext.GetInstance().Get<TurnManager>();
+			targetManager = PuzzleContext.GetInstance().Get<TargetManager>();
 
 			puzzleGrid = levelInitializer.GetPuzzleGrid();
 

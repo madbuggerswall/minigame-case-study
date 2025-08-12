@@ -19,8 +19,8 @@ namespace MatchThree {
 		private int maxMoveCount;
 
 		public void Initialize() {
-			colorDropDefinitionManager = SceneContext.GetInstance().Get<ColorDropDefinitionManager>();
-			cameraController = SceneContext.GetInstance().Get<CameraController>();
+			colorDropDefinitionManager = PuzzleContext.GetInstance().Get<ColorDropDefinitionManager>();
+			// cameraController = SceneContext.GetInstance().Get<CameraController>();
 
 			// Puzzle Grid
 			InitializeGrid();
@@ -29,8 +29,8 @@ namespace MatchThree {
 			InitializeMaxMoveCount();
 
 			// Camera Controller
-			cameraController.PlayCameraPositionTween(puzzleGrid.GetCenterPoint());
-			cameraController.PlayOrthoSizeTween(puzzleGrid.GetGridSizeInLength());
+			// cameraController.PlayCameraPositionTween(puzzleGrid.GetCenterPoint());
+			// cameraController.PlayOrthoSizeTween(puzzleGrid.GetGridSizeInLength());
 		}
 
 
@@ -56,12 +56,15 @@ namespace MatchThree {
 		private void InitializeElements() {
 			PuzzleCell[,] puzzleCells = puzzleGrid.GetCells();
 
-			for (int y = 0; y < puzzleCells.GetLength(0); y++)
-				for (int x = 0; x < puzzleCells.GetLength(1); x++) {
+			int width = puzzleCells.GetLength(0);
+			int height = puzzleCells.GetLength(1);
+			for (int y = 0; y < height; y++) {
+				for (int x = 0; x < width; x++) {
 					PuzzleCell puzzleCell = puzzleCells[x, y];
 					ColorDrop colorDrop = CreateRandomColorChip();
 					puzzleCell.SetColorDrop(colorDrop);
 				}
+			}
 		}
 
 		private void InitializeElementTargets() {

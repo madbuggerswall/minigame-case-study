@@ -13,7 +13,7 @@ namespace Core.PuzzleGrids {
 		private ObjectPool objectPool;
 
 		public void Initialize() {
-			this.objectPool = SceneContext.GetInstance().Get<ObjectPool>();
+			this.objectPool = PuzzleContext.GetInstance().Get<ObjectPool>();
 		}
 
 		public PuzzleGridBehaviour Create(PuzzleGrid puzzleGrid) {

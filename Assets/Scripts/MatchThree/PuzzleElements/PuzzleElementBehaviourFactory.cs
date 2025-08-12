@@ -11,7 +11,7 @@ namespace MatchThree.PuzzleElements {
 		private ObjectPool objectPool;
 
 		public void Initialize() {
-			this.objectPool = SceneContext.GetInstance().Get<ObjectPool>();
+			this.objectPool = PuzzleContext.GetInstance().Get<ObjectPool>();
 		}
 
 		public PuzzleElementBehaviour Create(ColorDrop colorDrop, PuzzleCell puzzleCell) {

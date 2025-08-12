@@ -11,8 +11,8 @@ namespace MatchThree.Turns {
 		private PuzzleLevelInitializer levelInitializer;
 
 		public void Initialize() {
-			this.uiController = SceneContext.GetInstance().Get<PuzzleLevelUIController>();
-			this.levelInitializer = SceneContext.GetInstance().Get<PuzzleLevelInitializer>();
+			this.uiController = PuzzleContext.GetInstance().Get<PuzzleLevelUIController>();
+			this.levelInitializer = PuzzleContext.GetInstance().Get<PuzzleLevelInitializer>();
 
 			this.maxTurnCount = levelInitializer.GetMaxMoveCount();
 		}

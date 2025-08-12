@@ -12,8 +12,8 @@ namespace MatchThree.Targets {
 		private PuzzleLevelUIController uiController;
 
 		public void Initialize() {
-			this.levelInitializer = SceneContext.GetInstance().Get<PuzzleLevelInitializer>();
-			this.uiController = SceneContext.GetInstance().Get<PuzzleLevelUIController>();
+			this.levelInitializer = PuzzleContext.GetInstance().Get<PuzzleLevelInitializer>();
+			this.uiController = PuzzleContext.GetInstance().Get<PuzzleLevelUIController>();
 
 			this.elementTargets = levelInitializer.GetElementTargets();
 		}

@@ -26,11 +26,11 @@ namespace MatchThree {
 		public ViewReadyNotifier ViewReadyNotifier { get; private set; }
 
 		public void Initialize() {
-			this.elementBehaviourFactory = SceneContext.GetInstance().Get<PuzzleElementBehaviourFactory>();
-			this.gridBehaviourFactory = SceneContext.GetInstance().Get<PuzzleGridBehaviourFactory>();
-			this.cellBehaviourFactory = SceneContext.GetInstance().Get<PuzzleCellBehaviourFactory>();
-			this.levelManager = SceneContext.GetInstance().Get<PuzzleLevelManager>();
-			this.objectPool = SceneContext.GetInstance().Get<ObjectPool>();
+			this.elementBehaviourFactory = PuzzleContext.GetInstance().Get<PuzzleElementBehaviourFactory>();
+			this.gridBehaviourFactory = PuzzleContext.GetInstance().Get<PuzzleGridBehaviourFactory>();
+			this.cellBehaviourFactory = PuzzleContext.GetInstance().Get<PuzzleCellBehaviourFactory>();
+			this.levelManager = PuzzleContext.GetInstance().Get<PuzzleLevelManager>();
+			this.objectPool = PuzzleContext.GetInstance().Get<ObjectPool>();
 
 			PuzzleGrid puzzleGrid = levelManager.GetPuzzleGrid();
 			SpawnGridBehaviour(puzzleGrid);

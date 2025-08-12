@@ -1,3 +1,4 @@
+using Core.UI;
 using MatchThree.Targets;
 using MatchThree.Turns;
 using UnityEngine;
@@ -18,8 +19,8 @@ namespace MatchThree.UI {
 		private TurnManager turnManager;
 
 		public void Initialize() {
-			targetManager = SceneContext.GetInstance().Get<TargetManager>();
-			turnManager = SceneContext.GetInstance().Get<TurnManager>();
+			targetManager = PuzzleContext.GetInstance().Get<TargetManager>();
+			turnManager = PuzzleContext.GetInstance().Get<TurnManager>();
 
 			elementTargetsPanel.Initialize(targetManager.GetElementTargets());
 			remainingTurnsPanel.UpdateRemainingTurns(turnManager.GetRemainingTurnCount());

@@ -43,9 +43,9 @@ namespace Utilities.Grids {
 		private T[,] GenerateCells(CellFactory<T> cellFactory, Vector3[,] cellPositions) {
 			T[,] cells = new T[gridSize.x, gridSize.y];
 
-			for (int i = 0; i < gridSize.x; i++)
-				for (int j = 0; j < gridSize.y; j++)
-					cells[i, j] = cellFactory.Create(cellPositions[i, j], cellDiameter);
+			for (int y = 0; y < gridSize.y; y++)
+				for (int x = 0; x < gridSize.x; x++)
+					cells[x, y] = cellFactory.Create(cellPositions[x, y], cellDiameter);
 
 			return cells;
 		}
