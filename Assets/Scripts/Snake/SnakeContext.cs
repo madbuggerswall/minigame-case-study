@@ -11,7 +11,9 @@ public class SnakeContext : SubContext<SnakeContext> {
 		Resolve<SnakeBodyFactory>();
 		Resolve<SnakeGridFactory>();
 
+		Resolve<FoodGenerator>();
 		Resolve<SnakeLevelInitializer>();
+		Resolve<SnakeLevelManager>();
 		
 		Resolve<SnakeUIController>();
 	}

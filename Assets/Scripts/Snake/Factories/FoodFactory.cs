@@ -13,9 +13,9 @@ public class FoodFactory : MonoBehaviour, IInitializable {
 		this.objectPool = SnakeContext.GetInstance().Get<ObjectPool>();
 	}
 
-	public Food CreateFood(Vector2Int position) {
+	public Food CreateFood(Vector2Int gridPosition) {
 		Food food = objectPool.Spawn(foodPrefab, root);
-		food.transform.position = new Vector3(position.x, position.y, 0);
+		food.Initialize(gridPosition);
 		return food;
 	}
 }

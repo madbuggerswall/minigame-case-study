@@ -6,61 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="cb37b183-9076-4ae9-8640-fdcddf36f23e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mavis-case-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mavis-case-study/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MatchThreeScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MatchThreeScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/MechanicsHelpers/FallHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/MechanicsHelpers/FallHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/MechanicsHelpers/FillHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/MechanicsHelpers/FillHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/BoardModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/BoardModel.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/CellModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/CellModel.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/DropModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/DropModel.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/FillManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/FillManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/MatchManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/MatchManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/MatchModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/MatchModel.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Presenter.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Presenter/BoardPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Presenter/BoardPresenter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Presenter/MainPresenter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Presenter/MainPresenter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleCellBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleCellBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleCellBehaviourFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleCellBehaviourFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleElements/ColorDrop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleElements/ColorDrop.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleElements/ColorDropBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleElements/ColorDropBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleElements/PuzzleElementBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleElements/PuzzleElementBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleElements/PuzzleElementBehaviourFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleElements/PuzzleElementBehaviourFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleGridBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleGridBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleGridBehaviourFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleGridBehaviourFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelInitializer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelViewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelViewController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Targets/TargetManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Targets/TargetManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/BoardView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/BoardView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/BoardViewFactory.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/BoardViewFactory.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/CellView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/CellView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/CellViewFactory.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/CellViewFactory.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/DropView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/DropView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/DropViewFactory.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/DropViewFactory.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/MatchThreeInputManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/MatchThreeInputManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/ViewHelpers/FallViewHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/ViewHelpers/FallViewHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/ViewHelpers/FillViewHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/ViewHelpers/FillViewHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThreeContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThreeContext.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PuzzleContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PuzzleContext.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Snake/Snake Body Part.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Snake/Snake Body Part.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Snake/Snake Head.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Snake/Snake Head.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/Food.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/Food.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/FoodFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/FoodFactory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/Snake.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/Snake.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeBody.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeBody.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeBodyFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeBodyFactory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeFactory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeGrid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeGridFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeGridFactory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelInitializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,13 +39,23 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0882cc9dff2e4e53a2f9a8ae7596868f4000/ae/fb5fffcb/JsonUtility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/17db89d2d75745598b8b3807e4656022468c00/83/92cfb537/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/Commands/Command.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleElements/PuzzleElement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleGridBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelDefinition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Snake/SnakeContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utilities/Collections/Generic/UniqueList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7fe8299111a7/InputSystem/Editor/PropertyDrawers/InputActionReferencePropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7fe8299111a7/InputSystem/Utilities/InlinedArray.cs" root0="SKIP_HIGHLIGHTING" />
@@ -107,7 +82,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "view-controllers",
+    "git-widget-placeholder": "snake-and-runner",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -201,71 +176,127 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
-        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
-          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
-          <option name="timeStamp" value="3" />
-        </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelViewController.cs</url>
-          <line>71</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelViewController.cs" containingFunctionPresentation="Method 'SpawnElementBehaviours'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
+          <line>58</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'CheckForMatches'">
             <startOffsets>
-              <option value="2894" />
+              <option value="2172" />
             </startOffsets>
             <endOffsets>
-              <option value="2903" />
+              <option value="2220" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelViewController.cs</url>
-          <line>67</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelViewController.cs" containingFunctionPresentation="Method 'SpawnElementBehaviours'">
-            <startOffsets>
-              <option value="2711" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2761" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
-          <line>53</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'Initialize'">
+          <line>70</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'">
             <startOffsets>
-              <option value="2040" />
+              <option value="2544" />
             </startOffsets>
             <endOffsets>
-              <option value="2097" />
+              <option value="2582" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="15" />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/MatchManager.cs</url>
-          <line>41</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/MatchManager.cs" containingFunctionPresentation="Method 'FindMatches'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
+          <line>85</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'BlastMatchedCells'">
             <startOffsets>
-              <option value="1381" />
+              <option value="3083" />
             </startOffsets>
             <endOffsets>
-              <option value="1390" />
+              <option value="3127" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="16" />
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
+          <line>72</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'">
+            <startOffsets>
+              <option value="2587" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2610" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
+          <line>73</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'">
+            <startOffsets>
+              <option value="2614" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2637" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
+          <line>75</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'">
+            <startOffsets>
+              <option value="2642" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2723" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
+          <line>78</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'">
+            <startOffsets>
+              <option value="2785" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2866" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelManager.cs</url>
+          <line>31</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelManager.cs" containingFunctionPresentation="Method 'OnSnakeMove'">
+            <startOffsets>
+              <option value="924" />
+            </startOffsets>
+            <endOffsets>
+              <option value="956" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelManager.cs</url>
+          <line>28</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelManager.cs" containingFunctionPresentation="Method 'OnSnakeMove'">
+            <startOffsets>
+              <option value="855" />
+            </startOffsets>
+            <endOffsets>
+              <option value="909" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="DotNet_Exception_Breakpoints" />
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
 </project>

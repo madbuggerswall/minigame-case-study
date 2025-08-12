@@ -13,6 +13,7 @@ public class SnakeLevelInitializer : MonoBehaviour, IInitializable {
 	private SnakeFactory snakeFactory;
 	private SnakeBodyFactory snakeBodyFactory;
 	private FoodFactory foodFactory;
+	private FoodGenerator foodGenerator;
 
 	private CameraController cameraController;
 
@@ -20,26 +21,21 @@ public class SnakeLevelInitializer : MonoBehaviour, IInitializable {
 		this.snakeGridFactory = SnakeContext.GetInstance().Get<SnakeGridFactory>();
 		this.snakeFactory = SnakeContext.GetInstance().Get<SnakeFactory>();
 		this.snakeBodyFactory = SnakeContext.GetInstance().Get<SnakeBodyFactory>();
-		this.foodFactory = SnakeContext.GetInstance().Get<FoodFactory>();
+		this.foodGenerator = SnakeContext.GetInstance().Get<FoodGenerator>();
 
 		this.cameraController = SceneContext.GetInstance().Get<CameraController>();
 
 		this.snakeGrid = snakeGridFactory.CreateSnakeGrid(Vector2Int.zero, gridSize);
 		this.snake = snakeFactory.CreateSnake(Vector2Int.zero);
-		this.food = foodFactory.CreateFood(GetRandomFoodPosition(gridSize));
+		this.food = foodGenerator.SpawnFood(gridSize, snake);
 
 		cameraController.PlayCameraPositionTween(Vector3.zero);
 		cameraController.PlayOrthoSizeTween(gridSize);
 	}
 
-	private Vector2Int GetRandomFoodPosition(Vector2Int gridSize) {
-		Vector2Int foodPosition = Vector2Int.zero;
-		while (foodPosition == Vector2Int.zero) {
-			int posX = Random.Range(-gridSize.x / 2, gridSize.x / 2);
-			int posY = Random.Range(-gridSize.y / 2, gridSize.y / 2);
-			foodPosition = new Vector2Int(posX, posY);
-		}
+	
 
-		return foodPosition;
-	}
+	public Snake GetSnake() => snake;
+	public Food GetFood() => food;
+	public SnakeGrid GetSnakeGrid() => snakeGrid;
 }

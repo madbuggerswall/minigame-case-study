@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +9,13 @@ public class Snake : MonoBehaviour {
 	private Vector2Int gridPosition = Vector2Int.zero;
 
 	private float gridMoveTimer;
-	private float gridMoveTimerMax = 0.32f;
+	private float gridMoveTimerMax = 0.1f;
 
 	private int snakeBodySize = 0;
 	private readonly List<Vector2Int> snakeBodyPositions = new();
 	private readonly List<SnakeBody> snakeBodies = new();
+
+	public Action OnSnakeMove { get; set; } = delegate { };
 
 	// Dependencies
 	private SnakeInputManager snakeInputManager;
@@ -37,13 +40,18 @@ public class Snake : MonoBehaviour {
 		Move();
 	}
 
+	public void AddBodyPart(SnakeBody snakeBody) {
+		snakeBodySize++;
+		snakeBodies.Add(snakeBody);
+	}
+
 	private void Move() {
 		gridMoveTimer += Time.deltaTime;
 		if (gridMoveTimer < gridMoveTimerMax)
 			return;
 
 		gridMoveTimer = 0;
-		
+
 		snakeBodyPositions.Insert(0, gridPosition);
 
 		gridPosition += moveDirection;
@@ -58,26 +66,8 @@ public class Snake : MonoBehaviour {
 			Vector3 bodyPosition = new Vector3(snakeBodyPosition.x, snakeBodyPosition.y);
 			snakeBodies[i].transform.position = bodyPosition;
 		}
-	}
-
-	private void OnUpPress() {
-		if (moveDirection != Vector2Int.down && gridPosition + Vector2Int.up != snakeBodyPositions[0])
-			moveDirection = Vector2Int.up;
-	}
-
-	private void OnDownPress() {
-		if (moveDirection != Vector2Int.up && gridPosition + Vector2Int.down != snakeBodyPositions[0])
-			moveDirection = Vector2Int.down;
-	}
-
-	private void OnRightPress() {
-		if (moveDirection != Vector2Int.left && gridPosition + Vector2Int.right != snakeBodyPositions[0])
-			moveDirection = Vector2Int.right;
-	}
-
-	private void OnLeftPress() {
-		if (moveDirection != Vector2Int.right && gridPosition + Vector2Int.left != snakeBodyPositions[0])
-			moveDirection = Vector2Int.left;
+		
+		OnSnakeMove.Invoke();
 	}
 
 	private void MoveToDirection(Vector2Int direction) {
@@ -89,4 +79,9 @@ public class Snake : MonoBehaviour {
 
 		moveDirection = direction;
 	}
+
+	public Vector2Int GetGridPosition() => gridPosition;
+	public List<SnakeBody> GetBodyParts() => snakeBodies;
+
+	public List<Vector2Int> GetSnakeBodyPositions() => snakeBodyPositions;
 }
