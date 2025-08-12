@@ -21,7 +21,7 @@ namespace MatchThree.Model {
 		}
 
 		public CellModel[,] GetCellModels() => cellModels;
-		public int GetBoardWidth() => boardWidth;
-		public int GetBoardHeight() => boardHeight;
+		public int GetWidth() => boardWidth;
+		public int GetHeight() => boardHeight;
 	}
 }

@@ -9,8 +9,9 @@ public class MatchThreeContext : SubContext<MatchThreeContext> {
 		Resolve<MatchThreeInputManager>();
 
 		Resolve<BoardViewFactory>();
+		Resolve<CellViewFactory>();
 		Resolve<DropViewFactory>();
-		
+
 		Resolve<MainPresenter>();
 		Resolve<BoardPresenter>();
 	}

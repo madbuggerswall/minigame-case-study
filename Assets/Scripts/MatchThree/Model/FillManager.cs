@@ -11,8 +11,8 @@ namespace MatchThree.Model {
 		}
 
 		public void FillEmptyCells() {
-			int boardWidth = boardModel.GetBoardWidth();
-			int boardHeight = boardModel.GetBoardHeight();
+			int boardWidth = boardModel.GetWidth();
+			int boardHeight = boardModel.GetHeight();
 
 			for (int x = 0; x < boardWidth; x++) {
 				for (int y = boardHeight - 1; y >= 0; y--) {
@@ -31,7 +31,7 @@ namespace MatchThree.Model {
 		}
 
 		public void DropIntoEmptyCells() {
-			int boardWidth = boardModel.GetBoardWidth();
+			int boardWidth = boardModel.GetWidth();
 			for (int x = 0; x < boardWidth; x++)
 				ApplyFallToColumn(x);
 		}
@@ -39,7 +39,7 @@ namespace MatchThree.Model {
 		private void ApplyFallToColumn(int columnIndex) {
 			// Tracks the next available empty row in this column
 			int emptyY = -1; 
-			int boardHeight = boardModel.GetBoardHeight();
+			int boardHeight = boardModel.GetHeight();
 
 			for (int y = 0; y < boardHeight; y++) {
 				CellModel cell = cellModels[columnIndex, y];
@@ -61,7 +61,7 @@ namespace MatchThree.Model {
 		}
 
 		private DropColor GetRandomDropColor() {
-			int randomIndex = Random.Range(0, 3);
+			int randomIndex = Random.Range(0, 4);
 			return randomIndex switch {
 				0 => DropColor.Blue,
 				1 => DropColor.Red,

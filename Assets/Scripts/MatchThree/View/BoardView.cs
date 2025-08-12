@@ -6,8 +6,8 @@ namespace MatchThree.View {
 		[SerializeField] private SpriteRenderer spriteRenderer;
 
 		public void Initialize(BoardModel boardModel) {
-			int boardWidth = boardModel.GetBoardWidth();
-			int boardHeight = boardModel.GetBoardHeight();
+			int boardWidth = boardModel.GetWidth();
+			int boardHeight = boardModel.GetHeight();
 			
 			spriteRenderer.size = new Vector2(boardWidth, boardHeight);
 		}

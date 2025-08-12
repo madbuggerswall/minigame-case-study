@@ -14,7 +14,7 @@ namespace MatchThree.View {
 			return dropColor switch {
 				DropColor.Blue => Color.blue,
 				DropColor.Red => Color.red,
-				DropColor.Green => Color.green,
+				DropColor.Green => Color.magenta,
 				DropColor.Yellow => Color.yellow,
 				_ => Color.blue
 			};

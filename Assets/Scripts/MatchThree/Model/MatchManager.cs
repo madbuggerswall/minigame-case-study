@@ -25,8 +25,8 @@ namespace MatchThree.Model {
 		public MatchManager(BoardModel boardModel) {
 			this.boardModel = boardModel;
 			this.cellModels = boardModel.GetCellModels();
-			this.boardWidth = boardModel.GetBoardWidth();
-			this.boardHeight = boardModel.GetBoardHeight();
+			this.boardWidth = boardModel.GetWidth();
+			this.boardHeight = boardModel.GetHeight();
 
 			this.visitedIndices = new bool[boardWidth, boardHeight];
 			this.indicesToVisit = new Queue<Vector2Int>();

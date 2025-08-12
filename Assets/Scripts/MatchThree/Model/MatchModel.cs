@@ -54,5 +54,7 @@ namespace MatchThree.Model {
 		public bool IsValid() {
 			return cellIndices.Count >= 3;
 		}
+
+		public UniqueList<Vector2Int> GetCellIndices() => cellIndices;
 	}
 }

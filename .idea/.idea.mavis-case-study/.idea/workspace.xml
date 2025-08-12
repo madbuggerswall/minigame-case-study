@@ -5,25 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb37b183-9076-4ae9-8640-fdcddf36f23e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.mavis-case-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mavis-case-study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MatchThree/Prefabs/Board View.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MatchThree/Prefabs/Board View.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MatchThree/Prefabs/Drop View.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MatchThree/Prefabs/Drop View.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/BoardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/BoardModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/FillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/FillManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/MatchManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/MatchManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/MatchModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Model/MatchModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Presenter/BoardPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Presenter/BoardPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Presenter/MainPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/Presenter/MainPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/BoardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/BoardView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/DropView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/View/DropView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MatchThreeContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MatchThreeContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utilities/Contexts/Context.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utilities/Contexts/Context.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utilities/Contexts/Contexts.asmdef" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utilities/Contexts/Contexts.asmdef.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utilities/Contexts/SubContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utilities/Contexts/SubContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0882cc9dff2e4e53a2f9a8ae7596868f4000/ae/fb5fffcb/JsonUtility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/Presenter/MainPresenter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/View/BoardViewFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/View/CellView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/View/DropViewFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/View/MatchThreeInputManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utilities/Collections/Generic/UniqueList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7fe8299111a7/InputSystem/Editor/PropertyDrawers/InputActionReferencePropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7fe8299111a7/InputSystem/Utilities/InlinedArray.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@f3c7bf275c81/Runtime/XR/XRSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.visualscripting@6279e2b7c485/Runtime/VisualScripting.Core/Utilities/IInitializable.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -40,6 +60,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -113,6 +134,8 @@
       <updated>1754836096570</updated>
       <workItem from="1754836097834" duration="2120000" />
       <workItem from="1754844163411" duration="15301000" />
+      <workItem from="1754905377685" duration="26457000" />
+      <workItem from="1754940411109" duration="8448000" />
     </task>
     <servers />
   </component>
