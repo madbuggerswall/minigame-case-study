@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Snake : MonoBehaviour {
-	// TODO Has snake segment behaviours 
-
 	private Vector2Int moveDirection = Vector2Int.up;
 	private Vector2Int gridPosition = Vector2Int.zero;
 
+	private const float BoostMultiplier = 2f;
+	private float movementMultiplier = 1f;
+
+	private const float GridMoveTimerMax = 0.1f;
 	private float gridMoveTimer;
-	private float gridMoveTimerMax = 0.1f;
 
 	private int snakeBodySize = 0;
 	private readonly List<Vector2Int> snakeBodyPositions = new();
 	private readonly List<SnakeBody> snakeBodies = new();
+
+	private bool isStopped = false;
 
 	public Action OnSnakeMove { get; set; } = delegate { };
 
@@ -29,11 +32,8 @@ public class Snake : MonoBehaviour {
 		snakeInputManager.LeftKeyPressEvent += () => MoveToDirection(Vector2Int.left);
 		snakeInputManager.RightKeyPressEvent += () => MoveToDirection(Vector2Int.right);
 
-		// Body init, might be extra
-		// for (int i = 0; i < snakeBodies.Length; i++) {
-		// 	Vector3 bodyPosition = snakeBodies[i].position;
-		// 	snakeBodyPositions.Add(new Vector2Int((int) bodyPosition.x, (int) bodyPosition.y));
-		// }
+		snakeInputManager.OneKeyPressEvent += () => SetMovementMultiplier(BoostMultiplier);
+		snakeInputManager.OneKeyReleaseEvent += () => SetMovementMultiplier(1f);
 	}
 
 	private void Update() {
@@ -45,29 +45,54 @@ public class Snake : MonoBehaviour {
 		snakeBodies.Add(snakeBody);
 	}
 
+	public void Stop(bool isStopped) {
+		this.isStopped = isStopped;
+	}
+
 	private void Move() {
-		gridMoveTimer += Time.deltaTime;
-		if (gridMoveTimer < gridMoveTimerMax)
+		if (isStopped)
 			return;
 
+		if (!ShouldMove())
+			return;
+
+		AddHeadPosition();
+		MoveHead();
+		RemoveTailPosition();
+		MoveBodyParts();
+
+		OnSnakeMove.Invoke();
+	}
+
+	private bool ShouldMove() {
+		gridMoveTimer += Time.deltaTime * movementMultiplier;
+		if (gridMoveTimer < GridMoveTimerMax)
+			return false;
+
 		gridMoveTimer = 0;
+		return true;
+	}
 
+	private void AddHeadPosition() {
 		snakeBodyPositions.Insert(0, gridPosition);
+	}
 
+	private void MoveHead() {
 		gridPosition += moveDirection;
 		transform.position = new Vector3(gridPosition.x, gridPosition.y);
+	}
 
-		if (snakeBodyPositions.Count >= snakeBodySize + 1) {
+	private void RemoveTailPosition() {
+		if (snakeBodyPositions.Count >= snakeBodySize + 1)
 			snakeBodyPositions.RemoveAt(snakeBodyPositions.Count - 1);
-		}
+	}
 
+
+	private void MoveBodyParts() {
 		for (int i = 0; i < snakeBodies.Count; i++) {
 			Vector2Int snakeBodyPosition = snakeBodyPositions[i];
-			Vector3 bodyPosition = new Vector3(snakeBodyPosition.x, snakeBodyPosition.y);
-			snakeBodies[i].transform.position = bodyPosition;
+			snakeBodies[i].transform.position = new Vector3(snakeBodyPosition.x, snakeBodyPosition.y);
 		}
-		
-		OnSnakeMove.Invoke();
 	}
 
 	private void MoveToDirection(Vector2Int direction) {
@@ -80,8 +105,11 @@ public class Snake : MonoBehaviour {
 		moveDirection = direction;
 	}
 
+	private void SetMovementMultiplier(float multiplier) {
+		this.movementMultiplier = multiplier;
+	}
+
 	public Vector2Int GetGridPosition() => gridPosition;
 	public List<SnakeBody> GetBodyParts() => snakeBodies;
-
 	public List<Vector2Int> GetSnakeBodyPositions() => snakeBodyPositions;
 }

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities.Contexts;
-using Utilities.Pooling;
 
 public class SnakeLevelManager : IInitializable {
 	private Snake snake;
@@ -26,6 +25,12 @@ public class SnakeLevelManager : IInitializable {
 	}
 
 	private void OnSnakeMove() {
+		CheckForFood();
+		CheckForSnakeBody();
+		CheckForWalls();
+	}
+
+	private void CheckForFood() {
 		if (snake.GetGridPosition() != food.GetGridPosition())
 			return;
 
@@ -36,58 +41,44 @@ public class SnakeLevelManager : IInitializable {
 
 		food = foodGenerator.SpawnFood(snakeGrid.GetGridSize(), snake);
 	}
-}
 
-public class FoodGenerator : IInitializable {
-	// Dependencies
-	private FoodFactory foodFactory;
-	private ObjectPool objectPool;
+	private void CheckForSnakeBody() {
+		if (!IsOverItself(snake))
+			return;
 
-	public void Initialize() {
-		this.objectPool = SnakeContext.GetInstance().Get<ObjectPool>();
-		this.foodFactory = SnakeContext.GetInstance().Get<FoodFactory>();
+		snake.Stop(true);
 	}
 
-	public Food SpawnFood(Vector2Int gridSize, Snake snake) {
-		Vector2Int randomFoodPosition = GetRandomFoodPosition(gridSize, snake);
-		return foodFactory.CreateFood(randomFoodPosition);
+	private void CheckForWalls() {
+		if (IsInsideGrid(snake, snakeGrid))
+			return;
+
+		snake.Stop(true);
 	}
 
-	public void DespawnFood(Food food) {
-		objectPool.Despawn(food);
-	}
-
-
-	private Vector2Int GetRandomFoodPosition(Vector2Int gridSize, Snake snake) {
-		Vector2Int randomPosition;
-
-		do randomPosition = GetRandomPositionInGrid(gridSize);
-		while (IsOverSnake(randomPosition, snake));
-
-		return randomPosition;
-	}
-
-	private static bool IsOverSnake(Vector2Int position, Snake snake) {
+	private static bool IsInsideGrid(Snake snake, SnakeGrid snakeGrid) {
 		Vector2Int headPosition = snake.GetGridPosition();
-		if (position == headPosition)
-			return true;
+		Vector2Int gridSize = snakeGrid.GetGridSize();
+		Vector2Int gridPosition = snakeGrid.GetGridPosition();
 
-		List<Vector2Int> snakeBodyPositions = snake.GetSnakeBodyPositions();
-		for (int i = 0; i < snakeBodyPositions.Count; i++)
-			if (snakeBodyPositions[i] == position)
+		int xMax = gridPosition.x + gridSize.x / 2;
+		int xMin = gridPosition.x - gridSize.x / 2;
+		int yMax = gridPosition.y + gridSize.y / 2;
+		int yMin = gridPosition.y - gridSize.y / 2;
+
+		int x = headPosition.x;
+		int y = headPosition.y;
+		return x > xMin && x < xMax && y > yMin && y < yMax;
+	}
+
+	private static bool IsOverItself(Snake snake) {
+		Vector2Int headPosition = snake.GetGridPosition();
+		List<Vector2Int> bodyPositions = snake.GetSnakeBodyPositions();
+
+		for (int i = 0; i < bodyPositions.Count; i++)
+			if (headPosition == bodyPositions[i])
 				return true;
 
 		return false;
-	}
-
-	private static Vector2Int GetRandomPositionInGrid(Vector2Int gridSize) {
-		Vector2Int position = Vector2Int.zero;
-		while (position == Vector2Int.zero) {
-			int posX = Random.Range(-gridSize.x / 2 + 1, gridSize.x / 2 - 1);
-			int posY = Random.Range(-gridSize.y / 2 + 1, gridSize.y / 2 - 1);
-			position = new Vector2Int(posX, posY);
-		}
-
-		return position;
 	}
 }

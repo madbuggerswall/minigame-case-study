@@ -11,7 +11,6 @@ public class SnakeLevelInitializer : MonoBehaviour, IInitializable {
 	// Dependencies
 	private SnakeGridFactory snakeGridFactory;
 	private SnakeFactory snakeFactory;
-	private SnakeBodyFactory snakeBodyFactory;
 	private FoodFactory foodFactory;
 	private FoodGenerator foodGenerator;
 
@@ -20,7 +19,6 @@ public class SnakeLevelInitializer : MonoBehaviour, IInitializable {
 	public void Initialize() {
 		this.snakeGridFactory = SnakeContext.GetInstance().Get<SnakeGridFactory>();
 		this.snakeFactory = SnakeContext.GetInstance().Get<SnakeFactory>();
-		this.snakeBodyFactory = SnakeContext.GetInstance().Get<SnakeBodyFactory>();
 		this.foodGenerator = SnakeContext.GetInstance().Get<FoodGenerator>();
 
 		this.cameraController = SceneContext.GetInstance().Get<CameraController>();

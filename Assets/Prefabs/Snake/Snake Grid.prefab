@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundImage: {fileID: 235329140527560011}
-  padding: {x: 0, y: 0}
+  padding: {x: 1, y: 1}
 --- !u!1 &8710114172362930103
 GameObject:
   m_ObjectHideFlags: 0
