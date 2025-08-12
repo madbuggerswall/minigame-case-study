@@ -71,7 +71,7 @@ namespace MatchThree {
 					if (cell.IsEmpty())
 						continue;
 
-					ColorDrop colorDrop = cell.GetColorDrop();
+					PuzzleElement colorDrop = cell.GetPuzzleElement();
 					PuzzleElementBehaviour elementBehaviour = elementBehaviourFactory.Create(colorDrop, cell);
 					elementBehaviour.SetSortingOrder(y);
 					elementBehaviours.Add(colorDrop, elementBehaviour);
@@ -79,13 +79,13 @@ namespace MatchThree {
 			}
 		}
 
-		public PuzzleElementBehaviour SpawnElementBehaviour(ColorDrop colorDrop, PuzzleCell puzzleCell) {
+		public PuzzleElementBehaviour SpawnElementBehaviour(PuzzleElement puzzleElement, PuzzleCell puzzleCell) {
 			PuzzleGrid puzzleGrid = levelManager.GetPuzzleGrid();
 			// TODO int cellIndex = puzzleGrid.GetCellIndex(puzzleCell);
 
-			PuzzleElementBehaviour elementBehaviour = elementBehaviourFactory.Create(colorDrop, puzzleCell);
+			PuzzleElementBehaviour elementBehaviour = elementBehaviourFactory.Create(puzzleElement, puzzleCell);
 			// TODO elementBehaviour.SetSortingOrder(cellIndex);
-			elementBehaviours.Add(colorDrop, elementBehaviour);
+			elementBehaviours.Add(puzzleElement, elementBehaviour);
 
 			return elementBehaviour;
 		}

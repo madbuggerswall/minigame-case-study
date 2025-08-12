@@ -6,7 +6,7 @@ using Utilities.Tweens.TransformTweens;
 
 namespace MatchThree.ViewHelpers {
 	public class FallViewHelper {
-		private const float FallDuration = 0.6f;
+		private const float FallDuration = 2f;
 
 		private readonly Dictionary<Transform, PositionTween> fallTweens = new();
 		private readonly PuzzleLevelViewController viewController;
@@ -17,10 +17,11 @@ namespace MatchThree.ViewHelpers {
 			this.puzzleGrid = puzzleGrid;
 		}
 
-		public void MoveFallenElements(HashSet<PuzzleElement> fallenElements) {
+		public void MoveFallenElements(List<PuzzleElement> fallenElements) {
 			fallTweens.Clear();
 
-			foreach (PuzzleElement fallenElement in fallenElements) {
+			for (int i = 0; i < fallenElements.Count; i++) {
+				PuzzleElement fallenElement = fallenElements[i];
 				if (!puzzleGrid.TryGetPuzzleCell(fallenElement, out PuzzleCell cell))
 					return;
 

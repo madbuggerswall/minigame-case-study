@@ -27,7 +27,7 @@ namespace MatchThree {
 					if (cell.IsEmpty())
 						continue;
 
-					ColorDrop otherElement = cell.GetColorDrop();
+					PuzzleElement otherElement = cell.GetPuzzleElement();
 					if (otherElement != puzzleElement)
 						continue;
 

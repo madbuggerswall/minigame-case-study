@@ -13,12 +13,12 @@ namespace MatchThree.PuzzleElements {
 			this.objectPool = PuzzleContext.GetInstance().Get<ObjectPool>();
 		}
 
-		public PuzzleElementBehaviour Create(ColorDrop colorDrop, PuzzleCell puzzleCell) {
-			PuzzleElementDefinition elementDefinition = colorDrop.GetDefinition();
+		public PuzzleElementBehaviour Create(PuzzleElement puzzleElement, PuzzleCell puzzleCell) {
+			PuzzleElementDefinition elementDefinition = puzzleElement.GetDefinition();
 			PuzzleElementBehaviour elementBehaviour = objectPool.Spawn(elementDefinition.GetPrefab(), elementsParent);
 			elementBehaviour.Initialize(elementDefinition, puzzleCell);
 
-			puzzleCell.SetColorDrop(colorDrop);
+			puzzleCell.SetPuzzleElement(puzzleElement);
 			return elementBehaviour;
 		}
 	}

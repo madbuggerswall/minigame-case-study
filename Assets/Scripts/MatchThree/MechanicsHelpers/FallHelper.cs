@@ -39,9 +39,9 @@ namespace MatchThree.MechanicsHelpers {
 				} else if (emptyY != -1) {
 					// We found a filled cell above an empty slot
 					PuzzleCell targetCell = cells[x, emptyY];
-					ColorDrop fallingDrop = cell.GetColorDrop();
-					targetCell.SetColorDrop(fallingDrop);
-					cell.SetColorDrop(null);
+					PuzzleElement fallingDrop = cell.GetPuzzleElement();
+					targetCell.SetPuzzleElement(fallingDrop);
+					cell.SetPuzzleElement(null);
 
 					// Advance emptyY to the next empty row above
 					emptyY++;

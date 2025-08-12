@@ -5,7 +5,7 @@ using UnityEngine;
 // For a match to occur, it should be greater than 3 blocks in all directions or 2x2
 // NOTE Rename it to MatchFinder or MatchHelper
 namespace MatchThree {
-	public class MatchManager {
+	public class MatchFinder {
 		private static readonly Vector2Int[] NeighborDirections = new[] {
 			new Vector2Int(1, 0),  // Right
 			new Vector2Int(0, 1),  // Up
@@ -21,7 +21,7 @@ namespace MatchThree {
 
 		private readonly List<MatchModel> matchModels;
 
-		public MatchManager(PuzzleGrid puzzleGrid) {
+		public MatchFinder(PuzzleGrid puzzleGrid) {
 			this.puzzleGrid = puzzleGrid;
 			this.cells = puzzleGrid.GetCells();
 
@@ -35,6 +35,7 @@ namespace MatchThree {
 			ResetVisitedIndices();
 			matchModels.Clear();
 			Vector2Int gridSize = puzzleGrid.GetGridSize();
+			
 			for (int y = 0; y < gridSize.y; y++) {
 				for (int x = 0; x < gridSize.x; x++) {
 					Vector2Int currentCellIndex = new Vector2Int(x, y);
@@ -93,8 +94,8 @@ namespace MatchThree {
 			if (currentCell.IsEmpty() || neighborCell.IsEmpty())
 				return false;
 
-			PuzzleElementDefinition currentDropDefinition = currentCell.GetColorDrop().GetDefinition();
-			PuzzleElementDefinition neighborDropDefinition = neighborCell.GetColorDrop().GetDefinition();
+			PuzzleElementDefinition currentDropDefinition = currentCell.GetPuzzleElement().GetDefinition();
+			PuzzleElementDefinition neighborDropDefinition = neighborCell.GetPuzzleElement().GetDefinition();
 			return currentDropDefinition == neighborDropDefinition;
 		}
 

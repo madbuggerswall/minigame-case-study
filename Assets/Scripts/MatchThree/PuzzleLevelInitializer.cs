@@ -61,7 +61,7 @@ namespace MatchThree {
 				for (int x = 0; x < width; x++) {
 					PuzzleCell puzzleCell = puzzleCells[x, y];
 					ColorDrop colorDrop = CreateRandomColorChip();
-					puzzleCell.SetColorDrop(colorDrop);
+					puzzleCell.SetPuzzleElement(colorDrop);
 				}
 			}
 		}

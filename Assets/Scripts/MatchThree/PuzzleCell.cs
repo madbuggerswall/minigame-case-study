@@ -5,13 +5,13 @@ using Utilities.Grids;
 namespace MatchThree {
 	public class PuzzleCell : SquareCell {
 		// TODO Replace this with puzzle element
-		private ColorDrop colorDrop;
+		private PuzzleElement puzzleElement;
 
 		public PuzzleCell(Vector3 worldPosition, float diameter) : base(worldPosition, diameter) { }
 
 
-		public void SetColorDrop(ColorDrop colorDrop) => this.colorDrop = colorDrop;
-		public bool IsEmpty() => colorDrop is null;
-		public ColorDrop GetColorDrop() => colorDrop;
+		public void SetPuzzleElement(PuzzleElement puzzleElement) => this.puzzleElement = puzzleElement;
+		public bool IsEmpty() => puzzleElement is null;
+		public PuzzleElement GetPuzzleElement() => puzzleElement;
 	}
 }

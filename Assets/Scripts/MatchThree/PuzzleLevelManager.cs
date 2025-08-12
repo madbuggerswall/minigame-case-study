@@ -25,6 +25,7 @@ namespace MatchThree {
 
 		// Fields
 		private PuzzleGrid puzzleGrid;
+		private MatchFinder matchFinder;
 
 		public void Initialize() {
 			levelInitializer = PuzzleContext.GetInstance().Get<PuzzleLevelInitializer>();
@@ -35,6 +36,7 @@ namespace MatchThree {
 			targetManager = PuzzleContext.GetInstance().Get<TargetManager>();
 
 			puzzleGrid = levelInitializer.GetPuzzleGrid();
+			matchFinder = new MatchFinder(puzzleGrid);
 
 			fallHelper = new FallHelper(this);
 			fillHelper = new FillHelper(this);
@@ -50,10 +52,14 @@ namespace MatchThree {
 		}
 
 		private void OnPuzzleContextInitialized(PuzzleContextInitializedSignal signal) {
-			// Test
-			MatchManager matchManager = new MatchManager(puzzleGrid);
-			List<MatchModel> matchModels = matchManager.FindMatches();
+			CheckInitialMatches();
+		}
+
+		private void CheckInitialMatches() {
+			List<MatchModel> matchModels = matchFinder.FindMatches();
 			PuzzleCell[,] cells = puzzleGrid.GetCells();
+
+			List<PuzzleCell> blastedCells = new();
 
 			for (int i = 0; i < matchModels.Count; i++) {
 				MatchModel matchModel = matchModels[i];
@@ -61,11 +67,26 @@ namespace MatchThree {
 				for (int j = 0; j < cellIndices.Count; j++) {
 					Vector2Int cellIndex = cellIndices[j];
 					PuzzleCell cell = cells[cellIndex.x, cellIndex.y];
-					ColorDrop colorDrop = cell.GetColorDrop();
-
-					viewController.GetPuzzleElementBehaviour(colorDrop).transform.localScale = Vector3.one * .5f;
+					blastedCells.Add(cell);
 				}
 			}
+
+			for (int i = 0; i < blastedCells.Count; i++) {
+				PuzzleCell blastedCell = blastedCells[i];
+				PuzzleElement blastedElement = blastedCell.GetPuzzleElement();
+				
+				blastedCell.SetPuzzleElement(null);
+				viewController.DespawnElementBehaviour(blastedElement);
+			}
+
+			fallHelper.ApplyFall();
+			fillHelper.ApplyFill();
+
+			viewController.FallViewHelper.MoveFallenElements(fallHelper.GetFallenElements());
+			// viewController.ViewReadyNotifier.WaitForFallTweens();
+
+			viewController.FillViewHelper.MoveFilledElements(fillHelper.GetFilledElements());
+			// viewController.ViewReadyNotifier.WaitForFillTweens();
 		}
 
 		// TODO OnElementsMatch

@@ -6,7 +6,7 @@ using Utilities.Tweens.TransformTweens;
 
 namespace MatchThree.ViewHelpers {
 	public class FillViewHelper {
-		private const float FillDuration = 0.6f;
+		private const float FillDuration = 2f;
 
 		private readonly Dictionary<Transform, PositionTween> fillTweens = new();
 		private readonly PuzzleLevelViewController viewController;
@@ -17,25 +17,26 @@ namespace MatchThree.ViewHelpers {
 			this.puzzleGrid = puzzleGrid;
 		}
 
-		public void MoveFilledElements(HashSet<PuzzleElement> filledElements) {
+		public void MoveFilledElements(List<PuzzleElement> filledElements) {
 			Vector2Int gridSize = puzzleGrid.GetGridSize();
 			Dictionary<int, int> filledElementByColumn = new();
 			fillTweens.Clear();
 
-			foreach (PuzzleElement filledElement in filledElements) {
+			for (int i = 0; i < filledElements.Count; i++) {
+				PuzzleElement filledElement = filledElements[i];
 				if (!puzzleGrid.TryGetPuzzleCell(filledElement, out PuzzleCell cell))
 					return;
-				
-				Vector2Int cellIndex = puzzleGrid.GetCellIndex(cell);
-				if (!filledElementByColumn.TryAdd(cellIndex.x, 1))
-					filledElementByColumn[cellIndex.x]++;
 
-				
+				Vector2Int cellIndex = puzzleGrid.GetCellIndex(cell);
+				if (!filledElementByColumn.TryAdd(cellIndex.y, 1))
+					filledElementByColumn[cellIndex.y]++;
+
 				PuzzleCell topColumnCell = puzzleGrid.GetCells()[cellIndex.x, gridSize.y - 1];
 				Vector3 startPosition = topColumnCell.GetWorldPosition();
-				startPosition.y += puzzleGrid.GetCellDiameter() * filledElementByColumn[cellIndex.x];
+				startPosition.y += puzzleGrid.GetCellDiameter() * filledElementByColumn[cellIndex.y];
 
-				PuzzleElementBehaviour elementBehaviour = viewController.SpawnElementBehaviour(filledElement as ColorDrop, cell);
+				PuzzleElementBehaviour elementBehaviour = viewController.SpawnElementBehaviour(filledElement, cell);
+
 				elementBehaviour.transform.position = startPosition;
 				PlayFillTween(elementBehaviour.transform, cell.GetWorldPosition());
 			}

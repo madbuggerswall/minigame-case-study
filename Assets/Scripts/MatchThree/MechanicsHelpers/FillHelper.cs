@@ -11,7 +11,7 @@ namespace MatchThree.MechanicsHelpers {
 			this.levelManager = levelManager;
 		}
 
-		public void FillEmptyCells() {
+		public void ApplyFill() {
 			PuzzleGrid puzzleGrid = levelManager.GetPuzzleGrid();
 			Vector2Int gridSize = puzzleGrid.GetGridSize();
 			PuzzleCell[,] cells = puzzleGrid.GetCells();
@@ -25,7 +25,7 @@ namespace MatchThree.MechanicsHelpers {
 
 					// Create a new drop model
 					ColorDrop colorDrop = levelManager.CreateRandomColorChip();
-					cell.SetColorDrop(colorDrop);
+					cell.SetPuzzleElement(colorDrop);
 					filledElements.Add(colorDrop);
 				}
 			}
