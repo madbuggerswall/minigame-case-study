@@ -15,7 +15,7 @@ namespace SnakeGame.Elements {
 		private float gridMoveTime;
 
 		private int snakeBodySize = 0;
-		private readonly List<Vector2Int> snakeBodyPositions = new();
+		private readonly List<Vector2Int> bodyPositions = new();
 		private readonly List<SnakeBody> snakeBodies = new();
 
 		private bool isStopped = false;
@@ -40,15 +40,6 @@ namespace SnakeGame.Elements {
 
 		private void Update() {
 			Move();
-		}
-
-		public void AddBodyPart(SnakeBody snakeBody) {
-			snakeBodySize++;
-			snakeBodies.Add(snakeBody);
-		}
-
-		public void Stop(bool isStopped) {
-			this.isStopped = isStopped;
 		}
 
 		private void Move() {
@@ -76,7 +67,7 @@ namespace SnakeGame.Elements {
 		}
 
 		private void AddHeadPosition() {
-			snakeBodyPositions.Insert(0, gridPosition);
+			bodyPositions.Insert(0, gridPosition);
 		}
 
 		private void MoveHead() {
@@ -85,14 +76,14 @@ namespace SnakeGame.Elements {
 		}
 
 		private void RemoveTailPosition() {
-			if (snakeBodyPositions.Count >= snakeBodySize + 1)
-				snakeBodyPositions.RemoveAt(snakeBodyPositions.Count - 1);
+			if (bodyPositions.Count >= snakeBodySize + 1)
+				bodyPositions.RemoveAt(bodyPositions.Count - 1);
 		}
 
 
 		private void MoveBodyParts() {
 			for (int i = 0; i < snakeBodies.Count; i++) {
-				Vector2Int snakeBodyPosition = snakeBodyPositions[i];
+				Vector2Int snakeBodyPosition = bodyPositions[i];
 				snakeBodies[i].transform.position = new Vector3(snakeBodyPosition.x, snakeBodyPosition.y);
 			}
 		}
@@ -101,7 +92,7 @@ namespace SnakeGame.Elements {
 			if (moveDirection == -direction)
 				return;
 
-			if (snakeBodyPositions.Count > 0 && gridPosition + direction == snakeBodyPositions[0])
+			if (bodyPositions.Count > 0 && gridPosition + direction == bodyPositions[0])
 				return;
 
 			moveDirection = direction;
@@ -110,9 +101,29 @@ namespace SnakeGame.Elements {
 		private void SetMovementMultiplier(float multiplier) {
 			movementMultiplier = multiplier;
 		}
+		
+		
+		public void AddBodyPart(SnakeBody snakeBody) {
+			snakeBodySize++;
+			snakeBodies.Add(snakeBody);
+		}
+
+		public void Stop(bool isStopped) {
+			this.isStopped = isStopped;
+		}
+
+		public bool IsOverItself() {
+			Vector2Int headPosition = GetGridPosition();
+
+			for (int i = 0; i < bodyPositions.Count; i++)
+				if (gridPosition == bodyPositions[i])
+					return true;
+
+			return false;
+		}
 
 		public Vector2Int GetGridPosition() => gridPosition;
 		public List<SnakeBody> GetBodyParts() => snakeBodies;
-		public List<Vector2Int> GetSnakeBodyPositions() => snakeBodyPositions;
+		public List<Vector2Int> GetSnakeBodyPositions() => bodyPositions;
 	}
 }

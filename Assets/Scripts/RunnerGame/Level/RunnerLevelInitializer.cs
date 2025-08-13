@@ -20,14 +20,10 @@ namespace RunnerGame.Level {
 		public void Initialize() {
 			runnerGridFactory = RunnerContext.GetInstance().Get<RunnerGridFactory>();
 			runnerFactory = RunnerContext.GetInstance().Get<RunnerFactory>();
-
 			cameraController = SceneContext.GetInstance().Get<CameraController>();
-
+			
 			runnerGrid = runnerGridFactory.CreateRunnerGrid(Vector2Int.zero, gridSize);
 			runner = runnerFactory.CreateRunner(Vector2Int.zero);
-
-			// TODO Generate obstacles
-			// food = obstacleGenerator.SpawnFood(gridSize, snake);
 
 			cameraController.PlayCameraPositionTween(Vector3.zero);
 			cameraController.PlayOrthoSizeTween(gridSize);

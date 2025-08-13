@@ -5,6 +5,7 @@ namespace RunnerGame.Elements {
 	public class Runner : MonoBehaviour {
 		private Vector2Int gridPosition;
 
+		// Dependencies
 		private RunnerInputManager runnerInputManager;
 
 		private void Start() {

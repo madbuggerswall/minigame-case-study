@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using SnakeGame.Elements;
 using SnakeGame.Factories;
-using UnityEngine;
 using Utilities.Contexts;
 
 namespace SnakeGame.Level {
@@ -53,46 +51,19 @@ namespace SnakeGame.Level {
 		}
 
 		private void CheckForSnakeBody() {
-			if (!IsOverItself(snake))
+			if (!snake.IsOverItself())
 				return;
 
 			snake.Stop(true);
 			LevelFailEvent.Invoke();
-			
 		}
 
 		private void CheckForWalls() {
-			if (IsInsideGrid(snake, snakeGrid))
+			if (snakeGrid.IsInsideGrid(snake.GetGridPosition()))
 				return;
 
 			snake.Stop(true);
 			LevelFailEvent.Invoke();
-		}
-
-		private static bool IsInsideGrid(Snake snake, SnakeGrid snakeGrid) {
-			Vector2Int headPosition = snake.GetGridPosition();
-			Vector2Int gridSize = snakeGrid.GetGridSize();
-			Vector2Int gridPosition = snakeGrid.GetGridPosition();
-
-			int xMax = gridPosition.x + gridSize.x / 2;
-			int xMin = gridPosition.x - gridSize.x / 2;
-			int yMax = gridPosition.y + gridSize.y / 2;
-			int yMin = gridPosition.y - gridSize.y / 2;
-
-			int x = headPosition.x;
-			int y = headPosition.y;
-			return x > xMin && x < xMax && y > yMin && y < yMax;
-		}
-
-		private static bool IsOverItself(Snake snake) {
-			Vector2Int headPosition = snake.GetGridPosition();
-			List<Vector2Int> bodyPositions = snake.GetSnakeBodyPositions();
-
-			for (int i = 0; i < bodyPositions.Count; i++)
-				if (headPosition == bodyPositions[i])
-					return true;
-
-			return false;
 		}
 	}
 }

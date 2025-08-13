@@ -6,23 +6,25 @@ using Utilities.Contexts;
 using Utilities.Pooling;
 
 namespace RunnerGame.Elements {
-	// TODO This will require altered logic
 	public class ObstacleGenerator : MonoBehaviour, IInitializable {
 		[Header("Spawn Settings")]
 		[SerializeField] private float spawnPeriod = 1;
-		[SerializeField] private float movePeriod = 1;
+		[SerializeField] private float movePeriod = .05f;
 
 		[Header("Perlin Settings")]
-		[SerializeField] private float obstacleRatio = 0.2f;
+		[SerializeField] private float obstacleRatio = 0.8f;
 
 		private readonly List<Obstacle> spawnedObstacles = new();
 		private float spawnTime = 0;
 		private float moveTime = 0;
 
+		private bool isStopped = false;
+
 		// Dependencies
 		private ObstacleFactory obstacleFactory;
 		private RunnerLevelManager levelManager;
 		private ObjectPool objectPool;
+
 
 		public void Initialize() {
 			objectPool = RunnerContext.GetInstance().Get<ObjectPool>();
@@ -31,8 +33,15 @@ namespace RunnerGame.Elements {
 		}
 
 		private void Update() {
+			if (isStopped)
+				return;
+
 			MoveObstaclesDownwardsPeriodically();
 			SpawnRowPeriodically();
+		}
+
+		public void Stop(bool isStopped) {
+			this.isStopped = isStopped;
 		}
 
 		private void MoveObstaclesDownwardsPeriodically() {
@@ -47,10 +56,16 @@ namespace RunnerGame.Elements {
 
 		private void MoveObstaclesDownwards() {
 			RunnerGrid runnerGrid = levelManager.GetRunnerGrid();
+			Runner runner = levelManager.GetRunner();
+
 			for (int i = spawnedObstacles.Count - 1; i >= 0; i--) {
 				Obstacle obstacle = spawnedObstacles[i];
 				Vector2Int updatedPosition = obstacle.GetGridPosition() + Vector2Int.down;
 				obstacle.SetGridPosition(updatedPosition);
+
+				// Since this is called periodically, there's a chance that runner will pass through
+				if (updatedPosition == runner.GetGridPosition())
+					OnPlayerHit();
 
 				if (runnerGrid.IsInsideGrid(updatedPosition))
 					continue;
@@ -59,6 +74,11 @@ namespace RunnerGame.Elements {
 				spawnedObstacles.RemoveAt(spawnedObstacles.Count - 1);
 				objectPool.Despawn(obstacle);
 			}
+		}
+
+		private void OnPlayerHit() {
+			Stop(true);
+			levelManager.OnPlayerHitObstacle();
 		}
 
 		private void SpawnRowPeriodically() {
@@ -70,6 +90,7 @@ namespace RunnerGame.Elements {
 
 			RunnerGrid runnerGrid = levelManager.GetRunnerGrid();
 			SpawnRow(runnerGrid, obstacleRatio);
+			levelManager.OnObstacleRowSpawned();
 		}
 
 
@@ -88,40 +109,5 @@ namespace RunnerGame.Elements {
 				spawnedObstacles.Add(obstacle);
 			}
 		}
-
-		// TODO
-		// private Vector2Int GetRandomObstaclePosition(Vector2Int gridSize, Snake snake) {
-		// 	Vector2Int randomPosition;
-		//
-		// 	do randomPosition = GetRandomPositionInGrid(gridSize);
-		// 	while (IsOverSnake(randomPosition, snake));
-		//
-		// 	return randomPosition;
-		// }
-		//
-		// // TODO
-		// private static bool IsOverSnake(Vector2Int position, Snake snake) {
-		// 	Vector2Int headPosition = snake.GetGridPosition();
-		// 	if (position == headPosition)
-		// 		return true;
-		//
-		// 	List<Vector2Int> snakeBodyPositions = snake.GetSnakeBodyPositions();
-		// 	for (int i = 0; i < snakeBodyPositions.Count; i++)
-		// 		if (snakeBodyPositions[i] == position)
-		// 			return true;
-		//
-		// 	return false;
-		// }
-		//
-		// private static Vector2Int GetRandomPositionInGrid(Vector2Int gridSize) {
-		// 	Vector2Int position = Vector2Int.zero;
-		// 	while (position == Vector2Int.zero) {
-		// 		int posX = Random.Range(-gridSize.x / 2 + 1, gridSize.x / 2 - 1);
-		// 		int posY = Random.Range(-gridSize.y / 2 + 1, gridSize.y / 2 - 1);
-		// 		position = new Vector2Int(posX, posY);
-		// 	}
-		//
-		// 	return position;
-		// }
 	}
 }

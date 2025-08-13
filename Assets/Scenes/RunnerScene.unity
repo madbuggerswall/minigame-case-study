@@ -163,6 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a774c095a5bcc92981e8af2dccc6a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPeriod: 1
+  movePeriod: 0.1
+  obstacleRatio: 0.8
 --- !u!1001 &383789667
 PrefabInstance:
   m_ObjectHideFlags: 0
