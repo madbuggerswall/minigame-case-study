@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPeriod: 1
   movePeriod: 0.1
-  obstacleRatio: 0.8
+  obstacleRatio: 0.72
 --- !u!1001 &383789667
 PrefabInstance:
   m_ObjectHideFlags: 0
