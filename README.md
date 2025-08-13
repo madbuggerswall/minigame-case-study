@@ -3,6 +3,7 @@
 - Run the **MainScene** and select a mini-game to play.
 - Both games can be played with **WASD** or arrow keys.
 - The game is designed for **portrait mode** (810×1800).
+- Made with Unity 6000.0.53f1
 
 ---
 
