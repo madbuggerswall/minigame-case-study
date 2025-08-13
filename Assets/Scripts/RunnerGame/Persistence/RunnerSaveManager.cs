@@ -1,18 +1,39 @@
+using System.IO;
+using RunnerGame.Level;
+using SnakeGame.Persistence;
 using UnityEngine;
+using Utilities.Contexts;
+using Utilities.Persistence;
 
 namespace RunnerGame.Persistence {
-    public class RunnerSaveManager : MonoBehaviour
+    // TODO This might be a common class
+    public class RunnerSaveManager : IInitializable
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
+        private const string ScoreDataFileName = "RunnerScoreData.dat";
+
+        public void Initialize() { }
+
+        private string GetScoreDataFilePath() {
+            return Path.Combine(Application.persistentDataPath, ScoreDataFileName);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
+        private bool ScoreDataFileExists() {
+            return BinaryJsonUtility.Exists(GetScoreDataFilePath());
+        }
+
+        // TODO
+        public void SaveScoreData(RunnerScoreManager runnerScoreManager) {
+            // SnakeScoreDTO snakeScoreDTO = new SnakeScoreDTO(snakeScoreManager);
+            // BinaryJsonUtility.Save(snakeScoreDTO, GetScoreDataFilePath());
+        }
+
+        public bool TryLoadScoreData(out SnakeScoreDTO snakeScoreDTO) {
+            snakeScoreDTO = null;
+            if (!ScoreDataFileExists())
+                return false;
+
+            snakeScoreDTO = BinaryJsonUtility.Load<SnakeScoreDTO>(GetScoreDataFilePath());
+            return true;
         }
     }
 }

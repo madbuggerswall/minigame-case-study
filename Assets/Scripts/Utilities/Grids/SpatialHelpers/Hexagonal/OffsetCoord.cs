@@ -16,9 +16,9 @@ namespace Utilities.Grids.SpatialHelpers.Hexagonal {
 		}
 
 		public OffsetOddRCoord GetNeighbor(int neighborIndex) {
-			int parity = this.row & 1;
+			int parity = row & 1;
 			OffsetOddRCoord diff = DirectionVectors[parity, neighborIndex];
-			return new OffsetOddRCoord(this.column + diff.column, this.row + diff.row);
+			return new OffsetOddRCoord(column + diff.column, row + diff.row);
 		}
 
 		public static int Distance(OffsetOddRCoord lhs, OffsetOddRCoord rhs) {

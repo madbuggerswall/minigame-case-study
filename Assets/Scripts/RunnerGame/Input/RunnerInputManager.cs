@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using Utilities.Contexts;
@@ -8,7 +7,7 @@ using Utilities.Input.Standalone;
 
 // TODO This might be a common class
 namespace RunnerGame.Input {
-	public class RunnerInputManager : MonoBehaviour {
+	public class RunnerInputManager : IInitializable {
 		public Action UpKeyPressEvent { get; set; } = delegate { };
 		public Action DownKeyPressEvent { get; set; } = delegate { };
 		public Action LeftKeyPressEvent { get; set; } = delegate { };
@@ -21,7 +20,7 @@ namespace RunnerGame.Input {
 		private InputManager inputManager;
 
 		public void Initialize() {
-			this.inputManager = SceneContext.GetInstance().Get<InputManager>();
+			inputManager = SceneContext.GetInstance().Get<InputManager>();
 
 			// Subscribe to InputHandler events
 			StandaloneInputHandler inputHandler = inputManager.StandaloneInputHandler;

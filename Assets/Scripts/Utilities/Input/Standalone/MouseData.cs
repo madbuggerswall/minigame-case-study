@@ -5,7 +5,7 @@ namespace Utilities.Input.Standalone {
 		public ButtonControl ButtonControl { get; private set; }
 
 		public MouseData(ButtonControl buttonControl) {
-			this.ButtonControl = buttonControl;
+			ButtonControl = buttonControl;
 		}
 	}
 }

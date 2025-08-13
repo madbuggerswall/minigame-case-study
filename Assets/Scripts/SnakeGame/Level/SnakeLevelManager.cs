@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using SnakeGame.Elements;
 using SnakeGame.Factories;
-using SnakeGame.UI;
 using UnityEngine;
 using Utilities.Contexts;
 
 namespace SnakeGame.Level {
 	public class SnakeLevelManager : IInitializable {
-		private Elements.Snake snake;
+		private Snake snake;
 		private Food food;
 		private SnakeGrid snakeGrid;
 
@@ -19,23 +18,19 @@ namespace SnakeGame.Level {
 		private SnakeLevelInitializer levelInitializer;
 		private SnakeBodyFactory snakeBodyFactory;
 		private FoodGenerator foodGenerator;
-
-		private SnakeUIController uiController;
 		private SnakeScoreManager snakeScoreManager;
 
 		public void Initialize() {
-			this.levelInitializer = SnakeContext.GetInstance().Get<SnakeLevelInitializer>();
-			this.foodGenerator = SnakeContext.GetInstance().Get<FoodGenerator>();
-			this.snakeBodyFactory = SnakeContext.GetInstance().Get<SnakeBodyFactory>();
+			levelInitializer = SnakeContext.GetInstance().Get<SnakeLevelInitializer>();
+			foodGenerator = SnakeContext.GetInstance().Get<FoodGenerator>();
+			snakeBodyFactory = SnakeContext.GetInstance().Get<SnakeBodyFactory>();
+			snakeScoreManager = SnakeContext.GetInstance().Get<SnakeScoreManager>();
 
-			this.uiController = SnakeContext.GetInstance().Get<SnakeUIController>();
-			this.snakeScoreManager = SnakeContext.GetInstance().Get<SnakeScoreManager>();
+			snake = levelInitializer.GetSnake();
+			food = levelInitializer.GetFood();
+			snakeGrid = levelInitializer.GetSnakeGrid();
 
-			this.snake = levelInitializer.GetSnake();
-			this.food = levelInitializer.GetFood();
-			this.snakeGrid = levelInitializer.GetSnakeGrid();
-
-			snake.OnSnakeMove += this.OnSnakeMove;
+			snake.OnSnakeMove += OnSnakeMove;
 		}
 
 		private void OnSnakeMove() {
@@ -74,7 +69,7 @@ namespace SnakeGame.Level {
 			LevelFailEvent.Invoke();
 		}
 
-		private static bool IsInsideGrid(Elements.Snake snake, SnakeGrid snakeGrid) {
+		private static bool IsInsideGrid(Snake snake, SnakeGrid snakeGrid) {
 			Vector2Int headPosition = snake.GetGridPosition();
 			Vector2Int gridSize = snakeGrid.GetGridSize();
 			Vector2Int gridPosition = snakeGrid.GetGridPosition();
@@ -89,7 +84,7 @@ namespace SnakeGame.Level {
 			return x > xMin && x < xMax && y > yMin && y < yMax;
 		}
 
-		private static bool IsOverItself(Elements.Snake snake) {
+		private static bool IsOverItself(Snake snake) {
 			Vector2Int headPosition = snake.GetGridPosition();
 			List<Vector2Int> bodyPositions = snake.GetSnakeBodyPositions();
 

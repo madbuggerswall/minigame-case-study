@@ -7,8 +7,8 @@ namespace Utilities.Tweens.RectTransformTweens {
 
 		public EulerAnglesTween(RectTransform tweener, Vector3 targetAngle, float duration) : base(duration) {
 			this.tweener = tweener;
-			this.eulerAngles.initial = tweener.eulerAngles;
-			this.eulerAngles.target = targetAngle;
+			eulerAngles.initial = tweener.eulerAngles;
+			eulerAngles.target = targetAngle;
 		}
 
 		protected override void UpdateTween() {
@@ -16,7 +16,7 @@ namespace Utilities.Tweens.RectTransformTweens {
 		}
 
 		protected override void SampleInitialState() {
-			this.eulerAngles.initial = tweener.eulerAngles;
+			eulerAngles.initial = tweener.eulerAngles;
 		}
 	}
 }

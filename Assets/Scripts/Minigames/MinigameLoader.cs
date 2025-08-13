@@ -11,7 +11,7 @@ namespace Minigames {
 		private SignalBus signalBus;
 
 		public void Initialize() {
-			this.signalBus = SceneContext.GetInstance().Get<SignalBus>();
+			signalBus = SceneContext.GetInstance().Get<SignalBus>();
 		}
 
 		public void LoadMinigame(MinigameDefinition minigameDefinition) {

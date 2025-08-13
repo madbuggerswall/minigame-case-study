@@ -6,7 +6,7 @@ using Utilities.Persistence;
 
 namespace SnakeGame.Persistence {
 	public class SnakeSaveManager : IInitializable {
-		private const string ScoreDataFileName = "ScoreData.dat";
+		private const string ScoreDataFileName = "SnakeScoreData.dat";
 
 		public void Initialize() { }
 

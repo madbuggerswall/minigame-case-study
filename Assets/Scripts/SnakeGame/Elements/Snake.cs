@@ -26,7 +26,7 @@ namespace SnakeGame.Elements {
 		private SnakeInputManager snakeInputManager;
 
 		private void Start() {
-			this.snakeInputManager = SnakeContext.GetInstance().Get<SnakeInputManager>();
+			snakeInputManager = SnakeContext.GetInstance().Get<SnakeInputManager>();
 
 			// SnakeController
 			snakeInputManager.UpKeyPressEvent += () => MoveToDirection(Vector2Int.up);
@@ -108,7 +108,7 @@ namespace SnakeGame.Elements {
 		}
 
 		private void SetMovementMultiplier(float multiplier) {
-			this.movementMultiplier = multiplier;
+			movementMultiplier = multiplier;
 		}
 
 		public Vector2Int GetGridPosition() => gridPosition;

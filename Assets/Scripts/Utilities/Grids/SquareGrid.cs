@@ -15,13 +15,13 @@ namespace Utilities.Grids {
 		}
 
 		protected SquareGrid(GridParams gridParams, CellParams cellParams) {
-			this.cellDiameter = cellParams.CellDiameter;
-			this.gridSize = gridParams.GridSize;
+			cellDiameter = cellParams.CellDiameter;
+			gridSize = gridParams.GridSize;
 
-			this.gridSizeInLength = GetFittingGridSize(gridSize, cellDiameter);
+			gridSizeInLength = GetFittingGridSize(gridSize, cellDiameter);
 			Vector3[,] cellPositions = GenerateCellPositions(gridSize, gridParams.GridPlane);
-			this.centerPoint = CalculateGridCenterPoint(cellPositions);
-			this.cells = GenerateCells(cellParams.CellFactory, cellPositions);
+			centerPoint = CalculateGridCenterPoint(cellPositions);
+			cells = GenerateCells(cellParams.CellFactory, cellPositions);
 		}
 
 		private Vector3[,] GenerateCellPositions(Vector2Int gridSizeInCells, GridPlane gridPlane) {

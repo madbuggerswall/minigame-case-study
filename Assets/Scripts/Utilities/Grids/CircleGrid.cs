@@ -9,11 +9,11 @@ namespace Utilities.Grids {
 		protected CircleGrid(CellFactory<T> cellFactory, Vector2Int gridSize, float cellDiameter) {
 			this.cellDiameter = cellDiameter;
 			this.gridSize = gridSize;
-			this.gridSizeInLength = CalculateGridSizeInLength(gridSize, cellDiameter);
+			gridSizeInLength = CalculateGridSizeInLength(gridSize, cellDiameter);
 
 			Vector2[] cellPositions = GenerateCellPositions(gridSize, cellDiameter);
-			this.centerPoint = CalculateGridCenterPoint(cellPositions);
-			this.cells = GenerateCells(cellFactory, cellPositions);
+			centerPoint = CalculateGridCenterPoint(cellPositions);
+			cells = GenerateCells(cellFactory, cellPositions);
 		}
 
 		private T[] GenerateCells(CellFactory<T> cellFactory, Vector2[] cellPositions) {

@@ -23,8 +23,8 @@ namespace SnakeGame.UI {
 		private SnakeLevelManager levelManager;
 
 		public void Initialize() {
-			this.snakeScoreManager = SnakeContext.GetInstance().Get<SnakeScoreManager>();
-			this.levelManager = SnakeContext.GetInstance().Get<SnakeLevelManager>();
+			snakeScoreManager = SnakeContext.GetInstance().Get<SnakeScoreManager>();
+			levelManager = SnakeContext.GetInstance().Get<SnakeLevelManager>();
 
 			UpdateScore(snakeScoreManager.GetScore());
 			UpdateHighScore(snakeScoreManager.GetHighScore());

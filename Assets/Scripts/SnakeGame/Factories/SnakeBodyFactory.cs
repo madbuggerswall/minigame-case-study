@@ -12,7 +12,7 @@ namespace SnakeGame.Factories {
 		private ObjectPool objectPool;
 
 		public void Initialize() {
-			this.objectPool = SnakeContext.GetInstance().Get<ObjectPool>();
+			objectPool = SnakeContext.GetInstance().Get<ObjectPool>();
 		}
 
 		public SnakeBody CreateSnake(Vector2Int position) {

@@ -5,8 +5,8 @@ namespace Utilities.Tweens.RigidbodyTweens {
 		private (Vector3 initial, Vector3 target) position;
 
 		public PositionTween(Rigidbody tweener, Vector3 targetPosition, float duration) : base(tweener, duration) {
-			this.position.initial = tweener.position;
-			this.position.target = targetPosition;
+			position.initial = tweener.position;
+			position.target = targetPosition;
 		}
 
 		protected override void UpdateTween() {
@@ -14,7 +14,7 @@ namespace Utilities.Tweens.RigidbodyTweens {
 		}
 
 		protected override void SampleInitialState() {
-			this.position.initial = tweener.position;
+			position.initial = tweener.position;
 		}
 	}
 }

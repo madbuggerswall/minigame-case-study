@@ -7,8 +7,8 @@ namespace Utilities.Tweens.CameraTweens {
 
 		public OrthoSizeTween(Camera tweener, float targetOrthoSize, float duration) : base(duration) {
 			this.tweener = tweener;
-			this.orthoSize.initial = tweener.orthographicSize;
-			this.orthoSize.target = targetOrthoSize;
+			orthoSize.initial = tweener.orthographicSize;
+			orthoSize.target = targetOrthoSize;
 		}
 
 		protected override void UpdateTween() {
@@ -16,7 +16,7 @@ namespace Utilities.Tweens.CameraTweens {
 		}
 
 		protected override void SampleInitialState() {
-			this.orthoSize.initial = tweener.orthographicSize;
+			orthoSize.initial = tweener.orthographicSize;
 		}
 	}
 }

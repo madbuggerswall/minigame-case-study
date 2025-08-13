@@ -7,9 +7,9 @@ namespace SnakeGame.Persistence {
 		[SerializeField] private int highScore;
 
 		public SnakeScoreDTO(SnakeScoreManager snakeScoreManager) {
-			this.highScore = snakeScoreManager.GetHighScore();
+			highScore = snakeScoreManager.GetHighScore();
 		}
 
-		public int GetHighScore() => this.highScore;
+		public int GetHighScore() => highScore;
 	}
 }

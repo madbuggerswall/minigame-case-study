@@ -16,8 +16,8 @@ namespace SnakeGame.Level {
 		private SnakeSaveManager saveManager;
 
 		public void Initialize() {
-			this.signalBus = SceneContext.GetInstance().Get<SignalBus>();
-			this.saveManager = SnakeContext.GetInstance().Get<SnakeSaveManager>();
+			signalBus = SceneContext.GetInstance().Get<SignalBus>();
+			saveManager = SnakeContext.GetInstance().Get<SnakeSaveManager>();
 
 			signalBus.SubscribeTo<StartUnloadingMinigameSignal>(OnStartMinigameUnload);
 			signalBus.SubscribeTo<StartRestartingMinigameSignal>(OnStartMinigameRestart);

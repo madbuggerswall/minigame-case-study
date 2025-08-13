@@ -14,10 +14,10 @@ namespace Utilities.Tweens.TransformTweens {
 			this.tweener = tweener;
 			this.axis = axis.normalized;
 			this.pivot = pivot;
-			this.angle.target = targetAngle;
+			angle.target = targetAngle;
 
 			// Store initial direction from pivot to object
-			this.initialDirection = tweener.position - pivot;
+			initialDirection = tweener.position - pivot;
 		}
 
 		protected override void UpdateTween() {

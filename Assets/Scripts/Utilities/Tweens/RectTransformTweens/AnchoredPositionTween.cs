@@ -7,8 +7,8 @@ namespace Utilities.Tweens.RectTransformTweens {
 
 		public AnchoredPositionTween(RectTransform tweener, Vector2 targetPosition, float duration) : base(duration) {
 			this.tweener = tweener;
-			this.anchoredPosition.initial = tweener.anchoredPosition;
-			this.anchoredPosition.target = targetPosition;
+			anchoredPosition.initial = tweener.anchoredPosition;
+			anchoredPosition.target = targetPosition;
 		}
 
 		protected override void UpdateTween() {
@@ -16,7 +16,7 @@ namespace Utilities.Tweens.RectTransformTweens {
 		}
 
 		protected override void SampleInitialState() {
-			this.anchoredPosition.initial = tweener.anchoredPosition;
+			anchoredPosition.initial = tweener.anchoredPosition;
 		}
 	}
 }

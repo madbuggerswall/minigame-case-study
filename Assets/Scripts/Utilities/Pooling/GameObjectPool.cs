@@ -8,8 +8,8 @@ namespace Utilities.Pooling {
 		private readonly Transform parent;
 
 		public GameObjectPool(Transform parent) {
-			this.poolDictionary = new Dictionary<GameObject, Stack<GameObject>>();
-			this.spawnedObjectDictionary = new Dictionary<GameObject, Stack<GameObject>>();
+			poolDictionary = new Dictionary<GameObject, Stack<GameObject>>();
+			spawnedObjectDictionary = new Dictionary<GameObject, Stack<GameObject>>();
 			this.parent = parent;
 		}
 

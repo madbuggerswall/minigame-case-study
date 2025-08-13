@@ -7,7 +7,7 @@ namespace Utilities.Pooling {
 		private readonly Transform parent;
 
 		public MonoBehaviourPool(Transform parent) {
-			this.poolDictionary = new Dictionary<System.Type, Stack<MonoBehaviour>>();
+			poolDictionary = new Dictionary<System.Type, Stack<MonoBehaviour>>();
 			this.parent = parent;
 		}
 

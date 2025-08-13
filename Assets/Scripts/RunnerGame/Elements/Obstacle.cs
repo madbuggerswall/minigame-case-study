@@ -3,16 +3,13 @@ using UnityEngine;
 namespace RunnerGame.Elements {
     public class Obstacle : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
+        private Vector2Int gridPosition;
+
+        public void Initialize(Vector2Int gridPosition) {
+            this.gridPosition = gridPosition;
+            transform.position = new Vector3(gridPosition.x, gridPosition.y);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        public Vector2Int GetGridPosition() => gridPosition;
     }
 }

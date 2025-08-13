@@ -7,8 +7,8 @@ namespace Utilities.Tweens.TransformTweens {
 
 		public RotationTween(Transform tweener, Quaternion targetRotation, float duration) : base(duration) {
 			this.tweener = tweener;
-			this.rotation.initial = tweener.rotation;
-			this.rotation.target = targetRotation;
+			rotation.initial = tweener.rotation;
+			rotation.target = targetRotation;
 		}
 
 		protected override void UpdateTween() {
@@ -16,7 +16,7 @@ namespace Utilities.Tweens.TransformTweens {
 		}
 
 		protected override void SampleInitialState() {
-			this.rotation.initial = tweener.rotation;
+			rotation.initial = tweener.rotation;
 		}
 	}
 }

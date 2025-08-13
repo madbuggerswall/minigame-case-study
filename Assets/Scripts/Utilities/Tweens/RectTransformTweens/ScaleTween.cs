@@ -7,8 +7,8 @@ namespace Utilities.Tweens.RectTransformTweens {
 
 		public ScaleTween(RectTransform tweener, Vector3 targetScale, float duration) : base(duration) {
 			this.tweener = tweener;
-			this.localScale.initial = tweener.localScale;
-			this.localScale.target = targetScale;
+			localScale.initial = tweener.localScale;
+			localScale.target = targetScale;
 		}
 
 		protected override void UpdateTween() {
@@ -16,7 +16,7 @@ namespace Utilities.Tweens.RectTransformTweens {
 		}
 
 		protected override void SampleInitialState() {
-			this.localScale.initial = tweener.localScale;
+			localScale.initial = tweener.localScale;
 		}
 	}
 }

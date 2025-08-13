@@ -13,11 +13,11 @@ namespace Utilities.Grids.SpatialHelpers.Hexagonal {
 		private readonly T[] cells;
 
 		public AxialCoordinateHash(CircleGrid<T> grid) {
-			this.cellDiameter = grid.GetCellDiameter();
-			this.cells = grid.GetCells();
+			cellDiameter = grid.GetCellDiameter();
+			cells = grid.GetCells();
 			
-			this.cellsByAxialCoord = MapCellsByAxialCoord();
-			this.axialCoordsByCell = MapAxialCoordsByCell(cellsByAxialCoord);
+			cellsByAxialCoord = MapCellsByAxialCoord();
+			axialCoordsByCell = MapAxialCoordsByCell(cellsByAxialCoord);
 		}
 
 		private Dictionary<AxialCoord, T> MapCellsByAxialCoord() {

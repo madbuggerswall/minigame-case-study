@@ -19,7 +19,7 @@ namespace SnakeGame.Input {
 		private InputManager inputManager;
 
 		public void Initialize() {
-			this.inputManager = SceneContext.GetInstance().Get<InputManager>();
+			inputManager = SceneContext.GetInstance().Get<InputManager>();
 
 			// Subscribe to InputHandler events
 			StandaloneInputHandler inputHandler = inputManager.StandaloneInputHandler;

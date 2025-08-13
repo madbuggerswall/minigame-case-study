@@ -1,31 +1,34 @@
 using System.Collections.Generic;
-using SnakeGame.Factories;
+using RunnerGame.Factories;
+using SnakeGame.Elements;
 using UnityEngine;
 using Utilities.Contexts;
 using Utilities.Pooling;
 
-namespace SnakeGame.Elements {
-	public class FoodGenerator : IInitializable {
+namespace RunnerGame.Elements {
+	// TODO This will require altered logic
+	public class ObstacleGenerator : IInitializable {
 		// Dependencies
-		private FoodFactory foodFactory;
+		private ObstacleFactory obstacleFactory;
 		private ObjectPool objectPool;
 
 		public void Initialize() {
-			objectPool = SnakeContext.GetInstance().Get<ObjectPool>();
-			foodFactory = SnakeContext.GetInstance().Get<FoodFactory>();
+			objectPool = RunnerContext.GetInstance().Get<ObjectPool>();
+			obstacleFactory = RunnerContext.GetInstance().Get<ObstacleFactory>();
 		}
 
-		public Food SpawnFood(Vector2Int gridSize, Snake snake) {
-			Vector2Int randomFoodPosition = GetRandomFoodPosition(gridSize, snake);
-			return foodFactory.CreateFood(randomFoodPosition);
+		public Obstacle SpawnObstacle(Vector2Int gridSize, Snake snake) {
+			Vector2Int randomFoodPosition = GetRandomObstaclePosition(gridSize, snake);
+			return obstacleFactory.CreateObstacle(randomFoodPosition);
 		}
 
-		public void DespawnFood(Food food) {
-			objectPool.Despawn(food);
+		public void DespawnObstacle(Obstacle obstacle) {
+			objectPool.Despawn(obstacle);
 		}
 
 
-		private Vector2Int GetRandomFoodPosition(Vector2Int gridSize, Snake snake) {
+		// TODO
+		private Vector2Int GetRandomObstaclePosition(Vector2Int gridSize, Snake snake) {
 			Vector2Int randomPosition;
 
 			do randomPosition = GetRandomPositionInGrid(gridSize);
@@ -34,6 +37,7 @@ namespace SnakeGame.Elements {
 			return randomPosition;
 		}
 
+		// TODO
 		private static bool IsOverSnake(Vector2Int position, Snake snake) {
 			Vector2Int headPosition = snake.GetGridPosition();
 			if (position == headPosition)

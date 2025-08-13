@@ -53,11 +53,11 @@ namespace Utilities.Tweens {
 		}
 
 		public void SetEase(Ease.Type easeType) {
-			this.easeFunction = Ease.Get(easeType);
+			easeFunction = Ease.Get(easeType);
 		}
 
 		public void SetEase(AnimationCurve animationCurve) {
-			this.easeFunction = new Curve(animationCurve);
+			easeFunction = new Curve(animationCurve);
 		}
 
 		public void SetRepeat() {
@@ -65,7 +65,7 @@ namespace Utilities.Tweens {
 		}
 
 		public void SetOnComplete(Action callback) {
-			this.onCompleteCallback = callback;
+			onCompleteCallback = callback;
 		}
 
 		public void InsertCallback() {

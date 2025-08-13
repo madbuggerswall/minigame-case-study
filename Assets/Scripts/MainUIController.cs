@@ -14,9 +14,9 @@ public class MainUIController : MonoBehaviour, IInitializable {
 	private SignalBus signalBus;
 
 	public void Initialize() {
-		this.signalBus = SceneContext.GetInstance().Get<SignalBus>();
-		this.minigameDefinitionManager = SceneContext.GetInstance().Get<MinigameDefinitionManager>();
-		this.minigameLoader = SceneContext.GetInstance().Get<MinigameLoader>();
+		signalBus = SceneContext.GetInstance().Get<SignalBus>();
+		minigameDefinitionManager = SceneContext.GetInstance().Get<MinigameDefinitionManager>();
+		minigameLoader = SceneContext.GetInstance().Get<MinigameLoader>();
 		
 		signalBus.SubscribeTo<MinigameLoadedSignal>(OnMinigameLoad);
 		signalBus.SubscribeTo<MinigameUnloadedSignal>(OnMinigameUnload);

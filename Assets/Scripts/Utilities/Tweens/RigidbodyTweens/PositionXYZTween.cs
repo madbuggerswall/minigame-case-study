@@ -19,8 +19,8 @@ namespace Utilities.Tweens.RigidbodyTweens {
 		private (Vector3 initial, Vector3 target) position;
 
 		public PositionXYZTween(Rigidbody tweener, Vector3 targetPosition, float duration) : base(tweener, duration) {
-			this.position.initial = tweener.position;
-			this.position.target = targetPosition;
+			position.initial = tweener.position;
+			position.target = targetPosition;
 		}
 
 		protected override void UpdateTween() {
@@ -34,15 +34,15 @@ namespace Utilities.Tweens.RigidbodyTweens {
 		}
 
 		protected override void SampleInitialState() {
-			this.position.initial = tweener.position;
+			position.initial = tweener.position;
 		}
 
-		public void SetEaseX(Ease.Type easeType) => this.easeFunctionPosX = Ease.Get(easeType);
-		public void SetEaseY(Ease.Type easeType) => this.easeFunctionPosY = Ease.Get(easeType);
-		public void SetEaseZ(Ease.Type easeType) => this.easeFunctionPosZ = Ease.Get(easeType);
+		public void SetEaseX(Ease.Type easeType) => easeFunctionPosX = Ease.Get(easeType);
+		public void SetEaseY(Ease.Type easeType) => easeFunctionPosY = Ease.Get(easeType);
+		public void SetEaseZ(Ease.Type easeType) => easeFunctionPosZ = Ease.Get(easeType);
 
-		public void SetEaseX(AnimationCurve animationCurve) => this.easeFunctionPosX = new Curve(animationCurve);
-		public void SetEaseY(AnimationCurve animationCurve) => this.easeFunctionPosY = new Curve(animationCurve);
-		public void SetEaseZ(AnimationCurve animationCurve) => this.easeFunctionPosZ = new Curve(animationCurve);
+		public void SetEaseX(AnimationCurve animationCurve) => easeFunctionPosX = new Curve(animationCurve);
+		public void SetEaseY(AnimationCurve animationCurve) => easeFunctionPosY = new Curve(animationCurve);
+		public void SetEaseZ(AnimationCurve animationCurve) => easeFunctionPosZ = new Curve(animationCurve);
 	}
 }

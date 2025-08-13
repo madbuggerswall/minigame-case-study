@@ -5,7 +5,7 @@ namespace Utilities.Input.Standalone {
 		public KeyControl KeyControl { get; }
 
 		public KeyData(KeyControl keyControl) {
-			this.KeyControl = keyControl;
+			KeyControl = keyControl;
 		}
 	}
 }

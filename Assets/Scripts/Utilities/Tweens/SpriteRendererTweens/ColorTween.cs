@@ -7,8 +7,8 @@ namespace Utilities.Tweens.SpriteRendererTweens {
 
 		public ColorTween(SpriteRenderer tweener, Color targetColor, float duration) : base(duration) {
 			this.tweener = tweener;
-			this.color.initial = tweener.color;
-			this.color.target = targetColor;
+			color.initial = tweener.color;
+			color.target = targetColor;
 		}
 
 		protected override void UpdateTween() {
@@ -16,7 +16,7 @@ namespace Utilities.Tweens.SpriteRendererTweens {
 		}
 
 		protected override void SampleInitialState() {
-			this.color.initial = tweener.color;
+			color.initial = tweener.color;
 		}
 	}
 }
