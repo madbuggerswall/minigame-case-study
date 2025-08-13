@@ -11,8 +11,8 @@ namespace SnakeGame.Elements {
 		private const float BoostMultiplier = 2f;
 		private float movementMultiplier = 1f;
 
-		private const float GridMoveTimerMax = 0.1f;
-		private float gridMoveTimer;
+		private const float GridMovePeriod = 0.1f;
+		private float gridMoveTime;
 
 		private int snakeBodySize = 0;
 		private readonly List<Vector2Int> snakeBodyPositions = new();
@@ -67,11 +67,11 @@ namespace SnakeGame.Elements {
 		}
 
 		private bool ShouldMove() {
-			gridMoveTimer += Time.deltaTime * movementMultiplier;
-			if (gridMoveTimer < GridMoveTimerMax)
+			gridMoveTime += Time.deltaTime * movementMultiplier;
+			if (gridMoveTime < GridMovePeriod)
 				return false;
 
-			gridMoveTimer = 0;
+			gridMoveTime = 0;
 			return true;
 		}
 

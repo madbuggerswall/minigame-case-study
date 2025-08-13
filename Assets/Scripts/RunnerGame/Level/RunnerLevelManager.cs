@@ -6,11 +6,10 @@ using UnityEngine;
 using Utilities.Contexts;
 
 namespace RunnerGame.Level {
-	public class RunnerLevelManager : IInitializable {
+	public class RunnerLevelManager :  IInitializable {
 		private Runner runner;
-		private List<Obstacle> obstacles;
 		private RunnerGrid runnerGrid;
-
+		
 		public Action LevelFailEvent { get; set; } = delegate { };
 		public Action LevelSuccessEvent { get; set; } = delegate { };
 
@@ -69,5 +68,8 @@ namespace RunnerGame.Level {
 			int y = headPosition.y;
 			return x > xMin && x < xMax && y > yMin && y < yMax;
 		}
+
+		public Runner GetRunner() { return runner; }
+		public RunnerGrid GetRunnerGrid() { return runnerGrid; }
 	}
 }
