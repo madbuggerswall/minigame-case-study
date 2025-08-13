@@ -33,7 +33,6 @@ public class CameraController : MonoBehaviour, IInitializable {
 		camera.transform.position = cameraPos;
 	}
 
-
 	public void FitProjectionSizeToGrid(Vector2 boardSizeInLength, float margin = 1f) {
 		camera.orthographicSize = GetFittingOrthographicSize(boardSizeInLength, margin);
 	}

@@ -1,7 +1,6 @@
-using SnakeGame.Elements;
 using SnakeGame.Factories;
 using SnakeGame.Input;
-using SnakeGame.Level;
+using SnakeGame.Mechanics;
 using SnakeGame.Persistence;
 using SnakeGame.UI;
 using Utilities.Contexts;

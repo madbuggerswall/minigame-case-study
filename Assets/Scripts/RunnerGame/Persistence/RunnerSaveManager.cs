@@ -6,7 +6,6 @@ using Utilities.Contexts;
 using Utilities.Persistence;
 
 namespace RunnerGame.Persistence {
-    // TODO This might be a common class
     public class RunnerSaveManager : IInitializable
     {
         private const string ScoreDataFileName = "RunnerScoreData.dat";

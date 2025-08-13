@@ -1,6 +1,5 @@
 using System;
 using RunnerGame.Elements;
-using RunnerGame.UI;
 using Utilities.Contexts;
 
 namespace RunnerGame.Mechanics {
@@ -26,7 +25,6 @@ namespace RunnerGame.Mechanics {
 			runner = levelInitializer.GetRunner();
 		}
 
-		// TODO Check for obstacles
 		public void OnPlayerHitObstacle() {
 			obstacleGenerator.Stop(true);
 			runner.Stop(true);

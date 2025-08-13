@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using SnakeGame.Elements;
 using SnakeGame.Factories;
 using UnityEngine;
 using Utilities.Contexts;
 using Utilities.Pooling;
 
-namespace SnakeGame.Elements {
+namespace SnakeGame.Mechanics {
 	public class FoodGenerator : IInitializable {
 		// Dependencies
 		private FoodFactory foodFactory;

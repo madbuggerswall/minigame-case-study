@@ -3,7 +3,7 @@ using SnakeGame.Factories;
 using UnityEngine;
 using Utilities.Contexts;
 
-namespace SnakeGame.Level {
+namespace SnakeGame.Mechanics {
 	public class SnakeLevelInitializer : MonoBehaviour, IInitializable {
 		[SerializeField] private Vector2Int gridSize;
 

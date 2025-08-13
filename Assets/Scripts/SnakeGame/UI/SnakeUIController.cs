@@ -1,6 +1,6 @@
 using Minigames;
 using Minigames.Loader;
-using SnakeGame.Level;
+using SnakeGame.Mechanics;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;

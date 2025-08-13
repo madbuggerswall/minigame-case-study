@@ -1,11 +1,10 @@
 using System;
-using Minigames;
 using Minigames.Loader.Signals;
 using SnakeGame.Persistence;
 using Utilities.Contexts;
 using Utilities.Signals;
 
-namespace SnakeGame.Level {
+namespace SnakeGame.Mechanics {
 	public class SnakeScoreManager : IInitializable {
 		private int score = 0;
 		private int highScore = 0;

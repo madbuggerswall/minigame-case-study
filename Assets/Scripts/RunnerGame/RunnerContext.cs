@@ -1,4 +1,3 @@
-using RunnerGame.Elements;
 using RunnerGame.Factories;
 using RunnerGame.Input;
 using RunnerGame.Mechanics;

@@ -3,7 +3,7 @@ using SnakeGame.Elements;
 using SnakeGame.Factories;
 using Utilities.Contexts;
 
-namespace SnakeGame.Level {
+namespace SnakeGame.Mechanics {
 	public class SnakeLevelManager : IInitializable {
 		private Snake snake;
 		private Food food;

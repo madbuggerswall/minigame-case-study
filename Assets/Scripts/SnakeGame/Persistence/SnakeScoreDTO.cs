@@ -1,4 +1,4 @@
-using SnakeGame.Level;
+using SnakeGame.Mechanics;
 using UnityEngine;
 
 namespace SnakeGame.Persistence {

@@ -39,16 +39,22 @@ namespace SnakeGame.Elements {
 		}
 
 		private void Update() {
+			if (isStopped)
+				return;
+
+			MovePeriodically();
+		}
+
+		private void MovePeriodically() {
+			gridMoveTime += Time.deltaTime * movementMultiplier;
+			if (gridMoveTime < GridMovePeriod)
+				return;
+
+			gridMoveTime = 0;
 			Move();
 		}
 
 		private void Move() {
-			if (isStopped)
-				return;
-
-			if (!ShouldMove())
-				return;
-
 			AddHeadPosition();
 			MoveHead();
 			RemoveTailPosition();
@@ -57,14 +63,6 @@ namespace SnakeGame.Elements {
 			OnSnakeMove.Invoke();
 		}
 
-		private bool ShouldMove() {
-			gridMoveTime += Time.deltaTime * movementMultiplier;
-			if (gridMoveTime < GridMovePeriod)
-				return false;
-
-			gridMoveTime = 0;
-			return true;
-		}
 
 		private void AddHeadPosition() {
 			bodyPositions.Insert(0, headPosition);
@@ -101,17 +99,14 @@ namespace SnakeGame.Elements {
 			movementMultiplier = multiplier;
 		}
 
-
 		public void AddBodyPart(SnakeBody snakeBody) {
 			snakeBodySize++;
 			snakeBodies.Add(snakeBody);
 		}
 
 		public bool IsOverItself() {
-			Vector2Int headPosition = GetGridPosition();
-
 			for (int i = 0; i < bodyPositions.Count; i++)
-				if (this.headPosition == bodyPositions[i])
+				if (headPosition == bodyPositions[i])
 					return true;
 
 			return false;

@@ -1,8 +1,5 @@
 using UnityEngine;
 
 namespace SnakeGame.Elements {
-	public class SnakeBody : MonoBehaviour
-	{
-    
-	}
+	public class SnakeBody : MonoBehaviour { }
 }
