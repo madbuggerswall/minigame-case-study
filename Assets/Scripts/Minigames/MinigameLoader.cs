@@ -14,14 +14,17 @@ public class MinigameLoader : IInitializable {
 	}
 
 	public void LoadMinigame(MinigameDefinition minigameDefinition) {
+		signalBus.Fire(new StartLoadingMinigameSignal(minigameDefinition));
 		LoadSceneAsync(minigameDefinition);
 	}
 
 	public void UnloadMinigame(MinigameDefinition minigameDefinition) {
+		signalBus.Fire(new StartUnloadingMinigameSignal(minigameDefinition));
 		UnloadSceneAsync(minigameDefinition);
 	}
 
 	public void RestartMinigame(MinigameDefinition minigameDefinition) {
+		signalBus.Fire(new StartRestartingMinigameSignal(minigameDefinition));
 		RestartSceneAsync(minigameDefinition);
 	}
 
@@ -68,6 +71,30 @@ public class MinigameLoader : IInitializable {
 	}
 
 	public MinigameDefinition GetActiveMinigameDefinition() => activeMinigameDefinition;
+}
+
+public class StartLoadingMinigameSignal : Signal {
+	public MinigameDefinition MinigameDefinition { get; }
+
+	public StartLoadingMinigameSignal(MinigameDefinition minigameDefinition) {
+		MinigameDefinition = minigameDefinition;
+	}
+}
+
+public class StartUnloadingMinigameSignal : Signal {
+	public MinigameDefinition MinigameDefinition { get; }
+
+	public StartUnloadingMinigameSignal(MinigameDefinition minigameDefinition) {
+		MinigameDefinition = minigameDefinition;
+	}
+}
+
+public class StartRestartingMinigameSignal : Signal {
+	public MinigameDefinition MinigameDefinition { get; }
+
+	public StartRestartingMinigameSignal(MinigameDefinition minigameDefinition) {
+		MinigameDefinition = minigameDefinition;
+	}
 }
 
 public class MinigameLoadedSignal : Signal {

@@ -7,6 +7,7 @@ namespace Snake {
 		protected override void ResolveContext() {
 			Resolve<ObjectPool>();
 			Resolve<SnakeInputManager>();
+			Resolve<SnakeSaveManager>();
 
 			Resolve<FoodFactory>();
 			Resolve<SnakeFactory>();
@@ -16,9 +17,9 @@ namespace Snake {
 			Resolve<FoodGenerator>();
 			Resolve<SnakeLevelInitializer>();
 			Resolve<SnakeLevelManager>();
-		
-			Resolve<SnakeUIController>();
+
 			Resolve<ScoreManager>();
+			Resolve<SnakeUIController>();
 		}
 
 		protected override void OnInitialized() { }
