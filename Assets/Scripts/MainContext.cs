@@ -13,6 +13,11 @@ public class MainContext : SceneContext {
 		Resolve<ObjectPool>();
 		Resolve<CameraController>();
 		Resolve<InputManager>();
+
+		Resolve<MinigameDefinitionManager>();
+		Resolve<MinigameLoader>();
+		
+		Resolve<MainUIController>();
 	}
 
 	protected override void OnInitialized() {

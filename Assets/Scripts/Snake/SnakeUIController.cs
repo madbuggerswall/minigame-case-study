@@ -18,27 +18,41 @@ namespace Snake {
 		[SerializeField] private Button menuButton;
 
 		// Dependencies
+		private ScoreManager scoreManager;
+		private SnakeLevelManager levelManager;
 
-		public void Initialize() { }
+		public void Initialize() {
+			this.scoreManager = SnakeContext.GetInstance().Get<ScoreManager>();
+			this.levelManager = SnakeContext.GetInstance().Get<SnakeLevelManager>();
 
-		public void ShowLevelSuccessPanel() {
+			UpdateScore(scoreManager.GetScore());
+			UpdateHighScore(scoreManager.GetHighScore());
+
+			scoreManager.ScoreUpdateEvent += UpdateScore;
+			scoreManager.HighScoreUpdateEvent += UpdateHighScore;
+
+			levelManager.LevelFailEvent += ShowLevelFailPanel;
+			levelManager.LevelSuccessEvent += ShowLevelSuccessPanel;
+		}
+
+
+		private void ShowLevelSuccessPanel() {
 			levelSuccessPanel.gameObject.SetActive(true);
 		}
 
-		public void ShowLevelFailPanel() {
+		private void ShowLevelFailPanel() {
 			levelFailPanel.gameObject.SetActive(true);
 		}
 
-		public void UpdateScore(int score) {
+		private void UpdateScore(int score) {
 			scorePanel.UpdateScore(score);
 		}
 
-		public void UpdateHighScore(int score) {
+		private void UpdateHighScore(int score) {
 			highScorePanel.UpdateScore(score);
 		}
 
-		private void OnMenuButtonClick() {
-			
-		}
+		private void OnMenuButtonClick() { }
+		private void OnMenuRestartClick() { }
 	}
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Snake.Elements;
 using Snake.Factories;
@@ -9,6 +10,9 @@ namespace Snake {
 		private Elements.Snake snake;
 		private Food food;
 		private SnakeGrid snakeGrid;
+
+		public Action LevelFailEvent { get; set; } = delegate { };
+		public Action LevelSuccessEvent { get; set; } = delegate { };
 
 		// Dependencies
 		private SnakeLevelInitializer levelInitializer;
@@ -22,8 +26,8 @@ namespace Snake {
 			this.levelInitializer = SnakeContext.GetInstance().Get<SnakeLevelInitializer>();
 			this.foodGenerator = SnakeContext.GetInstance().Get<FoodGenerator>();
 			this.snakeBodyFactory = SnakeContext.GetInstance().Get<SnakeBodyFactory>();
-			
-			this.uiController  = SnakeContext.GetInstance().Get<SnakeUIController>();
+
+			this.uiController = SnakeContext.GetInstance().Get<SnakeUIController>();
 			this.scoreManager = SnakeContext.GetInstance().Get<ScoreManager>();
 
 			this.snake = levelInitializer.GetSnake();
@@ -46,12 +50,10 @@ namespace Snake {
 			SnakeBody snakeBody = snakeBodyFactory.CreateSnake(snake.GetGridPosition());
 			snake.AddBodyPart(snakeBody);
 
-			scoreManager.IncrementScore();
-			uiController.UpdateScore(scoreManager.GetScore());
-			uiController.UpdateHighScore(scoreManager.GetHighScore());
-
 			foodGenerator.DespawnFood(food);
 			food = foodGenerator.SpawnFood(snakeGrid.GetGridSize(), snake);
+
+			scoreManager.IncrementScore();
 		}
 
 		private void CheckForSnakeBody() {
@@ -59,7 +61,8 @@ namespace Snake {
 				return;
 
 			snake.Stop(true);
-			uiController.ShowLevelFailPanel();
+			LevelFailEvent.Invoke();
+			
 		}
 
 		private void CheckForWalls() {
@@ -67,7 +70,7 @@ namespace Snake {
 				return;
 
 			snake.Stop(true);
-			uiController.ShowLevelFailPanel();
+			LevelFailEvent.Invoke();
 		}
 
 		private static bool IsInsideGrid(Elements.Snake snake, SnakeGrid snakeGrid) {

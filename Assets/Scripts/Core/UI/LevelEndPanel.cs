@@ -1,26 +1,36 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utilities.Contexts;
 
 namespace Core.UI {
 	public class LevelEndPanel : MonoBehaviour {
 		[SerializeField] private Button restartButton;
+		[SerializeField] private Button menuButton;
 
-		private void Awake() {
+		// Dependencies
+		private MinigameLoader minigameLoader;
+
+		private void Start() {
+			minigameLoader = SceneContext.GetInstance().Get<MinigameLoader>();
+
 			restartButton.onClick.AddListener(OnRestartButtonClick);
+			menuButton.onClick.AddListener(OnMenuButtonClick);
+		}
+
+		private void OnMenuButtonClick() {
+			MinigameDefinition minigameDefinition = minigameLoader.GetActiveMinigameDefinition();
+			if (minigameDefinition is null)
+				return;
+
+			minigameLoader.UnloadMinigame(minigameDefinition);
 		}
 
 		private void OnRestartButtonClick() {
-			Scene activeScene = SceneManager.GetActiveScene();
+			MinigameDefinition minigameDefinition = minigameLoader.GetActiveMinigameDefinition();
+			if (minigameDefinition is null)
+				return;
 
-			AsyncOperation unloadAsync = SceneManager.UnloadSceneAsync(1);
-			if (unloadAsync != null)
-				unloadAsync.completed += LoadSceneAsync;
-		}
-
-		private void LoadSceneAsync(AsyncOperation obj) {
-			AsyncOperation loadAsync = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
-			loadAsync.completed += delegate { UnityEngine.Debug.Log("Loaded"); };
+			minigameLoader.RestartMinigame(minigameDefinition);
 		}
 	}
 }
