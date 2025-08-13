@@ -19,7 +19,7 @@ namespace SnakeGame.Persistence {
 		}
 
 		public void SaveScoreData(SnakeScoreManager snakeScoreManager) {
-			SnakeScoreDTO snakeScoreDTO = new SnakeScoreDTO(snakeScoreManager);
+			SnakeScoreDTO snakeScoreDTO = new(snakeScoreManager);
 			BinaryJsonUtility.Save(snakeScoreDTO, GetScoreDataFilePath());
 		}
 

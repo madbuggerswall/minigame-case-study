@@ -1,18 +1,15 @@
+using RunnerGame.Level;
 using UnityEngine;
 
 namespace RunnerGame.Persistence {
-    public class RunnerScoreDTO : MonoBehaviour
-    {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
+	[System.Serializable]
+	public class RunnerScoreDTO {
+		[SerializeField] private int highScore;
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
-    }
+		public RunnerScoreDTO(RunnerScoreManager runnerScoreManager) {
+			highScore = runnerScoreManager.GetHighScore();
+		}
+
+		public int GetHighScore() => highScore;
+	}
 }

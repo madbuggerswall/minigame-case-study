@@ -23,8 +23,8 @@ namespace RunnerGame.Persistence {
 
         // TODO
         public void SaveScoreData(RunnerScoreManager runnerScoreManager) {
-            // SnakeScoreDTO snakeScoreDTO = new SnakeScoreDTO(snakeScoreManager);
-            // BinaryJsonUtility.Save(snakeScoreDTO, GetScoreDataFilePath());
+            RunnerScoreDTO snakeScoreDTO = new(runnerScoreManager);
+            BinaryJsonUtility.Save(snakeScoreDTO, GetScoreDataFilePath());
         }
 
         public bool TryLoadScoreData(out SnakeScoreDTO snakeScoreDTO) {
