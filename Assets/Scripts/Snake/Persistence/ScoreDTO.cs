@@ -1,12 +1,15 @@
+using Snake.Level;
 using UnityEngine;
 
-[System.Serializable]
-public class ScoreDTO {
-	[SerializeField] private int highScore;
+namespace Snake.Persistence {
+	[System.Serializable]
+	public class ScoreDTO {
+		[SerializeField] private int highScore;
 
-	public ScoreDTO(ScoreManager scoreManager) {
-		this.highScore = scoreManager.GetHighScore();
+		public ScoreDTO(ScoreManager scoreManager) {
+			this.highScore = scoreManager.GetHighScore();
+		}
+
+		public int GetHighScore() => this.highScore;
 	}
-
-	public int GetHighScore() => this.highScore;
 }

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Core.UI {
+namespace UI {
 	public class ScoreTargetPanel : MonoBehaviour {
 		[SerializeField] private TextMeshProUGUI remainingScoreText;
 

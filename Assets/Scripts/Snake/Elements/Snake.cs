@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Snake.Input;
 using UnityEngine;
 
 namespace Snake.Elements {

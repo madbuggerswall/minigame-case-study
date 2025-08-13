@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Snake {
+namespace Snake.Elements {
 	public class SnakeGrid : MonoBehaviour {
 		[SerializeField] private SpriteRenderer backgroundImage;
 		[SerializeField] private Vector2 padding = Vector2.zero;

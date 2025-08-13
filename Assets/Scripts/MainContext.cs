@@ -1,3 +1,4 @@
+using Minigames;
 using UnityEngine;
 using Utilities.Contexts;
 using Utilities.Input;

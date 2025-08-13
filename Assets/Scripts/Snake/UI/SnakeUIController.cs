@@ -1,9 +1,10 @@
-using Core.UI;
+using Snake.Level;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities.Contexts;
 
-namespace Snake {
+namespace Snake.UI {
 	public class SnakeUIController : MonoBehaviour, IInitializable {
 		[Header("Level State Panels")]
 		[SerializeField] private LevelEndPanel levelSuccessPanel;

@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using Snake.Elements;
 using Snake.Factories;
+using Snake.UI;
 using UnityEngine;
 using Utilities.Contexts;
 
-namespace Snake {
+namespace Snake.Level {
 	public class SnakeLevelManager : IInitializable {
 		private Elements.Snake snake;
 		private Food food;

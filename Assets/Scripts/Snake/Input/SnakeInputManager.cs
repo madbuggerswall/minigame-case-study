@@ -5,7 +5,7 @@ using Utilities.Contexts;
 using Utilities.Input;
 using Utilities.Input.Standalone;
 
-namespace Snake {
+namespace Snake.Input {
 	public class SnakeInputManager : IInitializable {
 		public Action UpKeyPressEvent { get; set; } = delegate { };
 		public Action DownKeyPressEvent { get; set; } = delegate { };

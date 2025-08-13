@@ -1,8 +1,9 @@
+using Minigames;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities.Contexts;
 
-namespace Core.UI {
+namespace UI {
 	public class LevelEndPanel : MonoBehaviour {
 		[SerializeField] private Button restartButton;
 		[SerializeField] private Button menuButton;
