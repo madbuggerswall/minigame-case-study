@@ -31,28 +31,33 @@ namespace RunnerGame.Elements {
 		}
 
 		private void Update() {
-			MoveObstaclesDownwards();
+			MoveObstaclesDownwardsPeriodically();
 			SpawnRowPeriodically();
 		}
 
-		private void MoveObstaclesDownwards() {
+		private void MoveObstaclesDownwardsPeriodically() {
 			moveTime += Time.deltaTime;
 			if (moveTime < movePeriod)
 				return;
 
 			moveTime = 0;
-			RunnerGrid runnerGrid = levelManager.GetRunnerGrid();
 
-			for (int i = 0; i < spawnedObstacles.Count; i++) {
+			MoveObstaclesDownwards();
+		}
+
+		private void MoveObstaclesDownwards() {
+			RunnerGrid runnerGrid = levelManager.GetRunnerGrid();
+			for (int i = spawnedObstacles.Count - 1; i >= 0; i--) {
 				Obstacle obstacle = spawnedObstacles[i];
 				Vector2Int updatedPosition = obstacle.GetGridPosition() + Vector2Int.down;
+				obstacle.SetGridPosition(updatedPosition);
+
 				if (runnerGrid.IsInsideGrid(updatedPosition))
-					obstacle.SetGridPosition(updatedPosition);
-				else {
-					spawnedObstacles[i] = spawnedObstacles[^1];
-					spawnedObstacles.RemoveAt(spawnedObstacles.Count - 1);
-					objectPool.Despawn(obstacle);
-				}
+					continue;
+
+				spawnedObstacles[i] = spawnedObstacles[^1];
+				spawnedObstacles.RemoveAt(spawnedObstacles.Count - 1);
+				objectPool.Despawn(obstacle);
 			}
 		}
 
