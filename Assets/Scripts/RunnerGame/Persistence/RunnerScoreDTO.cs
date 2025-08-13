@@ -1,4 +1,4 @@
-using RunnerGame.Level;
+using RunnerGame.Mechanics;
 using UnityEngine;
 
 namespace RunnerGame.Persistence {

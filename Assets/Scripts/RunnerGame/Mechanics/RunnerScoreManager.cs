@@ -1,11 +1,11 @@
 using System;
-using Minigames;
+using Minigames.Loader.Signals;
 using RunnerGame.Persistence;
 using SnakeGame.Persistence;
 using Utilities.Contexts;
 using Utilities.Signals;
 
-namespace RunnerGame.Level {
+namespace RunnerGame.Mechanics {
     // TODO This might be a common class
     public class RunnerScoreManager : IInitializable
     {

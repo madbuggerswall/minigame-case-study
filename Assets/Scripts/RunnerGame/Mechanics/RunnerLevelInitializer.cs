@@ -3,7 +3,7 @@ using RunnerGame.Factories;
 using UnityEngine;
 using Utilities.Contexts;
 
-namespace RunnerGame.Level {
+namespace RunnerGame.Mechanics {
 	public class RunnerLevelInitializer : MonoBehaviour, IInitializable {
 		[SerializeField] private Vector2Int gridSize;
 

@@ -1,12 +1,12 @@
 using Minigames;
-using RunnerGame.Level;
+using Minigames.Loader;
+using RunnerGame.Mechanics;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities.Contexts;
 
 namespace RunnerGame.UI {
-	// TODO This might be a common class
 	public class RunnerUIController : MonoBehaviour, IInitializable {
 		[Header("Level State Panels")]
 		[SerializeField] private LevelEndPanel levelSuccessPanel;
@@ -17,13 +17,13 @@ namespace RunnerGame.UI {
 		[SerializeField] private ScorePanel highScorePanel;
 
 		[Header("Bottom")]
-		[SerializeField] private Button restartButton;
 		[SerializeField] private Button menuButton;
 
-		// Dependencies
+		// RunnerContext Dependencies
 		private RunnerScoreManager snakeScoreManager;
 		private RunnerLevelManager levelManager;
-		
+
+		// MainContext Dependencies
 		private MinigameLoader minigameLoader;
 
 		public void Initialize() {
@@ -39,27 +39,20 @@ namespace RunnerGame.UI {
 
 			levelManager.LevelFailEvent += ShowLevelFailPanel;
 			levelManager.LevelSuccessEvent += ShowLevelSuccessPanel;
-			
+
 			menuButton.onClick.AddListener(OnMenuButtonClick);
 		}
 
-
 		private void ShowLevelSuccessPanel() {
+			menuButton.interactable = false;
 			levelSuccessPanel.PlayEntryTween();
 		}
 
 		private void ShowLevelFailPanel() {
+			menuButton.interactable = false;
 			levelFailPanel.PlayEntryTween();
 		}
-
-		private void UpdateScore(int score) {
-			scorePanel.UpdateScore(score);
-		}
-
-		private void UpdateHighScore(int score) {
-			highScorePanel.UpdateScore(score);
-		}
-
+		
 		private void OnMenuButtonClick() {
 			MinigameDefinition minigameDefinition = minigameLoader.GetActiveMinigameDefinition();
 			if (minigameDefinition is null)
@@ -67,6 +60,8 @@ namespace RunnerGame.UI {
 
 			minigameLoader.UnloadMinigame(minigameDefinition);
 		}
-		private void OnMenuRestartClick() { }
+
+		private void UpdateScore(int score) => scorePanel.UpdateScore(score);
+		private void UpdateHighScore(int score) => highScorePanel.UpdateScore(score);
 	}
 }

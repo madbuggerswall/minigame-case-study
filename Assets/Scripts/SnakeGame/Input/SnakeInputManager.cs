@@ -1,5 +1,6 @@
 using System;
 using Minigames;
+using Minigames.Loader.Signals;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using Utilities.Contexts;

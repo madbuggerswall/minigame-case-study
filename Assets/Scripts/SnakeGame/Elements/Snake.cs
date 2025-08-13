@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SnakeGame.Elements {
 	public class Snake : MonoBehaviour {
 		private Vector2Int moveDirection = Vector2Int.up;
-		private Vector2Int gridPosition = Vector2Int.zero;
+		private Vector2Int headPosition = Vector2Int.zero;
 
 		private const float BoostMultiplier = 2f;
 		private float movementMultiplier = 1f;
@@ -67,19 +67,18 @@ namespace SnakeGame.Elements {
 		}
 
 		private void AddHeadPosition() {
-			bodyPositions.Insert(0, gridPosition);
+			bodyPositions.Insert(0, headPosition);
 		}
 
 		private void MoveHead() {
-			gridPosition += moveDirection;
-			transform.position = new Vector3(gridPosition.x, gridPosition.y);
+			headPosition += moveDirection;
+			transform.position = new Vector3(headPosition.x, headPosition.y);
 		}
 
 		private void RemoveTailPosition() {
 			if (bodyPositions.Count >= snakeBodySize + 1)
 				bodyPositions.RemoveAt(bodyPositions.Count - 1);
 		}
-
 
 		private void MoveBodyParts() {
 			for (int i = 0; i < snakeBodies.Count; i++) {
@@ -92,7 +91,7 @@ namespace SnakeGame.Elements {
 			if (moveDirection == -direction)
 				return;
 
-			if (bodyPositions.Count > 0 && gridPosition + direction == bodyPositions[0])
+			if (bodyPositions.Count > 0 && headPosition + direction == bodyPositions[0])
 				return;
 
 			moveDirection = direction;
@@ -101,28 +100,26 @@ namespace SnakeGame.Elements {
 		private void SetMovementMultiplier(float multiplier) {
 			movementMultiplier = multiplier;
 		}
-		
-		
+
+
 		public void AddBodyPart(SnakeBody snakeBody) {
 			snakeBodySize++;
 			snakeBodies.Add(snakeBody);
-		}
-
-		public void Stop(bool isStopped) {
-			this.isStopped = isStopped;
 		}
 
 		public bool IsOverItself() {
 			Vector2Int headPosition = GetGridPosition();
 
 			for (int i = 0; i < bodyPositions.Count; i++)
-				if (gridPosition == bodyPositions[i])
+				if (this.headPosition == bodyPositions[i])
 					return true;
 
 			return false;
 		}
 
-		public Vector2Int GetGridPosition() => gridPosition;
+		public void Stop(bool isStopped) => this.isStopped = isStopped;
+
+		public Vector2Int GetGridPosition() => headPosition;
 		public List<SnakeBody> GetBodyParts() => snakeBodies;
 		public List<Vector2Int> GetSnakeBodyPositions() => bodyPositions;
 	}

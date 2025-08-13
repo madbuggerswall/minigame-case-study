@@ -1,3 +1,5 @@
+using Minigames;
+using Minigames.Loader;
 using SnakeGame.Level;
 using UI;
 using UnityEngine;
@@ -15,16 +17,19 @@ namespace SnakeGame.UI {
 		[SerializeField] private ScorePanel highScorePanel;
 
 		[Header("Bottom")]
-		[SerializeField] private Button restartButton;
 		[SerializeField] private Button menuButton;
 
 		// Dependencies
 		private SnakeScoreManager snakeScoreManager;
 		private SnakeLevelManager levelManager;
 
+		// MainContext Dependencies
+		private MinigameLoader minigameLoader;
+
 		public void Initialize() {
 			snakeScoreManager = SnakeContext.GetInstance().Get<SnakeScoreManager>();
 			levelManager = SnakeContext.GetInstance().Get<SnakeLevelManager>();
+			minigameLoader = SceneContext.GetInstance().Get<MinigameLoader>();
 
 			UpdateScore(snakeScoreManager.GetScore());
 			UpdateHighScore(snakeScoreManager.GetHighScore());
@@ -34,26 +39,29 @@ namespace SnakeGame.UI {
 
 			levelManager.LevelFailEvent += ShowLevelFailPanel;
 			levelManager.LevelSuccessEvent += ShowLevelSuccessPanel;
+
+			menuButton.onClick.AddListener(OnMenuButtonClick);
 		}
 
-
 		private void ShowLevelSuccessPanel() {
-			levelSuccessPanel.gameObject.SetActive(true);
+			menuButton.interactable = false;
+			levelSuccessPanel.PlayEntryTween();
 		}
 
 		private void ShowLevelFailPanel() {
-			levelFailPanel.gameObject.SetActive(true);
+			menuButton.interactable = false;
+			levelFailPanel.PlayEntryTween();
 		}
 
-		private void UpdateScore(int score) {
-			scorePanel.UpdateScore(score);
+		private void OnMenuButtonClick() {
+			MinigameDefinition minigameDefinition = minigameLoader.GetActiveMinigameDefinition();
+			if (minigameDefinition is null)
+				return;
+
+			minigameLoader.UnloadMinigame(minigameDefinition);
 		}
 
-		private void UpdateHighScore(int score) {
-			highScorePanel.UpdateScore(score);
-		}
-
-		private void OnMenuButtonClick() { }
-		private void OnMenuRestartClick() { }
+		private void UpdateScore(int score) => scorePanel.UpdateScore(score);
+		private void UpdateHighScore(int score) => highScorePanel.UpdateScore(score);
 	}
 }

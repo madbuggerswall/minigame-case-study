@@ -1,15 +1,15 @@
 using System.Collections.Generic;
+using RunnerGame.Elements;
 using RunnerGame.Factories;
-using RunnerGame.Level;
 using UnityEngine;
 using Utilities.Contexts;
 using Utilities.Pooling;
 
-namespace RunnerGame.Elements {
+namespace RunnerGame.Mechanics {
 	public class ObstacleGenerator : MonoBehaviour, IInitializable {
 		[Header("Spawn Settings")]
 		[SerializeField] private float spawnPeriod = 1;
-		[SerializeField] private float movePeriod = .05f;
+		[SerializeField] private float movePeriod = .1f;
 
 		[Header("Perlin Settings")]
 		[SerializeField] private float obstacleRatio = 0.8f;
@@ -25,7 +25,6 @@ namespace RunnerGame.Elements {
 		private RunnerLevelManager levelManager;
 		private ObjectPool objectPool;
 
-
 		public void Initialize() {
 			objectPool = RunnerContext.GetInstance().Get<ObjectPool>();
 			obstacleFactory = RunnerContext.GetInstance().Get<ObstacleFactory>();
@@ -40,9 +39,6 @@ namespace RunnerGame.Elements {
 			SpawnRowPeriodically();
 		}
 
-		public void Stop(bool isStopped) {
-			this.isStopped = isStopped;
-		}
 
 		private void MoveObstaclesDownwardsPeriodically() {
 			moveTime += Time.deltaTime;
@@ -65,7 +61,7 @@ namespace RunnerGame.Elements {
 
 				// Since this is called periodically, there's a chance that runner will pass through
 				if (updatedPosition == runner.GetGridPosition())
-					OnPlayerHit();
+					levelManager.OnPlayerHitObstacle();
 
 				if (runnerGrid.IsInsideGrid(updatedPosition))
 					continue;
@@ -74,11 +70,6 @@ namespace RunnerGame.Elements {
 				spawnedObstacles.RemoveAt(spawnedObstacles.Count - 1);
 				objectPool.Despawn(obstacle);
 			}
-		}
-
-		private void OnPlayerHit() {
-			Stop(true);
-			levelManager.OnPlayerHitObstacle();
 		}
 
 		private void SpawnRowPeriodically() {
@@ -109,5 +100,7 @@ namespace RunnerGame.Elements {
 				spawnedObstacles.Add(obstacle);
 			}
 		}
+
+		public void Stop(bool isStopped) => this.isStopped = isStopped;
 	}
 }

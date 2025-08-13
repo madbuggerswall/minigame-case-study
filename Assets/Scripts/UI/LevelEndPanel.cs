@@ -1,4 +1,5 @@
 using Minigames;
+using Minigames.Loader;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities.Contexts;

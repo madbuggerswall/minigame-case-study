@@ -1,7 +1,7 @@
 using RunnerGame.Elements;
 using RunnerGame.Factories;
 using RunnerGame.Input;
-using RunnerGame.Level;
+using RunnerGame.Mechanics;
 using RunnerGame.Persistence;
 using RunnerGame.UI;
 using Utilities.Contexts;

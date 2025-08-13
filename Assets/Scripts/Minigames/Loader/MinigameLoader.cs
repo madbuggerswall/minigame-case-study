@@ -1,9 +1,10 @@
+using Minigames.Loader.Signals;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utilities.Contexts;
 using Utilities.Signals;
 
-namespace Minigames {
+namespace Minigames.Loader {
 	public class MinigameLoader : IInitializable {
 		private MinigameDefinition activeMinigameDefinition;
 
@@ -72,53 +73,5 @@ namespace Minigames {
 		}
 
 		public MinigameDefinition GetActiveMinigameDefinition() => activeMinigameDefinition;
-	}
-
-	public class StartLoadingMinigameSignal : Signal {
-		public MinigameDefinition MinigameDefinition { get; }
-
-		public StartLoadingMinigameSignal(MinigameDefinition minigameDefinition) {
-			MinigameDefinition = minigameDefinition;
-		}
-	}
-
-	public class StartUnloadingMinigameSignal : Signal {
-		public MinigameDefinition MinigameDefinition { get; }
-
-		public StartUnloadingMinigameSignal(MinigameDefinition minigameDefinition) {
-			MinigameDefinition = minigameDefinition;
-		}
-	}
-
-	public class StartRestartingMinigameSignal : Signal {
-		public MinigameDefinition MinigameDefinition { get; }
-
-		public StartRestartingMinigameSignal(MinigameDefinition minigameDefinition) {
-			MinigameDefinition = minigameDefinition;
-		}
-	}
-
-	public class MinigameLoadedSignal : Signal {
-		public MinigameDefinition MinigameDefinition { get; }
-
-		public MinigameLoadedSignal(MinigameDefinition minigameDefinition) {
-			MinigameDefinition = minigameDefinition;
-		}
-	}
-
-	public class MinigameUnloadedSignal : Signal {
-		public MinigameDefinition MinigameDefinition { get; }
-
-		public MinigameUnloadedSignal(MinigameDefinition minigameDefinition) {
-			MinigameDefinition = minigameDefinition;
-		}
-	}
-
-	public class MinigameRestartedSignal : Signal {
-		public MinigameDefinition MinigameDefinition { get; }
-
-		public MinigameRestartedSignal(MinigameDefinition minigameDefinition) {
-			MinigameDefinition = minigameDefinition;
-		}
 	}
 }

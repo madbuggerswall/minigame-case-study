@@ -3,11 +3,11 @@ using RunnerGame.Elements;
 using RunnerGame.UI;
 using Utilities.Contexts;
 
-namespace RunnerGame.Level {
-	public class RunnerLevelManager :  IInitializable {
+namespace RunnerGame.Mechanics {
+	public class RunnerLevelManager : IInitializable {
 		private Runner runner;
 		private RunnerGrid runnerGrid;
-		
+
 		public Action LevelFailEvent { get; set; } = delegate { };
 		public Action LevelSuccessEvent { get; set; } = delegate { };
 
@@ -15,14 +15,11 @@ namespace RunnerGame.Level {
 		private RunnerLevelInitializer levelInitializer;
 		private ObstacleGenerator obstacleGenerator;
 
-		private RunnerUIController uiController;
 		private RunnerScoreManager runnerScoreManager;
 
 		public void Initialize() {
 			levelInitializer = RunnerContext.GetInstance().Get<RunnerLevelInitializer>();
 			obstacleGenerator = RunnerContext.GetInstance().Get<ObstacleGenerator>();
-
-			uiController = RunnerContext.GetInstance().Get<RunnerUIController>();
 			runnerScoreManager = RunnerContext.GetInstance().Get<RunnerScoreManager>();
 
 			runnerGrid = levelInitializer.GetRunnerGrid();
@@ -31,6 +28,9 @@ namespace RunnerGame.Level {
 
 		// TODO Check for obstacles
 		public void OnPlayerHitObstacle() {
+			obstacleGenerator.Stop(true);
+			runner.Stop(true);
+
 			LevelFailEvent.Invoke();
 		}
 
