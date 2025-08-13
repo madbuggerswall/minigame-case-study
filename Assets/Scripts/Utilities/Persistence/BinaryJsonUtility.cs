@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace Utilities {
+namespace Utilities.Persistence {
 	// TODO Rename this class (BinaryJson+Writer/Utils)
 	public static class BinaryJsonUtility {
 		public static void Save<T>(T serializable, string filePath) {
