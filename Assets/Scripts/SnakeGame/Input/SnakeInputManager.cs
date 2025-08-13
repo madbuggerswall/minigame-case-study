@@ -1,9 +1,11 @@
 using System;
+using Minigames;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using Utilities.Contexts;
 using Utilities.Input;
 using Utilities.Input.Standalone;
+using Utilities.Signals;
 
 namespace SnakeGame.Input {
 	public class SnakeInputManager : IInitializable {
@@ -17,14 +19,31 @@ namespace SnakeGame.Input {
 
 		// Dependencies
 		private InputManager inputManager;
+		private SignalBus signalBus;
 
 		public void Initialize() {
 			inputManager = SceneContext.GetInstance().Get<InputManager>();
+			signalBus = SceneContext.GetInstance().Get<SignalBus>();
+
+			signalBus.SubscribeTo<StartUnloadingMinigameSignal>(OnStartMinigameUnload);
+			signalBus.SubscribeTo<StartRestartingMinigameSignal>(OnStartMinigameRestart);
 
 			// Subscribe to InputHandler events
 			StandaloneInputHandler inputHandler = inputManager.StandaloneInputHandler;
 			inputHandler.KeyPressEvent += OnKeyPressed;
 			inputHandler.KeyReleaseEvent += OnKeyReleased;
+		}
+
+		private void OnStartMinigameRestart(StartRestartingMinigameSignal signal) {
+			StandaloneInputHandler inputHandler = inputManager.StandaloneInputHandler;
+			inputHandler.KeyPressEvent -= OnKeyPressed;
+			inputHandler.KeyReleaseEvent -= OnKeyReleased;
+		}
+
+		private void OnStartMinigameUnload(StartUnloadingMinigameSignal signal) {
+			StandaloneInputHandler inputHandler = inputManager.StandaloneInputHandler;
+			inputHandler.KeyPressEvent -= OnKeyPressed;
+			inputHandler.KeyReleaseEvent -= OnKeyReleased;
 		}
 
 		private void OnKeyPressed(KeyData keyData) {
@@ -45,7 +64,7 @@ namespace SnakeGame.Input {
 
 		private void OnKeyReleased(KeyData keyData) {
 			KeyControl keyControl = keyData.KeyControl;
-		
+
 			if (keyControl == Keyboard.current.digit1Key)
 				OneKeyReleaseEvent.Invoke();
 		}

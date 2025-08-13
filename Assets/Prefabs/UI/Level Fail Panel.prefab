@@ -486,6 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartButton: {fileID: 6855879217336112796}
   menuButton: {fileID: 8854622958064466015}
+  rectTransform: {fileID: 6855879216423406299}
 --- !u!1 &6855879217149309034
 GameObject:
   m_ObjectHideFlags: 0

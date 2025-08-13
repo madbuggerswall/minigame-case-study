@@ -6,6 +6,31 @@
   <component name="ChangeListManager">
     <list default="true" id="cb37b183-9076-4ae9-8640-fdcddf36f23e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mavis-case-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mavis-case-study/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Definitions/Drop Definitions.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Definitions/Drop Definitions/Blue Drop Definition.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Definitions/Drop Definitions/Blue Drop Definition.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Definitions/Drop Definitions/Green Drop Definition.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Definitions/Drop Definitions/Green Drop Definition.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Definitions/Drop Definitions/Red Drop Definition.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Definitions/Drop Definitions/Red Drop Definition.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Definitions/Drop Definitions/Yellow Drop Definition.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Definitions/Drop Definitions/Yellow Drop Definition.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MatchThree.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MatchThree/Prefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MatchThree/Prefabs/Board View.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MatchThree/Prefabs/Board View.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MatchThree/Prefabs/Cell View.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MatchThree/Prefabs/Cell View.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MatchThree/Prefabs/Drop View.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MatchThree/Prefabs/Drop View.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MinigameButton.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MinigameButton.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Level Fail Panel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Level Fail Panel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Level Success Panel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Level Success Panel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainUIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RunnerGame/Input/RunnerInputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RunnerGame/Input/RunnerInputManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RunnerGame/UI/RunnerUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RunnerGame/UI/RunnerUIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/LevelEndPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/LevelEndPanel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,31 +44,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0882cc9dff2e4e53a2f9a8ae7596868f4000/ae/fb5fffcb/JsonUtility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/17db89d2d75745598b8b3807e4656022468c00/83/92cfb537/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/96d8240474074a92857017039b6e78d51dfe00/88/32d8170f/SceneManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/96d8240474074a92857017039b6e78d51dfe00/e2/f36bd8bf/Scene.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/Commands/Command.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleElements/PuzzleElement.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleGridBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelDefinition.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Snake/ScoreManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Snake/SnakeContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utilities/Collections/Generic/UniqueList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7fe8299111a7/InputSystem/Editor/PropertyDrawers/InputActionReferencePropertyDrawer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7fe8299111a7/InputSystem/Utilities/InlinedArray.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@f3c7bf275c81/Runtime/XR/XRSystem.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.visualscripting@6279e2b7c485/Editor/VisualScripting.Flow/Units/UnitWidget.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.visualscripting@6279e2b7c485/Runtime/VisualScripting.Core/Utilities/IInitializable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@c58b4ee65782/Editor/treeview/AnimationTrackKeyDataSource.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -58,21 +69,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;snake-and-runner&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$USER_HOME$/Unity/Hub/Editor/6000.0.53f1/Editor/Unity" />
@@ -110,13 +121,15 @@
       <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="18768">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="18768" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list />
+        <list>
+          <MonoRuntime />
+        </list>
       </option>
       <option name="selectedOptions">
         <list />
@@ -161,93 +174,83 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
           <line>58</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'CheckForMatches'">
-            <startOffsets>
-              <option value="2172" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2220" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'CheckForMatches'" />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
           <line>70</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'">
-            <startOffsets>
-              <option value="2544" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2582" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'" />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
           <line>85</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'BlastMatchedCells'">
-            <startOffsets>
-              <option value="3083" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3127" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'BlastMatchedCells'" />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
           <line>72</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'">
-            <startOffsets>
-              <option value="2587" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2610" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'" />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
           <line>73</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'">
-            <startOffsets>
-              <option value="2614" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2637" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'" />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
           <line>75</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'">
-            <startOffsets>
-              <option value="2642" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2723" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'" />
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs</url>
           <line>78</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'">
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/MatchThree/PuzzleLevelManager.cs" containingFunctionPresentation="Method 'OnMatchesFound'" />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/SnakeGame/Elements/Snake.cs</url>
+          <line>91</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/SnakeGame/Elements/Snake.cs" containingFunctionPresentation="Method 'MoveToDirection'">
             <startOffsets>
-              <option value="2785" />
+              <option value="2448" />
             </startOffsets>
             <endOffsets>
-              <option value="2866" />
+              <option value="2480" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="28" />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/RunnerGame/RunnerContext.cs</url>
+          <line>12</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/RunnerGame/RunnerContext.cs" containingFunctionPresentation="Method 'ResolveContext'">
+            <startOffsets>
+              <option value="335" />
+            </startOffsets>
+            <endOffsets>
+              <option value="357" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/RunnerGame/Input/RunnerInputManager.cs</url>
+          <line>25</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/RunnerGame/Input/RunnerInputManager.cs" containingFunctionPresentation="Method 'Initialize'">
+            <startOffsets>
+              <option value="879" />
+            </startOffsets>
+            <endOffsets>
+              <option value="941" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

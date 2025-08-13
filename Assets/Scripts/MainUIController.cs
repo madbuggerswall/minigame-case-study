@@ -27,8 +27,8 @@ public class MainUIController : MonoBehaviour, IInitializable {
 	private void InitializeMinigameButtons() {
 		MinigameDefinition[] minigameDefinitions = minigameDefinitionManager.GetMinigameDefinitions();
 		for (int i = 0; i < minigameDefinitions.Length; i++) {
-			MinigameDefinition minigameDefinition = minigameDefinitions[i];
 
+			MinigameDefinition minigameDefinition = minigameDefinitions[i];
 			MinigameButton minigameButton = Instantiate(minigameButtonPrefab, layoutGroup.transform);
 			minigameButton.Initialize(minigameDefinition);
 
