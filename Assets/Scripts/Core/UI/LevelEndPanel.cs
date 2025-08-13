@@ -12,7 +12,15 @@ namespace Core.UI {
 
 		private void OnRestartButtonClick() {
 			Scene activeScene = SceneManager.GetActiveScene();
-			SceneManager.LoadScene(activeScene.buildIndex);
+
+			AsyncOperation unloadAsync = SceneManager.UnloadSceneAsync(1);
+			if (unloadAsync != null)
+				unloadAsync.completed += LoadSceneAsync;
+		}
+
+		private void LoadSceneAsync(AsyncOperation obj) {
+			AsyncOperation loadAsync = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+			loadAsync.completed += delegate { UnityEngine.Debug.Log("Loaded"); };
 		}
 	}
 }

@@ -15,10 +15,16 @@ namespace Snake {
 		private SnakeBodyFactory snakeBodyFactory;
 		private FoodGenerator foodGenerator;
 
+		private SnakeUIController uiController;
+		private ScoreManager scoreManager;
+
 		public void Initialize() {
 			this.levelInitializer = SnakeContext.GetInstance().Get<SnakeLevelInitializer>();
 			this.foodGenerator = SnakeContext.GetInstance().Get<FoodGenerator>();
 			this.snakeBodyFactory = SnakeContext.GetInstance().Get<SnakeBodyFactory>();
+			
+			this.uiController  = SnakeContext.GetInstance().Get<SnakeUIController>();
+			this.scoreManager = SnakeContext.GetInstance().Get<ScoreManager>();
 
 			this.snake = levelInitializer.GetSnake();
 			this.food = levelInitializer.GetFood();
@@ -37,11 +43,14 @@ namespace Snake {
 			if (snake.GetGridPosition() != food.GetGridPosition())
 				return;
 
-			foodGenerator.DespawnFood(food);
-
 			SnakeBody snakeBody = snakeBodyFactory.CreateSnake(snake.GetGridPosition());
 			snake.AddBodyPart(snakeBody);
 
+			scoreManager.IncrementScore();
+			uiController.UpdateScore(scoreManager.GetScore());
+			uiController.UpdateHighScore(scoreManager.GetHighScore());
+
+			foodGenerator.DespawnFood(food);
 			food = foodGenerator.SpawnFood(snakeGrid.GetGridSize(), snake);
 		}
 
@@ -50,6 +59,7 @@ namespace Snake {
 				return;
 
 			snake.Stop(true);
+			uiController.ShowLevelFailPanel();
 		}
 
 		private void CheckForWalls() {
@@ -57,6 +67,7 @@ namespace Snake {
 				return;
 
 			snake.Stop(true);
+			uiController.ShowLevelFailPanel();
 		}
 
 		private static bool IsInsideGrid(Elements.Snake snake, SnakeGrid snakeGrid) {

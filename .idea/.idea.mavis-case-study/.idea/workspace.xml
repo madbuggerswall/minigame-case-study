@@ -5,24 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb37b183-9076-4ae9-8640-fdcddf36f23e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.mavis-case-study/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mavis-case-study/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SnakeScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SnakeScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/Elements/Food.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/Elements/Food.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/Elements/Snake.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/Elements/Snake.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/Elements/SnakeBody.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/Elements/SnakeBody.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/Factories/FoodFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/Factories/FoodFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/Factories/SnakeBodyFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/Factories/SnakeBodyFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/Factories/SnakeFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/Factories/SnakeFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/Factories/SnakeGridFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/Factories/SnakeGridFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/UI/LevelEndPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/UI/LevelEndPanel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/FoodGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/FoodGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeGrid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeInputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeInputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelInitializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/ScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/ScoreManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeLevelManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeUIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Snake/SnakeUIController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utilities/Persistence/BinaryJsonUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utilities/Persistence/BinaryJsonUtility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,6 +142,7 @@
       <workItem from="1754844163411" duration="15301000" />
       <workItem from="1754905377685" duration="26457000" />
       <workItem from="1754940411109" duration="8448000" />
+      <workItem from="1755048211038" duration="1351000" />
     </task>
     <servers />
   </component>

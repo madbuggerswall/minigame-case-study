@@ -51,8 +51,8 @@ namespace Snake {
 		private static Vector2Int GetRandomPositionInGrid(Vector2Int gridSize) {
 			Vector2Int position = Vector2Int.zero;
 			while (position == Vector2Int.zero) {
-				int posX = Random.Range(-gridSize.x / 2, gridSize.x / 2);
-				int posY = Random.Range(-gridSize.y / 2, gridSize.y / 2);
+				int posX = Random.Range(-gridSize.x / 2 + 1, gridSize.x / 2 - 1);
+				int posY = Random.Range(-gridSize.y / 2 + 1, gridSize.y / 2 - 1);
 				position = new Vector2Int(posX, posY);
 			}
 
