@@ -14,8 +14,6 @@ namespace RunnerGame.Elements {
 
 		[Header("Perlin Settings")]
 		[SerializeField] private float obstacleRatio = 0.2f;
-		[SerializeField] private float noiseScale = 1f;
-		[SerializeField] private float noiseOffset = 0f;
 
 		private readonly List<Obstacle> spawnedObstacles = new();
 		private float spawnTime = 0;
@@ -33,8 +31,8 @@ namespace RunnerGame.Elements {
 		}
 
 		private void Update() {
-			SpawnRowPeriodically();
 			MoveObstaclesDownwards();
+			SpawnRowPeriodically();
 		}
 
 		private void MoveObstaclesDownwards() {
@@ -77,19 +75,14 @@ namespace RunnerGame.Elements {
 			int xMin = gridPosition.x - gridSize.x / 2;
 			int xMax = gridPosition.x + gridSize.x / 2;
 
-			for (int x = xMin; x <= xMax; x++) {
-				if (!SamplePerlinNoise1D(x, noiseScale, obstacleRatio, noiseOffset))
+			for (int x = xMin + 1; x < xMax; x++) {
+				if (Random.value >= obstacleRatio)
 					continue;
 
 				Obstacle obstacle = obstacleFactory.CreateObstacle(new Vector2Int(x, yMax - 1));
 				spawnedObstacles.Add(obstacle);
 			}
 		}
-
-		private static bool SamplePerlinNoise1D(float posX, float noiseScale, float threshold, float noiseOffset) {
-			return Mathf.PerlinNoise(noiseOffset + posX * noiseScale, 0f) > threshold;
-		}
-
 
 		// TODO
 		// private Vector2Int GetRandomObstaclePosition(Vector2Int gridSize, Snake snake) {
