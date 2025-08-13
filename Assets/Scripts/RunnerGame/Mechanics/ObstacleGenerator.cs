@@ -10,9 +10,7 @@ namespace RunnerGame.Mechanics {
 		[Header("Spawn Settings")]
 		[SerializeField] private float spawnPeriod = 1;
 		[SerializeField] private float movePeriod = .1f;
-
-		[Header("Perlin Settings")]
-		[SerializeField] private float obstacleRatio = 0.8f;
+		[SerializeField] private float obstacleRatio = 0.72f;
 
 		private readonly List<Obstacle> spawnedObstacles = new();
 		private float spawnTime = 0;
